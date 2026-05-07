@@ -1,0 +1,5 @@
+# 02_ARQUITECTURA_CONCEPTUAL
+
+Cartapacio del proyecto EGIA-Accion.
+
+Estado inicial: creado para primera versión local.

@@ -1,0 +1,282 @@
+- .gitignore
+- 00_CONTROL_MAESTRO/
+  - 00_CONTROL_MAESTRO/2026-05-07_FrameworkV410_IntegralAutosostenido_EXTRAIDO.md
+  - 00_CONTROL_MAESTRO/README.md
+  - 00_CONTROL_MAESTRO/bitacoras_sesion/
+    - 00_CONTROL_MAESTRO/bitacoras_sesion/2026-05-07_EGIA_BitacoraActivacion_FrameworkV410_v0-2.md
+  - 00_CONTROL_MAESTRO/brief_proyecto/
+    - 00_CONTROL_MAESTRO/brief_proyecto/2026-05-07_EGIA_BriefProyecto_v0-1.md
+  - 00_CONTROL_MAESTRO/changelog/
+    - 00_CONTROL_MAESTRO/changelog/2026-05-07_EGIA_Changelog_Inicial_v0-1.md
+  - 00_CONTROL_MAESTRO/decisiones/
+    - 00_CONTROL_MAESTRO/decisiones/2026-05-07_EGIA_RegistroDecisiones_Inicial_v0-1.md
+  - 00_CONTROL_MAESTRO/indice_documentos_fuente.md
+  - 00_CONTROL_MAESTRO/plan_maestro/
+    - 00_CONTROL_MAESTRO/plan_maestro/2026-05-07_EGIA_PlanMaestro_Activacion_Monitoreo_Gobernanza_N4_v0-2.md
+  - 00_CONTROL_MAESTRO/primers_continuidad/
+    - 00_CONTROL_MAESTRO/primers_continuidad/2026-05-07_EGIA_PrimerContinuidad_v0-1.md
+  - 00_CONTROL_MAESTRO/releases/
+    - 00_CONTROL_MAESTRO/releases/nada.md
+  - 00_CONTROL_MAESTRO/roadmap/
+    - 00_CONTROL_MAESTRO/roadmap/nada.md
+- 01_FUNDAMENTO_FILOSOFICO/
+  - 01_FUNDAMENTO_FILOSOFICO/README.md
+  - 01_FUNDAMENTO_FILOSOFICO/educacion_general/
+    - 01_FUNDAMENTO_FILOSOFICO/educacion_general/nada.md
+  - 01_FUNDAMENTO_FILOSOFICO/etica_cuidado/
+    - 01_FUNDAMENTO_FILOSOFICO/etica_cuidado/nada.md
+  - 01_FUNDAMENTO_FILOSOFICO/inteligencia_artificial/
+    - 01_FUNDAMENTO_FILOSOFICO/inteligencia_artificial/nada.md
+  - 01_FUNDAMENTO_FILOSOFICO/juicio_humano/
+    - 01_FUNDAMENTO_FILOSOFICO/juicio_humano/nada.md
+- 02_ARQUITECTURA_CONCEPTUAL/
+  - 02_ARQUITECTURA_CONCEPTUAL/README.md
+  - 02_ARQUITECTURA_CONCEPTUAL/caleidoscopio/
+    - 02_ARQUITECTURA_CONCEPTUAL/caleidoscopio/nada.md
+  - 02_ARQUITECTURA_CONCEPTUAL/mapas_sistemicos/
+    - 02_ARQUITECTURA_CONCEPTUAL/mapas_sistemicos/nada.md
+  - 02_ARQUITECTURA_CONCEPTUAL/marco_conceptual/
+    - 02_ARQUITECTURA_CONCEPTUAL/marco_conceptual/nada.md
+  - 02_ARQUITECTURA_CONCEPTUAL/modelos_formativos/
+    - 02_ARQUITECTURA_CONCEPTUAL/modelos_formativos/nada.md
+- 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/
+  - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/README.md
+  - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/estudio_independiente_guiado/
+    - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/estudio_independiente_guiado/nada.md
+  - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/flujos_sesion/
+    - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/flujos_sesion/nada.md
+  - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/mentorias_y_acompanamiento/
+    - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/mentorias_y_acompanamiento/nada.md
+  - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/metodologia_general/
+    - 03_METODOLOGIA_Y_FLUJO_DE_TRABAJO/metodologia_general/nada.md
+- 04_GOBERNANZA_ETICA_Y_RIESGOS/
+  - 04_GOBERNANZA_ETICA_Y_RIESGOS/README.md
+  - 04_GOBERNANZA_ETICA_Y_RIESGOS/consentimiento/
+    - 04_GOBERNANZA_ETICA_Y_RIESGOS/consentimiento/nada.md
+  - 04_GOBERNANZA_ETICA_Y_RIESGOS/derechos_autor_licencias/
+    - 04_GOBERNANZA_ETICA_Y_RIESGOS/derechos_autor_licencias/nada.md
+  - 04_GOBERNANZA_ETICA_Y_RIESGOS/matriz_riesgos/
+    - 04_GOBERNANZA_ETICA_Y_RIESGOS/matriz_riesgos/nada.md
+  - 04_GOBERNANZA_ETICA_Y_RIESGOS/privacidad/
+    - 04_GOBERNANZA_ETICA_Y_RIESGOS/privacidad/nada.md
+  - 04_GOBERNANZA_ETICA_Y_RIESGOS/protocolo_etico/
+    - 04_GOBERNANZA_ETICA_Y_RIESGOS/protocolo_etico/2026-05-08_EGIA_ProtocoloEticoPrivacidadConsentimiento_v0-1.md
+- 05_COMPETENCIAS_Y_PERFILES/
+  - 05_COMPETENCIAS_Y_PERFILES/README.md
+  - 05_COMPETENCIAS_Y_PERFILES/artista_transdisciplinario/
+    - 05_COMPETENCIAS_Y_PERFILES/artista_transdisciplinario/nada.md
+  - 05_COMPETENCIAS_Y_PERFILES/comunidad_participante/
+    - 05_COMPETENCIAS_Y_PERFILES/comunidad_participante/nada.md
+  - 05_COMPETENCIAS_Y_PERFILES/curador_institucional/
+    - 05_COMPETENCIAS_Y_PERFILES/curador_institucional/nada.md
+  - 05_COMPETENCIAS_Y_PERFILES/investigador_transdisciplinario/
+    - 05_COMPETENCIAS_Y_PERFILES/investigador_transdisciplinario/nada.md
+  - 05_COMPETENCIAS_Y_PERFILES/programador_humanista/
+    - 05_COMPETENCIAS_Y_PERFILES/programador_humanista/nada.md
+- 06_PASTILLAS_MODULARES/
+  - 06_PASTILLAS_MODULARES/README.md
+  - 06_PASTILLAS_MODULARES/capsulas_reflexivas/
+    - 06_PASTILLAS_MODULARES/capsulas_reflexivas/nada.md
+  - 06_PASTILLAS_MODULARES/microguias/
+    - 06_PASTILLAS_MODULARES/microguias/nada.md
+  - 06_PASTILLAS_MODULARES/prompts_documentados/
+    - 06_PASTILLAS_MODULARES/prompts_documentados/nada.md
+  - 06_PASTILLAS_MODULARES/recursos_breves/
+    - 06_PASTILLAS_MODULARES/recursos_breves/nada.md
+- 07_PLANTILLAS_Y_MODELOS/
+  - 07_PLANTILLAS_Y_MODELOS/2026-05-07_Archivo_AnexoB_KitPlantillasParticipante_ViernesIA.md
+  - 07_PLANTILLAS_Y_MODELOS/README.md
+  - 07_PLANTILLAS_Y_MODELOS/bitacoras/
+    - 07_PLANTILLAS_Y_MODELOS/bitacoras/2026-05-07_EGIA_PlantillaBitacoraSesion_v0-1.md
+    - 07_PLANTILLAS_Y_MODELOS/bitacoras/2026-05-07_FrameworkV410_BitacoraSimetricaPlantilla.md
+  - 07_PLANTILLAS_Y_MODELOS/evidence_ledgers/
+    - 07_PLANTILLAS_Y_MODELOS/evidence_ledgers/plantilla_evidence_ledger.json
+  - 07_PLANTILLAS_Y_MODELOS/fichas_producto/
+    - 07_PLANTILLAS_Y_MODELOS/fichas_producto/nada.md
+  - 07_PLANTILLAS_Y_MODELOS/registros_ia/
+    - 07_PLANTILLAS_Y_MODELOS/registros_ia/nada.md
+  - 07_PLANTILLAS_Y_MODELOS/rubricas/
+    - 07_PLANTILLAS_Y_MODELOS/rubricas/nada.md
+- 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/
+  - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/README.md
+  - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/estudio_independiente/
+    - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/estudio_independiente/nada.md
+  - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/modulos/
+    - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/modulos/nada.md
+  - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/rutas_formativas/
+    - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/rutas_formativas/nada.md
+  - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/seminarios/
+    - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/seminarios/nada.md
+  - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/talleres/
+    - 08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/talleres/nada.md
+- 09_IA_AGENTES_Y_COPILOTOS/
+  - 09_IA_AGENTES_Y_COPILOTOS/README.md
+  - 09_IA_AGENTES_Y_COPILOTOS/asistentes_academicos/
+    - 09_IA_AGENTES_Y_COPILOTOS/asistentes_academicos/nada.md
+  - 09_IA_AGENTES_Y_COPILOTOS/instrucciones_sistema/
+    - 09_IA_AGENTES_Y_COPILOTOS/instrucciones_sistema/nada.md
+  - 09_IA_AGENTES_Y_COPILOTOS/pruebas_validacion/
+    - 09_IA_AGENTES_Y_COPILOTOS/pruebas_validacion/nada.md
+  - 09_IA_AGENTES_Y_COPILOTOS/salvaguardas/
+    - 09_IA_AGENTES_Y_COPILOTOS/salvaguardas/nada.md
+- 10_REPOSITORIOS_Y_FLUJO_TECNICO/
+  - 10_REPOSITORIOS_Y_FLUJO_TECNICO/README.md
+  - 10_REPOSITORIOS_Y_FLUJO_TECNICO/exportaciones/
+    - 10_REPOSITORIOS_Y_FLUJO_TECNICO/exportaciones/2026-05-08_EGIA_GuiaExportacion_MD_JSON_v0-1.md
+  - 10_REPOSITORIOS_Y_FLUJO_TECNICO/github/
+    - 10_REPOSITORIOS_Y_FLUJO_TECNICO/github/2026-05-07_EGIA_ComandosGit_Iniciales_v0-1.md
+  - 10_REPOSITORIOS_Y_FLUJO_TECNICO/obsidian/
+    - 10_REPOSITORIOS_Y_FLUJO_TECNICO/obsidian/2026-05-07_EGIA_Obsidian_Vault_Inicial_v0-1.md
+  - 10_REPOSITORIOS_Y_FLUJO_TECNICO/vscode/
+    - 10_REPOSITORIOS_Y_FLUJO_TECNICO/vscode/nada.md
+  - 10_REPOSITORIOS_Y_FLUJO_TECNICO/wordpress/
+    - 10_REPOSITORIOS_Y_FLUJO_TECNICO/wordpress/2026-05-07_EGIA_WordPress_ArquitecturaInicial_v0-1.md
+- 11_MULTIMODALIDAD_Y_PUBLICACION/
+  - 11_MULTIMODALIDAD_Y_PUBLICACION/README.md
+  - 11_MULTIMODALIDAD_Y_PUBLICACION/audio/
+    - 11_MULTIMODALIDAD_Y_PUBLICACION/audio/nada.md
+  - 11_MULTIMODALIDAD_Y_PUBLICACION/imagen/
+    - 11_MULTIMODALIDAD_Y_PUBLICACION/imagen/nada.md
+  - 11_MULTIMODALIDAD_Y_PUBLICACION/podcasts/
+    - 11_MULTIMODALIDAD_Y_PUBLICACION/podcasts/nada.md
+  - 11_MULTIMODALIDAD_Y_PUBLICACION/video/
+    - 11_MULTIMODALIDAD_Y_PUBLICACION/video/nada.md
+  - 11_MULTIMODALIDAD_Y_PUBLICACION/visualizaciones/
+    - 11_MULTIMODALIDAD_Y_PUBLICACION/visualizaciones/nada.md
+  - 11_MULTIMODALIDAD_Y_PUBLICACION/wordpress_publicaciones/
+    - 11_MULTIMODALIDAD_Y_PUBLICACION/wordpress_publicaciones/nada.md
+- 12_DISENO_INSTRUCCIONAL_UNIVERSAL/
+  - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/README.md
+  - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/accesibilidad/
+    - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/accesibilidad/2026-05-08_EGIA_ChecklistAccesibilidad_DUA_POUR_v0-1.md
+  - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/alternativas_textuales/
+    - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/alternativas_textuales/nada.md
+  - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/dua/
+    - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/dua/nada.md
+  - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/formatos_editables/
+    - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/formatos_editables/nada.md
+  - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/pour/
+    - 12_DISENO_INSTRUCCIONAL_UNIVERSAL/pour/nada.md
+- 13_INVESTIGACION_Y_EVIDENCIA/
+  - 13_INVESTIGACION_Y_EVIDENCIA/README.md
+  - 13_INVESTIGACION_Y_EVIDENCIA/analisis/
+    - 13_INVESTIGACION_Y_EVIDENCIA/analisis/nada.md
+  - 13_INVESTIGACION_Y_EVIDENCIA/datos_anonimizados/
+    - 13_INVESTIGACION_Y_EVIDENCIA/datos_anonimizados/nada.md
+  - 13_INVESTIGACION_Y_EVIDENCIA/evidencia_voluntaria/
+    - 13_INVESTIGACION_Y_EVIDENCIA/evidencia_voluntaria/nada.md
+  - 13_INVESTIGACION_Y_EVIDENCIA/informes/
+    - 13_INVESTIGACION_Y_EVIDENCIA/informes/nada.md
+  - 13_INVESTIGACION_Y_EVIDENCIA/protocolos/
+    - 13_INVESTIGACION_Y_EVIDENCIA/protocolos/2026-05-08_EGIA_ProtocoloEvidenciaRobusta_v0-1.md
+  - 13_INVESTIGACION_Y_EVIDENCIA/rubricas/
+    - 13_INVESTIGACION_Y_EVIDENCIA/rubricas/nada.md
+- 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/
+  - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/README.md
+  - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/alianzas/
+    - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/alianzas/nada.md
+  - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/colaboraciones/
+    - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/colaboraciones/nada.md
+  - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/comunidad_practica/
+    - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/comunidad_practica/nada.md
+  - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/mooc_certificacion/
+    - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/mooc_certificacion/nada.md
+  - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/simposios/
+    - 14_COMUNIDAD_TRANSFERENCIA_Y_ESCALAMIENTO/simposios/nada.md
+- 15_EVALUACION_CALIDAD_Y_AUDITORIA/
+  - 15_EVALUACION_CALIDAD_Y_AUDITORIA/README.md
+  - 15_EVALUACION_CALIDAD_Y_AUDITORIA/auditorias_ligeras/
+    - 15_EVALUACION_CALIDAD_Y_AUDITORIA/auditorias_ligeras/nada.md
+  - 15_EVALUACION_CALIDAD_Y_AUDITORIA/checks/
+    - 15_EVALUACION_CALIDAD_Y_AUDITORIA/checks/2026-05-07_EGIA_CHECKS_Iniciales_v0-1.md
+  - 15_EVALUACION_CALIDAD_Y_AUDITORIA/gates/
+    - 15_EVALUACION_CALIDAD_Y_AUDITORIA/gates/2026-05-07_EGIA_Gates_G1_G14_Iniciales_v0-1.md
+  - 15_EVALUACION_CALIDAD_Y_AUDITORIA/indicadores/
+    - 15_EVALUACION_CALIDAD_Y_AUDITORIA/indicadores/nada.md
+  - 15_EVALUACION_CALIDAD_Y_AUDITORIA/reportes_calidad/
+    - 15_EVALUACION_CALIDAD_Y_AUDITORIA/reportes_calidad/nada.md
+- 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/
+  - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/README.md
+  - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/anonimizacion/
+    - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/anonimizacion/nada.md
+  - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/backups/
+    - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/backups/nada.md
+  - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/exportaciones_json/
+    - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/exportaciones_json/nada.md
+  - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/niveles_datos/
+    - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/niveles_datos/nada.md
+  - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/politicas_acceso/
+    - 16_SEGURIDAD_PRIVACIDAD_Y_DATOS/politicas_acceso/nada.md
+- 17_INTERNACIONALIZACION_LOCALIZACION/
+  - 17_INTERNACIONALIZACION_LOCALIZACION/README.md
+  - 17_INTERNACIONALIZACION_LOCALIZACION/adaptaciones/
+    - 17_INTERNACIONALIZACION_LOCALIZACION/adaptaciones/nada.md
+  - 17_INTERNACIONALIZACION_LOCALIZACION/colaboraciones_externas/
+    - 17_INTERNACIONALIZACION_LOCALIZACION/colaboraciones_externas/nada.md
+  - 17_INTERNACIONALIZACION_LOCALIZACION/contexto_caribe/
+    - 17_INTERNACIONALIZACION_LOCALIZACION/contexto_caribe/nada.md
+  - 17_INTERNACIONALIZACION_LOCALIZACION/traducciones/
+    - 17_INTERNACIONALIZACION_LOCALIZACION/traducciones/nada.md
+- 18_DOCUMENTACION_ACTIVA/
+  - 18_DOCUMENTACION_ACTIVA/README.md
+  - 18_DOCUMENTACION_ACTIVA/bitacoras_vivas/
+    - 18_DOCUMENTACION_ACTIVA/bitacoras_vivas/nada.md
+  - 18_DOCUMENTACION_ACTIVA/diarios_proyecto/
+    - 18_DOCUMENTACION_ACTIVA/diarios_proyecto/nada.md
+  - 18_DOCUMENTACION_ACTIVA/notas_obsidian/
+    - 18_DOCUMENTACION_ACTIVA/notas_obsidian/nada.md
+  - 18_DOCUMENTACION_ACTIVA/seguimiento_semanal/
+    - 18_DOCUMENTACION_ACTIVA/seguimiento_semanal/nada.md
+- 19_IMPLEMENTACION_Y_DESPLIEGUE/
+  - 19_IMPLEMENTACION_Y_DESPLIEGUE/README.md
+  - 19_IMPLEMENTACION_Y_DESPLIEGUE/calendarios/
+    - 19_IMPLEMENTACION_Y_DESPLIEGUE/calendarios/nada.md
+  - 19_IMPLEMENTACION_Y_DESPLIEGUE/despliegues/
+    - 19_IMPLEMENTACION_Y_DESPLIEGUE/despliegues/nada.md
+  - 19_IMPLEMENTACION_Y_DESPLIEGUE/pilotos/
+    - 19_IMPLEMENTACION_Y_DESPLIEGUE/pilotos/nada.md
+  - 19_IMPLEMENTACION_Y_DESPLIEGUE/recursos_operativos/
+    - 19_IMPLEMENTACION_Y_DESPLIEGUE/recursos_operativos/nada.md
+  - 19_IMPLEMENTACION_Y_DESPLIEGUE/sesiones/
+    - 19_IMPLEMENTACION_Y_DESPLIEGUE/sesiones/nada.md
+- 20_MANTENIMIENTO_Y_EVOLUCION/
+  - 20_MANTENIMIENTO_Y_EVOLUCION/README.md
+  - 20_MANTENIMIENTO_Y_EVOLUCION/backlog/
+    - 20_MANTENIMIENTO_Y_EVOLUCION/backlog/nada.md
+  - 20_MANTENIMIENTO_Y_EVOLUCION/deprecaciones/
+    - 20_MANTENIMIENTO_Y_EVOLUCION/deprecaciones/nada.md
+  - 20_MANTENIMIENTO_Y_EVOLUCION/mejoras/
+    - 20_MANTENIMIENTO_Y_EVOLUCION/mejoras/nada.md
+  - 20_MANTENIMIENTO_Y_EVOLUCION/roadmap_futuro/
+    - 20_MANTENIMIENTO_Y_EVOLUCION/roadmap_futuro/nada.md
+  - 20_MANTENIMIENTO_Y_EVOLUCION/versionado/
+    - 20_MANTENIMIENTO_Y_EVOLUCION/versionado/nada.md
+- 21_WIKI_DOCUMENTACION_HUMANA/
+  - 21_WIKI_DOCUMENTACION_HUMANA/README.md
+  - 21_WIKI_DOCUMENTACION_HUMANA/guias_facilitador/
+    - 21_WIKI_DOCUMENTACION_HUMANA/guias_facilitador/2026-05-07_Archivo_AnexoA_GuiaFacilitadores_ViernesIA.md
+  - 21_WIKI_DOCUMENTACION_HUMANA/guias_usuario/
+    - 21_WIKI_DOCUMENTACION_HUMANA/guias_usuario/nada.md
+  - 21_WIKI_DOCUMENTACION_HUMANA/manuales/
+    - 21_WIKI_DOCUMENTACION_HUMANA/manuales/nada.md
+  - 21_WIKI_DOCUMENTACION_HUMANA/preguntas_frecuentes/
+    - 21_WIKI_DOCUMENTACION_HUMANA/preguntas_frecuentes/nada.md
+- 99_ARCHIVO_HISTORICO/
+  - 99_ARCHIVO_HISTORICO/README.md
+  - 99_ARCHIVO_HISTORICO/documentos_obsoletos/
+    - 99_ARCHIVO_HISTORICO/documentos_obsoletos/nada.md
+  - 99_ARCHIVO_HISTORICO/productos_viernes_ia/
+    - 99_ARCHIVO_HISTORICO/productos_viernes_ia/2026-05-07_Archivo_CompendioSituacion_ViernesIA.md
+    - 99_ARCHIVO_HISTORICO/productos_viernes_ia/2026-05-07_Archivo_PrimerContinuidad_ViernesIA.md
+    - 99_ARCHIVO_HISTORICO/productos_viernes_ia/2026-05-07_Archivo_Producto04_MatrizAlineacion_EXTRAIDO.md
+    - 99_ARCHIVO_HISTORICO/productos_viernes_ia/2026-05-07_Archivo_Producto05_CalendarioPublico_ViernesIA.md
+    - 99_ARCHIVO_HISTORICO/productos_viernes_ia/2026-05-07_Archivo_Producto07_AplicabilidadFramework_ViernesIA.md
+    - 99_ARCHIVO_HISTORICO/productos_viernes_ia/Producto_04_Matriz_Alineacion_Integracion_ViernesIA.pdf
+  - 99_ARCHIVO_HISTORICO/releases_historicos/
+    - 99_ARCHIVO_HISTORICO/releases_historicos/nada.md
+  - 99_ARCHIVO_HISTORICO/versiones_cerradas/
+    - 99_ARCHIVO_HISTORICO/versiones_cerradas/2026-05-07_Archivo_FrameworkV411_RecordVersion.md
+    - 99_ARCHIVO_HISTORICO/versiones_cerradas/Framework_Generico_V4_1_0_Integral_Autosostenido_RJMDJ_V1_1.pdf
+- LICENSE_NOTA.md
+- README.md
+- manifest_egia_accion.json

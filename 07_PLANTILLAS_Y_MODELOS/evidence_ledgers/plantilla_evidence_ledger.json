@@ -1,0 +1,24 @@
+{
+  "id_evidencia": "EGIA-EVID-0001",
+  "fecha": "2026-05-07",
+  "tipo": "bitacora_sesion",
+  "titulo": "Activación inicial del repositorio EGIA-Accion",
+  "autor_o_responsable": "Ricardo Juan Morales De Jesús, Ph.D.",
+  "nivel_evidencia": "E0",
+  "consentimiento": "no_aplica_documentacion_interna",
+  "anonimizacion": "no_aplica",
+  "uso_permitido": [
+    "monitoreo",
+    "archivo"
+  ],
+  "formato": [
+    "md",
+    "json"
+  ],
+  "ubicacion": "00_CONTROL_MAESTRO/bitacoras_sesion/",
+  "estado": "borrador_activo",
+  "riesgos": [
+    "alcance_en_definicion"
+  ],
+  "proxima_accion": "inicializar git y subir a GitHub"
+}
