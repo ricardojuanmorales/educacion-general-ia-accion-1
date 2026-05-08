@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EGIA Quest v0.1A | MVP local JSON-first</title>
+  <meta name="description" content="EGIA Quest MVP monolítico: portafolio lúdico, ético y portable para Educación General e Inteligencia Artificial en Acción." />
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --panel: #ffffff;
+      --panel-soft: #fbfaf6;
+      --text: #1d2433;
+      --muted: #5b6475;
+      --line: #ded8c8;
+      --accent: #334e68;
+      --accent-2: #6f5e3c;
+      --accent-soft: #e9e2d0;
+      --success: #2f6f4e;
+      --warning: #8a5a15;
+      --danger: #8a2d2d;
+      --shadow: 0 14px 35px rgba(29, 36, 51, 0.08);
+      --radius: 18px;
+      --radius-sm: 12px;
+      --focus: 0 0 0 4px rgba(51, 78, 104, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(111, 94, 60, 0.12), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(51, 78, 104, 0.12), transparent 34rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    summary:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -48px;
+      left: 1rem;
+      background: var(--accent);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      z-index: 50;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    header {
+      padding: 2rem 1rem 1rem;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .panel,
+    .stat,
+    .challenge-card,
+    .badge-card,
+    .notice {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: clamp(1.2rem, 3vw, 2rem);
+    }
+
+    .hero-kicker {
+      color: var(--accent-2);
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.15rem, 5vw, 4.2rem);
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      margin-bottom: 0.85rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      margin-top: 0.4rem;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.16rem);
+      max-width: 72ch;
+    }
+
+    .hero-side {
+      padding: 1rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .badge-pill,
+    .tag,
+    .level-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      border-radius: 999px;
+      padding: 0.28rem 0.62rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: var(--panel-soft);
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .badge-pill {
+      background: var(--accent-soft);
+      color: var(--accent-2);
+      border-color: #d5c8a9;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(247, 245, 239, 0.92);
+      backdrop-filter: blur(14px);
+      border-block: 1px solid var(--line);
+      z-index: 10;
+    }
+
+    .nav-row {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 0.75rem 0;
+    }
+
+    .tab-button,
+    .primary,
+    .secondary,
+    .danger {
+      border: 0;
+      border-radius: 999px;
+      padding: 0.72rem 1rem;
+      cursor: pointer;
+      font-weight: 800;
+      transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+    }
+
+    .tab-button {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .tab-button[aria-selected="true"] {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .tab-button:hover,
+    .primary:hover,
+    .secondary:hover,
+    .danger:hover {
+      transform: translateY(-1px);
+    }
+
+    .primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .secondary {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid #d5c8a9;
+    }
+
+    .danger {
+      background: #f3dede;
+      color: var(--danger);
+      border: 1px solid #e4bcbc;
+    }
+
+    main {
+      padding: 1.2rem 0 4rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .panel {
+      padding: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .soft {
+      background: var(--panel-soft);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .tiny {
+      font-size: 0.85rem;
+    }
+
+    .stat {
+      padding: 1rem;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .form-row {
+      display: grid;
+      gap: 0.4rem;
+      margin-bottom: 0.85rem;
+    }
+
+    label {
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.72rem 0.78rem;
+      background: #fff;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .checkbox-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.6rem;
+      align-items: start;
+      margin: 0.5rem 0;
+    }
+
+    .checkbox-row input {
+      width: auto;
+      margin-top: 0.24rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .challenge-card,
+    .badge-card {
+      padding: 1rem;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .challenge-card[data-status="completed"] {
+      border-color: rgba(47, 111, 78, 0.45);
+      background: linear-gradient(180deg, #ffffff, #f5fbf7);
+    }
+
+    .challenge-card[data-status="active"] {
+      border-color: rgba(138, 90, 21, 0.45);
+      background: linear-gradient(180deg, #ffffff, #fff9ed);
+    }
+
+    .status {
+      font-weight: 900;
+      color: var(--accent-2);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.78rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    pre {
+      background: #111827;
+      color: #f7f7f7;
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      overflow: auto;
+      max-height: 440px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--panel-soft);
+      padding: 0.75rem 0.9rem;
+      margin: 0.6rem 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      color: var(--accent);
+    }
+
+    .notice {
+      padding: 1rem;
+      border-left: 8px solid var(--accent);
+      background: rgba(255,255,255,0.92);
+    }
+
+    .notice.warning {
+      border-left-color: var(--warning);
+    }
+
+    .notice.success {
+      border-left-color: var(--success);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 2rem 0;
+      color: var(--muted);
+    }
+
+    @media (max-width: 820px) {
+      .hero,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-side {
+        padding: 0;
+      }
+    }
+
+    @media print {
+      nav,
+      .actions,
+      .no-print {
+        display: none !important;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .panel,
+      .hero-card,
+      .stat,
+      .challenge-card,
+      .badge-card {
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido principal</a>
+
+  <header>
+    <div class="shell hero">
+      <section class="hero-card" aria-labelledby="app-title">
+        <div class="hero-kicker">Educación General e Inteligencia Artificial en Acción</div>
+        <h1 id="app-title">EGIA Quest</h1>
+        <p class="lead">
+          MVP monolítico para practicar IA ética y responsable, documentar progreso, resolver dilemas,
+          activar accesibilidad y exportar un portafolio JSON/Markdown portable.
+        </p>
+        <div class="tags" aria-label="Características principales">
+          <span class="badge-pill">JSON-first</span>
+          <span class="badge-pill">Privacidad por defecto</span>
+          <span class="badge-pill">Sin servidor</span>
+          <span class="badge-pill">GitHub Pages simple</span>
+        </div>
+      </section>
+
+      <aside class="hero-side" aria-label="Resumen rápido">
+        <div class="stat">
+          <span class="tiny muted">Nivel actual</span>
+          <strong id="hero-level">Q0</strong>
+          <span id="hero-level-label">Activación responsable</span>
+        </div>
+        <div class="stat">
+          <span class="tiny muted">Puntos acumulados</span>
+          <strong id="hero-points">0</strong>
+          <span>Señales de práctica reflexiva, no competencia.</span>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <nav aria-label="Navegación principal">
+    <div class="shell nav-row" role="tablist" aria-label="Secciones de EGIA Quest">
+      <button class="tab-button" role="tab" aria-selected="true" data-screen="profile">Mi Perfil y Progreso</button>
+      <button class="tab-button" role="tab" aria-selected="false" data-screen="challenges">Retos</button>
+      <button class="tab-button" role="tab" aria-selected="false" data-screen="dilemmas">Dilemas Éticos</button>
+      <button class="tab-button" role="tab" aria-selected="false" data-screen="logbook">Mini-bitácora</button>
+      <button class="tab-button" role="tab" aria-selected="false" data-screen="export">Exportar</button>
+      <button class="tab-button" role="tab" aria-selected="false" data-screen="about">Documentación</button>
+    </div>
+  </nav>
+
+  <main id="main" class="shell">
+    <section id="profile" class="screen active" tabindex="-1">
+      <div class="panel">
+        <h2>Mi Perfil y Progreso</h2>
+        <p class="muted">
+          Esta sección concentra el perfil local, nivel actual, puntos, badges, retos completados,
+          competencias en desarrollo y opciones de privacidad. Nada se envía automáticamente.
+        </p>
+      </div>
+
+      <div class="grid grid-2">
+        <section class="panel" aria-labelledby="profile-setup-title">
+          <h3 id="profile-setup-title">Perfil local</h3>
+
+          <div class="form-row">
+            <label for="alias">Alias del participante</label>
+            <input id="alias" autocomplete="off" />
+          </div>
+
+          <div class="form-row">
+            <label for="role">Rol auto-seleccionado</label>
+            <select id="role">
+              <option value="docente">Docente</option>
+              <option value="investigador">Investigador/a</option>
+              <option value="docente_investigador">Docente-investigador/a</option>
+              <option value="estudiante_graduado">Estudiante graduado/a</option>
+              <option value="coordinador">Coordinador/a académico/a</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="route">Ruta de interés</label>
+            <select id="route">
+              <option value="programador_humanista">Programador Humanista</option>
+              <option value="investigador_transdisciplinario">Investigador Transdisciplinario</option>
+              <option value="artista_transdisciplinario">Artista Transdisciplinario</option>
+              <option value="caleidoscopio">Caleidoscopio / Integración</option>
+            </select>
+          </div>
+
+          <div class="notice warning">
+            <strong>Privacidad por defecto:</strong>
+            se usa alias, no se pide correo, no se incluyen evidencias voluntarias por defecto y no se publica nada.
+          </div>
+
+          <div class="checkbox-row">
+            <input id="consent-export" type="checkbox" />
+            <label for="consent-export">
+              Consiento generar una exportación local de mi perfil y progreso para revisarla antes de descargarla o compartirla.
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="primary" id="save-profile">Guardar perfil</button>
+            <button class="danger" id="delete-profile">Eliminar perfil local</button>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="progress-title">
+          <h3 id="progress-title">Resumen de progreso</h3>
+
+          <div class="grid grid-2">
+            <div class="stat">
+              <span class="tiny muted">Nivel</span>
+              <strong id="profile-level">Q0</strong>
+              <span id="profile-level-label">Activación responsable</span>
+            </div>
+            <div class="stat">
+              <span class="tiny muted">Puntos</span>
+              <strong id="profile-points">0</strong>
+              <span>Sin ranking público.</span>
+            </div>
+            <div class="stat">
+              <span class="tiny muted">Retos completados</span>
+              <strong id="completed-count">0</strong>
+              <span>Con evidencia mínima.</span>
+            </div>
+            <div class="stat">
+              <span class="tiny muted">Badges</span>
+              <strong id="badge-count">0</strong>
+              <span>Insignias de calidad.</span>
+            </div>
+          </div>
+
+          <details open>
+            <summary>Badges obtenidos</summary>
+            <div id="earned-badges" class="grid"></div>
+          </details>
+
+          <details>
+            <summary>Competencias en desarrollo</summary>
+            <div id="competencies-list" class="grid"></div>
+          </details>
+
+          <details>
+            <summary>Retos completados</summary>
+            <div id="completed-challenges-list" class="grid"></div>
+          </details>
+        </section>
+      </div>
+    </section>
+
+    <section id="challenges" class="screen" tabindex="-1">
+      <div class="panel">
+        <h2>Retos</h2>
+        <p class="muted">
+          Completa retos con evidencia mínima, reflexión, revisión humana y acciones de accesibilidad.
+          Los puntos son señales de cuidado, no una carrera.
+        </p>
+      </div>
+      <div id="challenge-list" class="grid grid-2"></div>
+    </section>
+
+    <section id="dilemmas" class="screen" tabindex="-1">
+      <div class="panel">
+        <h2>Dilemas Éticos</h2>
+        <p class="muted">
+          Los dilemas no son trivias. Deben activar juicio humano, argumentación, cuidado y mitigación.
+        </p>
+      </div>
+
+      <div class="grid grid-2">
+        <section class="panel">
+          <h3>Dilema activo</h3>
+          <div class="form-row">
+            <label for="dilemma-select">Selecciona un dilema</label>
+            <select id="dilemma-select"></select>
+          </div>
+          <div id="dilemma-detail" class="notice"></div>
+        </section>
+
+        <section class="panel">
+          <h3>Mi decisión</h3>
+          <div class="form-row">
+            <label for="ethical-choice">Decisión tomada</label>
+            <select id="ethical-choice"></select>
+          </div>
+          <div class="form-row">
+            <label for="ethical-justification">Justificación</label>
+            <textarea id="ethical-justification" placeholder="Explica tu criterio, riesgos y cuidado aplicado."></textarea>
+          </div>
+          <div class="form-row">
+            <label for="ethical-mitigation">Mitigación o alternativa responsable</label>
+            <textarea id="ethical-mitigation" placeholder="Ejemplo: anonimizar, usar datos sintéticos, pedir consentimiento, no publicar."></textarea>
+          </div>
+          <button class="primary" id="save-ethical-decision">Guardar decisión ética</button>
+        </section>
+      </div>
+    </section>
+
+    <section id="logbook" class="screen" tabindex="-1">
+      <div class="panel">
+        <h2>Mini-bitácora</h2>
+        <p class="muted">
+          Registra propósito, práctica situada, resultado inicial, revisión humana, evidencia,
+          ética, accesibilidad y continuidad.
+        </p>
+      </div>
+
+      <div class="grid grid-2">
+        <section class="panel">
+          <h3>Nueva entrada</h3>
+          <div class="form-row">
+            <label for="log-purpose">Propósito</label>
+            <textarea id="log-purpose"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="log-practice">Práctica situada</label>
+            <textarea id="log-practice"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="log-result">Resultado inicial</label>
+            <textarea id="log-result"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="log-review">Revisión humana</label>
+            <textarea id="log-review"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="log-evidence">Evidencia</label>
+            <textarea id="log-evidence"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="log-ethics">Ética</label>
+            <textarea id="log-ethics"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="log-accessibility">Accesibilidad</label>
+            <textarea id="log-accessibility"></textarea>
+          </div>
+          <div class="form-row">
+            <label for="log-continuity">Continuidad</label>
+            <textarea id="log-continuity"></textarea>
+          </div>
+          <button class="primary" id="save-log">Guardar mini-bitácora</button>
+        </section>
+
+        <section class="panel">
+          <h3>Entradas guardadas</h3>
+          <div id="log-list" class="grid"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="export" class="screen" tabindex="-1">
+      <div class="panel">
+        <h2>Exportar portafolio</h2>
+        <p class="muted">
+          Selecciona qué datos incluir. Revisa la vista previa antes de copiar o descargar.
+        </p>
+      </div>
+
+      <div class="grid grid-2">
+        <section class="panel">
+          <h3>Opciones de exportación</h3>
+
+          <div class="checkbox-row">
+            <input id="export-profile" type="checkbox" checked />
+            <label for="export-profile">Perfil básico con alias</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="export-progress" type="checkbox" checked />
+            <label for="export-progress">Nivel, puntos y progreso</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="export-challenges" type="checkbox" checked />
+            <label for="export-challenges">Retos completados, activos y pendientes</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="export-badges" type="checkbox" checked />
+            <label for="export-badges">Badges obtenidos</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="export-competencies" type="checkbox" checked />
+            <label for="export-competencies">Competencias en desarrollo</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="export-reflections" type="checkbox" checked />
+            <label for="export-reflections">Reflexiones y mini-bitácoras</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="export-evidence" type="checkbox" />
+            <label for="export-evidence">Evidencias voluntarias seleccionadas</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="export-ethics" type="checkbox" checked />
+            <label for="export-ethics">Decisiones éticas</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="export-accessibility" type="checkbox" checked />
+            <label for="export-accessibility">Acciones de accesibilidad</label>
+          </div>
+
+          <hr />
+
+          <div class="checkbox-row">
+            <input id="privacy-alias-only" type="checkbox" checked />
+            <label for="privacy-alias-only">Usar alias y excluir nombre real</label>
+          </div>
+          <div class="checkbox-row">
+            <input id="privacy-exclude-private" type="checkbox" checked />
+            <label for="privacy-exclude-private">Excluir evidencias privadas</label>
+          </div>
+
+          <div class="actions">
+            <button class="secondary" id="refresh-preview">Actualizar vista previa</button>
+            <button class="primary" id="copy-json">Copiar JSON</button>
+            <button class="primary" id="download-json">Descargar JSON</button>
+            <button class="secondary" id="download-md">Descargar Markdown</button>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h3>Vista previa JSON</h3>
+          <pre id="json-preview" aria-live="polite"></pre>
+        </section>
+      </div>
+    </section>
+
+    <section id="about" class="screen" tabindex="-1">
+      <div class="panel">
+        <h2>Documentación del MVP</h2>
+        <p>
+          <strong>EGIA Quest v0.1A</strong> es un prototipo monolítico diseñado para publicarse en GitHub Pages
+          sin build, sin npm y sin GitHub Actions.
+        </p>
+        <div class="grid grid-2">
+          <div class="notice">
+            <h3>Principios</h3>
+            <ul>
+              <li>Privacidad por defecto.</li>
+              <li>Alias antes que identificación real.</li>
+              <li>Evidencias voluntarias.</li>
+              <li>Revisión humana.</li>
+              <li>Accesibilidad desde el diseño.</li>
+              <li>Sin rankings públicos.</li>
+              <li>Sin publicación automática.</li>
+              <li>Portabilidad JSON/Markdown.</li>
+            </ul>
+          </div>
+          <div class="notice">
+            <h3>Para GitHub Pages</h3>
+            <ol>
+              <li>Sube este archivo como <code>index.html</code> a la raíz del repositorio.</li>
+              <li>Ve a Settings → Pages.</li>
+              <li>Selecciona Deploy from a branch.</li>
+              <li>Escoge <code>main</code> y <code>/root</code>.</li>
+              <li>Guarda y abre la URL publicada.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p>
+        EGIA Quest v0.1A · MVP local JSON-first · Educación General e Inteligencia Artificial en Acción.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const APP_VERSION = "0.1A-monolith";
+    const STORAGE_KEY = "egiaQuestProfile_v01A";
+
+    const levels = [
+      { id: "Q0", label: "Activación responsable", minPoints: 0 },
+      { id: "Q1", label: "Práctica situada", minPoints: 10 },
+      { id: "Q2", label: "Producción documentada", minPoints: 30 },
+      { id: "Q3", label: "Accesibilidad aplicada", minPoints: 50 },
+      { id: "Q4", label: "Juicio ético", minPoints: 75 },
+      { id: "Q5", label: "Integración caleidoscópica", minPoints: 105 },
+      { id: "Q6", label: "Transferencia portable", minPoints: 140 }
+    ];
+
+    const competencies = [
+      { id: "prompt_engineering", label: "Ingeniería de prompts" },
+      { id: "human_review", label: "Revisión humana" },
+      { id: "responsible_ai", label: "Uso ético y responsable de IA" },
+      { id: "data_governance", label: "Gobernanza de datos y privacidad" },
+      { id: "accessibility", label: "Accesibilidad y diseño universal" },
+      { id: "documentation", label: "Documentación activa" },
+      { id: "curation", label: "Curaduría crítica" },
+      { id: "transdisciplinary", label: "Pensamiento transdisciplinario" }
+    ];
+
+    const transversalProjects = [
+      { id: "avat", label: "Ambiente Virtual de Aprendizaje Transdisciplinario" },
+      { id: "living_lab", label: "Laboratorio Vivo para el Estudio Humano-Máquina" },
+      { id: "podcast", label: "Serie de Podcasts sobre Educación General e IA" },
+      { id: "mooc", label: "Certificación Educativa Global vía MOOC" },
+      { id: "framework_research", label: "Investigación Sistémica Framework V4.1.0" }
+    ];
+
+    const challenges = [
+      {
+        id: "EGIA-R-001",
+        title: "Prompt con propósito educativo claro",
+        type: "Buena práctica con IA",
+        level: "Q1",
+        basePoints: 10,
+        possibleBadge: "badge_prompt_transparente",
+        competencies: ["prompt_engineering", "human_review", "responsible_ai"],
+        projects: ["avat", "framework_research"],
+        evidence: "Prompt documentado",
+        reflection: "¿Qué mejoró cuando añadiste contexto, criterios y límites?",
+        ethics: "No incluir datos sensibles.",
+        accessibility: "Lenguaje claro."
+      },
+      {
+        id: "EGIA-R-002",
+        title: "Revisión humana activa",
+        type: "Revisión y calidad",
+        level: "Q2",
+        basePoints: 10,
+        possibleBadge: "badge_revision_humana",
+        competencies: ["human_review", "responsible_ai", "documentation"],
+        projects: ["living_lab", "framework_research"],
+        evidence: "Comparación entre resultado inicial y versión revisada",
+        reflection: "¿Qué aceptaste, rechazaste o modificaste de la salida de IA?",
+        ethics: "La IA no sustituye decisión profesional.",
+        accessibility: "Claridad del producto final."
+      },
+      {
+        id: "EGIA-R-003",
+        title: "Evidencia responsable",
+        type: "Privacidad y evidencia",
+        level: "Q2",
+        basePoints: 10,
+        possibleBadge: "badge_evidencia_responsable",
+        competencies: ["data_governance", "documentation", "responsible_ai"],
+        projects: ["living_lab", "framework_research"],
+        evidence: "Evidencia clasificada",
+        reflection: "¿Por qué esta evidencia es privada, archivable, investigable o publicable?",
+        ethics: "Consentimiento si aplica.",
+        accessibility: "Descripción textual de la evidencia."
+      },
+      {
+        id: "EGIA-R-004",
+        title: "Accesibilidad en acción",
+        type: "Accesibilidad",
+        level: "Q3",
+        basePoints: 10,
+        possibleBadge: "badge_accesibilidad",
+        competencies: ["accessibility", "documentation"],
+        projects: ["avat", "mooc"],
+        evidence: "Una mejora accesible concreta",
+        reflection: "¿Qué barrera redujiste?",
+        ethics: "Acceso equitativo.",
+        accessibility: "Texto alternativo, transcripción, estructura o lenguaje claro."
+      },
+      {
+        id: "EGIA-R-005",
+        title: "Dilema de datos estudiantiles",
+        type: "Dilema ético",
+        level: "Q4",
+        basePoints: 15,
+        possibleBadge: "badge_brujula_etica",
+        competencies: ["data_governance", "responsible_ai", "human_review"],
+        projects: ["living_lab", "framework_research"],
+        evidence: "Decisión y justificación",
+        reflection: "¿Qué información decidiste no procesar y por qué?",
+        ethics: "No usar datos identificables sin consentimiento.",
+        accessibility: "Explicación clara de la decisión."
+      },
+      {
+        id: "EGIA-R-006",
+        title: "Producto multimodal documentado",
+        type: "Producción multimodal",
+        level: "Q2",
+        basePoints: 10,
+        possibleBadge: "badge_multimodal_responsable",
+        competencies: ["responsible_ai", "accessibility", "documentation"],
+        projects: ["podcast", "avat", "mooc"],
+        evidence: "Ficha de producto",
+        reflection: "¿Qué valor educativo aporta el producto?",
+        ethics: "Declarar uso de IA y revisar sesgos.",
+        accessibility: "Alternativa textual o descripción."
+      },
+      {
+        id: "EGIA-R-007",
+        title: "Curaduría crítica",
+        type: "Investigación / curaduría",
+        level: "Q5",
+        basePoints: 15,
+        possibleBadge: "badge_curaduria_critica",
+        competencies: ["curation", "documentation", "responsible_ai"],
+        projects: ["framework_research", "avat"],
+        evidence: "Mini-colección con criterios",
+        reflection: "¿Qué fuente descartaste y por qué?",
+        ethics: "No confundir síntesis automática con verificación.",
+        accessibility: "Resumen comprensible."
+      },
+      {
+        id: "EGIA-R-008",
+        title: "Exportación portable",
+        type: "Transferencia",
+        level: "Q6",
+        basePoints: 20,
+        possibleBadge: "badge_portafolio_portable",
+        competencies: ["documentation", "data_governance", "transdisciplinary"],
+        projects: ["framework_research", "mooc"],
+        evidence: "JSON y Markdown revisados",
+        reflection: "¿Qué decidiste incluir o excluir de tu exportación?",
+        ethics: "Revisión antes de descargar o compartir.",
+        accessibility: "Vista legible del portafolio."
+      }
+    ];
+
+    const badges = [
+      { id: "badge_prompt_transparente", title: "Prompt Transparente", description: "Propósito, criterios y límites documentados." },
+      { id: "badge_revision_humana", title: "Revisión Humana Activa", description: "Cambios humanos registrados sobre salida de IA." },
+      { id: "badge_brujula_etica", title: "Brújula Ética", description: "Dilemas resueltos con justificación responsable." },
+      { id: "badge_accesibilidad", title: "Accesibilidad en Acción", description: "Barreras reducidas mediante acciones verificables." },
+      { id: "badge_evidencia_responsable", title: "Evidencia Responsable", description: "Evidencias clasificadas sin datos sensibles." },
+      { id: "badge_multimodal_responsable", title: "Creador Multimodal Responsable", description: "Producto multimodal documentado con ética y accesibilidad." },
+      { id: "badge_curaduria_critica", title: "Curaduría Crítica", description: "Fuentes, límites y criterios documentados." },
+      { id: "badge_portafolio_portable", title: "Portafolio Portable", description: "JSON y Markdown generados con revisión previa." }
+    ];
+
+    const dilemmas = [
+      {
+        id: "dilemma_student_data",
+        title: "Datos estudiantiles",
+        scenario: "Una persona quiere pegar respuestas estudiantiles completas en una herramienta de IA para obtener análisis rápido.",
+        options: [
+          "Pegar todo sin cambios.",
+          "Anonimizar, reducir y pedir consentimiento si aplica.",
+          "Usar datos sintéticos o fragmentos no identificables.",
+          "Consultar protocolo antes de procesar."
+        ],
+        recommended: "Anonimizar, minimizar datos, usar datos sintéticos cuando sea posible y obtener consentimiento si aplica.",
+        risk: "Exposición de información identificable o sensible."
+      },
+      {
+        id: "dilemma_visual_bias",
+        title: "Imagen generada con sesgo",
+        scenario: "Una imagen creada con IA representa de forma limitada o estereotipada a una comunidad académica.",
+        options: [
+          "Usarla porque es visualmente atractiva.",
+          "Revisar sesgos, corregir prompt o reemplazar la imagen.",
+          "Publicarla con una nota mínima.",
+          "Eliminarla sin documentar el problema."
+        ],
+        recommended: "Revisar representación, corregir o reemplazar, añadir texto alternativo y documentar la decisión.",
+        risk: "Reproducción de sesgos o representación inadecuada."
+      },
+      {
+        id: "dilemma_synthetic_voice",
+        title: "Voz sintética",
+        scenario: "Se propone crear un audio educativo con voz sintética parecida a una persona real.",
+        options: [
+          "Usarla sin advertencia.",
+          "Pedir consentimiento y transparentar el uso de voz sintética.",
+          "Cambiar a voz genérica o narración propia.",
+          "Publicar solo en espacios cerrados sin informar."
+        ],
+        recommended: "Usar consentimiento, transparencia, voz no engañosa y transcripción accesible.",
+        risk: "Confusión de identidad, falta de consentimiento y baja accesibilidad."
+      }
+    ];
+
+    function defaultProfile() {
+      return {
+        schema_version: "egia-quest.profile-progress.v0.1.0",
+        participant: {
+          participant_id: "local_" + cryptoRandom(),
+          display_alias: "Docente_Caleidoscopio",
+          use_alias: true,
+          identifiable_name_included: false,
+          role_self_selected: "docente_investigador",
+          route_self_selected: "caleidoscopio"
+        },
+        privacy_preferences: {
+          privacy_mode: "private_by_default",
+          anonymization_mode: "alias_only",
+          include_voluntary_evidence: false,
+          include_private_notes: false,
+          include_human_review_notes: true,
+          allow_repository_archive: false,
+          allow_research_use: false,
+          allow_publication: false
+        },
+        consent: {
+          profile_export_consent: false,
+          evidence_archive_consent: false,
+          research_use_consent: false,
+          public_share_consent: false,
+          consent_timestamp: null,
+          consent_notes: "Exportación local revisable por participante."
+        },
+        progress: {
+          current_level: "Q0",
+          level_label: "Activación responsable",
+          points_total: 0,
+          points_policy: "reflection_over_speed"
+        },
+        challenges: {
+          completed: [],
+          active: [],
+          pending: challenges.map(ch => ({ challenge_id: ch.id, title: ch.title }))
+        },
+        badges: [],
+        competencies_developed: [],
+        reflections: [],
+        voluntary_evidence: [],
+        ethical_decisions: [],
+        accessibility_actions: [],
+        human_review_notes: [],
+        transversal_project_links: [],
+        app_metadata: {
+          project_name: "Educación General e Inteligencia Artificial en Acción",
+          app_name: "EGIA Quest",
+          app_version: APP_VERSION,
+          mvp_model: "monolith_html_json_md",
+          data_origin: "participant_local_profile",
+          third_party_transfer: false,
+          compatible_targets: ["GitHub Pages", "GitHub", "Obsidian", "WordPress", "evidence_repository"]
+        }
+      };
+    }
+
+    let profile = loadProfile();
+
+    function cryptoRandom() {
+      if (window.crypto && crypto.getRandomValues) {
+        const values = new Uint32Array(1);
+        crypto.getRandomValues(values);
+        return values[0].toString(16);
+      }
+      return Math.random().toString(16).slice(2);
+    }
+
+    function nowIso() {
+      return new Date().toISOString();
+    }
+
+    function today() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function loadProfile() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultProfile();
+      try {
+        return { ...defaultProfile(), ...JSON.parse(raw) };
+      } catch {
+        return defaultProfile();
+      }
+    }
+
+    function saveProfile() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+      render();
+    }
+
+    function getLevelByPoints(points) {
+      return [...levels].reverse().find(level => points >= level.minPoints) || levels[0];
+    }
+
+    function updateLevel() {
+      const level = getLevelByPoints(profile.progress.points_total);
+      profile.progress.current_level = level.id;
+      profile.progress.level_label = level.label;
+    }
+
+    function labelFromList(list, id) {
+      const item = list.find(x => x.id === id);
+      return item ? item.label || item.title : id;
+    }
+
+    function badgeById(id) {
+      return badges.find(b => b.id === id);
+    }
+
+    function challengeById(id) {
+      return challenges.find(ch => ch.id === id);
+    }
+
+    function activateChallenge(id) {
+      if (profile.challenges.active.some(ch => ch.challenge_id === id) ||
+          profile.challenges.completed.some(ch => ch.challenge_id === id)) return;
+
+      const ch = challengeById(id);
+      profile.challenges.active.push({ challenge_id: ch.id, title: ch.title, started_at: today() });
+      profile.challenges.pending = profile.challenges.pending.filter(item => item.challenge_id !== id);
+      saveProfile();
+    }
+
+    function completeChallenge(id) {
+      if (profile.challenges.completed.some(ch => ch.challenge_id === id)) return;
+      const ch = challengeById(id);
+      const points = Math.min(ch.basePoints + 5, 25);
+
+      profile.challenges.completed.push({
+        challenge_id: ch.id,
+        title: ch.title,
+        completed_at: today(),
+        points_awarded: points,
+        competencies: ch.competencies,
+        transversal_projects: ch.projects,
+        evidence_ids: [],
+        reflection_id: null
+      });
+
+      profile.challenges.active = profile.challenges.active.filter(item => item.challenge_id !== id);
+      profile.challenges.pending = profile.challenges.pending.filter(item => item.challenge_id !== id);
+      profile.progress.points_total += points;
+
+      const possibleBadge = badgeById(ch.possibleBadge);
+      if (possibleBadge && !profile.badges.some(b => b.badge_id === possibleBadge.id)) {
+        profile.badges.push({
+          badge_id: possibleBadge.id,
+          title: possibleBadge.title,
+          awarded_at: today(),
+          criteria_met: [ch.evidence, ch.reflection, ch.ethics]
+        });
+      }
+
+      ch.competencies.forEach(cid => {
+        const existing = profile.competencies_developed.find(c => c.competency_id === cid);
+        if (existing) {
+          existing.evidence_count += 1;
+          existing.reflection_count += 1;
+          existing.development_level = existing.evidence_count >= 3 ? "consolidating" : "in_progress";
+        } else {
+          profile.competencies_developed.push({
+            competency_id: cid,
+            label: labelFromList(competencies, cid),
+            development_level: "in_progress",
+            evidence_count: 1,
+            reflection_count: 1
+          });
+        }
+      });
+
+      ch.projects.forEach(pid => {
+        if (!profile.transversal_project_links.some(p => p.project_id === pid)) {
+          profile.transversal_project_links.push({
+            project_id: pid,
+            project_name: labelFromList(transversalProjects, pid),
+            connection_type: "challenge_link",
+            related_challenges: [ch.id]
+          });
+        } else {
+          const link = profile.transversal_project_links.find(p => p.project_id === pid);
+          if (!link.related_challenges.includes(ch.id)) link.related_challenges.push(ch.id);
+        }
+      });
+
+      profile.accessibility_actions.push({
+        action_id: "acc_" + cryptoRandom(),
+        type: "challenge_accessibility_check",
+        description: ch.accessibility,
+        related_challenge_id: ch.id,
+        verified: true,
+        date: today()
+      });
+
+      profile.human_review_notes.push({
+        note_id: "hr_" + cryptoRandom(),
+        date: today(),
+        reviewer_role: "participant_self_review",
+        note: "Se completó el reto con revisión humana mínima requerida.",
+        include_in_export: true
+      });
+
+      updateLevel();
+      saveProfile();
+    }
+
+    function buildExportPackage() {
+      const options = {
+        includeProfile: document.querySelector("#export-profile").checked,
+        includeProgress: document.querySelector("#export-progress").checked,
+        includeChallenges: document.querySelector("#export-challenges").checked,
+        includeBadges: document.querySelector("#export-badges").checked,
+        includeCompetencies: document.querySelector("#export-competencies").checked,
+        includeReflections: document.querySelector("#export-reflections").checked,
+        includeEvidence: document.querySelector("#export-evidence").checked,
+        includeEthics: document.querySelector("#export-ethics").checked,
+        includeAccessibility: document.querySelector("#export-accessibility").checked,
+        aliasOnly: document.querySelector("#privacy-alias-only").checked,
+        excludePrivate: document.querySelector("#privacy-exclude-private").checked
+      };
+
+      const pkg = {
+        schema_version: profile.schema_version,
+        export_metadata: {
+          export_id: "egia_export_" + today() + "_" + profile.participant.display_alias,
+          exported_at: nowIso(),
+          export_format: "json",
+          generated_by: "EGIA Quest MVP Monolith",
+          app_version: APP_VERSION,
+          review_required_before_sharing: true
+        }
+      };
+
+      if (options.includeProfile) {
+        pkg.participant = {
+          participant_id: profile.participant.participant_id,
+          display_alias: profile.participant.display_alias,
+          use_alias: true,
+          identifiable_name_included: false,
+          role_self_selected: profile.participant.role_self_selected,
+          route_self_selected: profile.participant.route_self_selected
+        };
+        pkg.privacy_preferences = profile.privacy_preferences;
+        pkg.consent = profile.consent;
+      }
+
+      if (options.includeProgress) pkg.progress = profile.progress;
+      if (options.includeChallenges) pkg.challenges = profile.challenges;
+      if (options.includeBadges) pkg.badges = profile.badges;
+      if (options.includeCompetencies) pkg.competencies_developed = profile.competencies_developed;
+      if (options.includeReflections) pkg.reflections = profile.reflections;
+      if (options.includeEvidence) {
+        pkg.voluntary_evidence = profile.voluntary_evidence.filter(ev => {
+          if (options.excludePrivate && ev.privacy_classification === "private") return false;
+          return ev.include_in_export === true;
+        });
+      } else {
+        pkg.voluntary_evidence = [];
+      }
+      if (options.includeEthics) pkg.ethical_decisions = profile.ethical_decisions;
+      if (options.includeAccessibility) pkg.accessibility_actions = profile.accessibility_actions;
+
+      pkg.human_review_notes = profile.privacy_preferences.include_human_review_notes ? profile.human_review_notes : [];
+      pkg.transversal_project_links = profile.transversal_project_links;
+      pkg.app_metadata = profile.app_metadata;
+      return pkg;
+    }
+
+    function buildMarkdown(pkg) {
+      const alias = pkg.participant?.display_alias || profile.participant.display_alias;
+      const level = pkg.progress?.current_level || profile.progress.current_level;
+      const levelLabel = pkg.progress?.level_label || profile.progress.level_label;
+      const points = pkg.progress?.points_total ?? profile.progress.points_total;
+
+      const completed = (pkg.challenges?.completed || []).map(ch => `- ${ch.challenge_id}: ${ch.title} (${ch.points_awarded} puntos)`).join("\n") || "- Ningún reto completado en esta exportación.";
+      const badgesMd = (pkg.badges || []).map(b => `- ${b.title}`).join("\n") || "- Ningún badge en esta exportación.";
+      const compsMd = (pkg.competencies_developed || []).map(c => `- ${c.label}: ${c.development_level}`).join("\n") || "- Ninguna competencia en esta exportación.";
+      const reflectionsMd = (pkg.reflections || []).map(r => `### ${r.date}\n\n**Pregunta:** ${r.prompt || "Mini-bitácora"}\n\n${r.response || r.summary || ""}`).join("\n\n") || "No se incluyeron reflexiones.";
+      const ethicsMd = (pkg.ethical_decisions || []).map(d => `- ${d.decision_summary}: ${d.justification}`).join("\n") || "- No se incluyeron decisiones éticas.";
+      const accessMd = (pkg.accessibility_actions || []).map(a => `- ${a.description}`).join("\n") || "- No se incluyeron acciones de accesibilidad.";
+
+      return `---
+tipo: portafolio-egia-quest
+schema_version: ${pkg.schema_version}
+alias: ${alias}
+nivel_actual: ${level}
+privacidad: private_by_default
+fecha_exportacion: ${today()}
+---
+
+# Portafolio EGIA Quest
+
+## Perfil
+
+Alias: ${alias}  
+Nivel actual: ${level} - ${levelLabel}  
+Puntos acumulados: ${points}  
+Modo de privacidad: private_by_default  
+
+## Badges obtenidos
+
+${badgesMd}
+
+## Retos completados
+
+${completed}
+
+## Competencias en desarrollo
+
+${compsMd}
+
+## Reflexiones seleccionadas
+
+${reflectionsMd}
+
+## Decisiones éticas
+
+${ethicsMd}
+
+## Acciones de accesibilidad
+
+${accessMd}
+
+## Nota de privacidad
+
+Esta exportación fue generada localmente. No se envió automáticamente a ningún tercero. Revisa el contenido antes de compartirlo, archivarlo o publicarlo.
+`;
+    }
+
+    function downloadFile(filename, content, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function renderTabs() {
+      document.querySelectorAll(".tab-button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".tab-button").forEach(b => b.setAttribute("aria-selected", "false"));
+          document.querySelectorAll(".screen").forEach(screen => screen.classList.remove("active"));
+          btn.setAttribute("aria-selected", "true");
+          const screen = document.querySelector("#" + btn.dataset.screen);
+          screen.classList.add("active");
+          screen.focus();
+        });
+      });
+    }
+
+    function renderProfileFields() {
+      document.querySelector("#alias").value = profile.participant.display_alias;
+      document.querySelector("#role").value = profile.participant.role_self_selected;
+      document.querySelector("#route").value = profile.participant.route_self_selected;
+      document.querySelector("#consent-export").checked = profile.consent.profile_export_consent;
+    }
+
+    function renderStats() {
+      updateLevel();
+      ["hero-level", "profile-level"].forEach(id => document.getElementById(id).textContent = profile.progress.current_level);
+      ["hero-level-label", "profile-level-label"].forEach(id => document.getElementById(id).textContent = profile.progress.level_label);
+      ["hero-points", "profile-points"].forEach(id => document.getElementById(id).textContent = profile.progress.points_total);
+      document.querySelector("#completed-count").textContent = profile.challenges.completed.length;
+      document.querySelector("#badge-count").textContent = profile.badges.length;
+    }
+
+    function renderBadges() {
+      const container = document.querySelector("#earned-badges");
+      if (profile.badges.length === 0) {
+        container.innerHTML = `<p class="muted">Aún no hay badges. Completa retos con evidencia y reflexión para activarlos.</p>`;
+        return;
+      }
+      container.innerHTML = profile.badges.map(b => `
+        <div class="badge-card">
+          <strong>${b.title}</strong>
+          <span class="tiny muted">Otorgado: ${b.awarded_at}</span>
+          <span>${(badgeById(b.badge_id) || {}).description || ""}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderCompetencies() {
+      const container = document.querySelector("#competencies-list");
+      if (profile.competencies_developed.length === 0) {
+        container.innerHTML = `<p class="muted">Las competencias aparecerán al completar retos.</p>`;
+        return;
+      }
+      container.innerHTML = profile.competencies_developed.map(c => `
+        <div class="notice">
+          <strong>${c.label}</strong><br>
+          <span class="tiny muted">Nivel: ${c.development_level} · Evidencias: ${c.evidence_count} · Reflexiones: ${c.reflection_count}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderCompletedChallenges() {
+      const container = document.querySelector("#completed-challenges-list");
+      if (profile.challenges.completed.length === 0) {
+        container.innerHTML = `<p class="muted">Aún no hay retos completados.</p>`;
+        return;
+      }
+      container.innerHTML = profile.challenges.completed.map(ch => `
+        <div class="notice success">
+          <strong>${ch.challenge_id}: ${ch.title}</strong><br>
+          <span class="tiny muted">Completado: ${ch.completed_at} · Puntos: ${ch.points_awarded}</span>
+        </div>
+      `).join("");
+    }
+
+    function challengeStatus(id) {
+      if (profile.challenges.completed.some(ch => ch.challenge_id === id)) return "completed";
+      if (profile.challenges.active.some(ch => ch.challenge_id === id)) return "active";
+      return "pending";
+    }
+
+    function renderChallenges() {
+      const container = document.querySelector("#challenge-list");
+      container.innerHTML = challenges.map(ch => {
+        const status = challengeStatus(ch.id);
+        const statusLabel = status === "completed" ? "completado" : status === "active" ? "activo" : "pendiente";
+        return `
+          <article class="challenge-card" data-status="${status}">
+            <div class="status">${statusLabel}</div>
+            <h3>${ch.id}: ${ch.title}</h3>
+            <p class="muted">${ch.type} · Nivel ${ch.level} · ${ch.basePoints} puntos base</p>
+            <p><strong>Evidencia mínima:</strong> ${ch.evidence}</p>
+            <p><strong>Reflexión:</strong> ${ch.reflection}</p>
+            <p><strong>Criterio ético:</strong> ${ch.ethics}</p>
+            <p><strong>Accesibilidad:</strong> ${ch.accessibility}</p>
+            <div class="tags">
+              ${ch.competencies.map(cid => `<span class="tag">${labelFromList(competencies, cid)}</span>`).join("")}
+            </div>
+            <div class="actions">
+              <button class="secondary" onclick="activateChallenge('${ch.id}')" ${status !== "pending" ? "disabled" : ""}>Iniciar</button>
+              <button class="primary" onclick="completeChallenge('${ch.id}')" ${status === "completed" ? "disabled" : ""}>Completar con reflexión</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderDilemmas() {
+      const select = document.querySelector("#dilemma-select");
+      select.innerHTML = dilemmas.map(d => `<option value="${d.id}">${d.title}</option>`).join("");
+      select.onchange = renderSelectedDilemma;
+      renderSelectedDilemma();
+    }
+
+    function renderSelectedDilemma() {
+      const id = document.querySelector("#dilemma-select").value || dilemmas[0].id;
+      const dilemma = dilemmas.find(d => d.id === id);
+      document.querySelector("#dilemma-detail").innerHTML = `
+        <strong>${dilemma.title}</strong>
+        <p>${dilemma.scenario}</p>
+        <p><strong>Riesgo:</strong> ${dilemma.risk}</p>
+        <p><strong>Recomendación:</strong> ${dilemma.recommended}</p>
+      `;
+      document.querySelector("#ethical-choice").innerHTML = dilemma.options.map(opt => `<option value="${opt}">${opt}</option>`).join("");
+    }
+
+    function renderLogbook() {
+      const container = document.querySelector("#log-list");
+      if (profile.reflections.length === 0) {
+        container.innerHTML = `<p class="muted">Aún no hay entradas de mini-bitácora.</p>`;
+        return;
+      }
+      container.innerHTML = profile.reflections.slice().reverse().map(item => `
+        <article class="notice">
+          <strong>${item.date}</strong>
+          <p>${item.response}</p>
+          <span class="tiny muted">Privacidad: ${item.privacy_classification}</span>
+        </article>
+      `).join("");
+    }
+
+    function refreshPreview() {
+      const pkg = buildExportPackage();
+      document.querySelector("#json-preview").textContent = JSON.stringify(pkg, null, 2);
+    }
+
+    function render() {
+      updateLevel();
+      renderProfileFields();
+      renderStats();
+      renderBadges();
+      renderCompetencies();
+      renderCompletedChallenges();
+      renderChallenges();
+      renderLogbook();
+      refreshPreview();
+    }
+
+    document.querySelector("#save-profile").addEventListener("click", () => {
+      const alias = document.querySelector("#alias").value.trim();
+      if (!alias) {
+        alert("El alias es requerido.");
+        return;
+      }
+
+      profile.participant.display_alias = alias;
+      profile.participant.role_self_selected = document.querySelector("#role").value;
+      profile.participant.route_self_selected = document.querySelector("#route").value;
+      profile.consent.profile_export_consent = document.querySelector("#consent-export").checked;
+      profile.consent.consent_timestamp = profile.consent.profile_export_consent ? nowIso() : null;
+      saveProfile();
+      alert("Perfil guardado localmente.");
+    });
+
+    document.querySelector("#delete-profile").addEventListener("click", () => {
+      const ok = confirm("¿Eliminar el perfil local de este navegador? Esta acción no borra archivos que ya hayas descargado.");
+      if (!ok) return;
+      localStorage.removeItem(STORAGE_KEY);
+      profile = defaultProfile();
+      render();
+      alert("Perfil local eliminado.");
+    });
+
+    document.querySelector("#save-ethical-decision").addEventListener("click", () => {
+      const dilemma = dilemmas.find(d => d.id === document.querySelector("#dilemma-select").value);
+      const choice = document.querySelector("#ethical-choice").value;
+      const justification = document.querySelector("#ethical-justification").value.trim();
+      const mitigation = document.querySelector("#ethical-mitigation").value.trim();
+
+      if (!justification) {
+        alert("Añade una justificación antes de guardar la decisión ética.");
+        return;
+      }
+
+      profile.ethical_decisions.push({
+        decision_id: "eth_" + cryptoRandom(),
+        dilemma_id: dilemma.id,
+        decision_summary: choice,
+        justification,
+        risk_level: "medium",
+        mitigation,
+        date: today()
+      });
+
+      profile.progress.points_total += 5;
+      updateLevel();
+      saveProfile();
+
+      document.querySelector("#ethical-justification").value = "";
+      document.querySelector("#ethical-mitigation").value = "";
+      alert("Decisión ética guardada.");
+    });
+
+    document.querySelector("#save-log").addEventListener("click", () => {
+      const fields = {
+        purpose: document.querySelector("#log-purpose").value.trim(),
+        practice: document.querySelector("#log-practice").value.trim(),
+        result: document.querySelector("#log-result").value.trim(),
+        review: document.querySelector("#log-review").value.trim(),
+        evidence: document.querySelector("#log-evidence").value.trim(),
+        ethics: document.querySelector("#log-ethics").value.trim(),
+        accessibility: document.querySelector("#log-accessibility").value.trim(),
+        continuity: document.querySelector("#log-continuity").value.trim()
+      };
+
+      if (!fields.purpose && !fields.review && !fields.evidence) {
+        alert("Incluye al menos propósito, revisión o evidencia.");
+        return;
+      }
+
+      const summary = [
+        fields.purpose && `Propósito: ${fields.purpose}`,
+        fields.practice && `Práctica situada: ${fields.practice}`,
+        fields.result && `Resultado inicial: ${fields.result}`,
+        fields.review && `Revisión humana: ${fields.review}`,
+        fields.evidence && `Evidencia: ${fields.evidence}`,
+        fields.ethics && `Ética: ${fields.ethics}`,
+        fields.accessibility && `Accesibilidad: ${fields.accessibility}`,
+        fields.continuity && `Continuidad: ${fields.continuity}`
+      ].filter(Boolean).join("\n\n");
+
+      profile.reflections.push({
+        reflection_id: "ref_" + cryptoRandom(),
+        date: today(),
+        prompt: "Mini-bitácora común EGIA Quest",
+        response: summary,
+        privacy_classification: "private",
+        include_in_export: true
+      });
+
+      if (fields.accessibility) {
+        profile.accessibility_actions.push({
+          action_id: "acc_" + cryptoRandom(),
+          type: "logbook_accessibility_action",
+          description: fields.accessibility,
+          related_challenge_id: null,
+          verified: true,
+          date: today()
+        });
+      }
+
+      profile.progress.points_total += 5;
+      updateLevel();
+      saveProfile();
+
+      ["#log-purpose","#log-practice","#log-result","#log-review","#log-evidence","#log-ethics","#log-accessibility","#log-continuity"]
+        .forEach(sel => document.querySelector(sel).value = "");
+
+      alert("Mini-bitácora guardada.");
+    });
+
+    document.querySelector("#refresh-preview").addEventListener("click", refreshPreview);
+
+    document.querySelector("#copy-json").addEventListener("click", async () => {
+      const content = JSON.stringify(buildExportPackage(), null, 2);
+      try {
+        await navigator.clipboard.writeText(content);
+        alert("JSON copiado al portapapeles.");
+      } catch {
+        alert("No se pudo copiar automáticamente. Puedes seleccionar el texto de la vista previa.");
+      }
+    });
+
+    document.querySelector("#download-json").addEventListener("click", () => {
+      const pkg = buildExportPackage();
+      const content = JSON.stringify(pkg, null, 2);
+      downloadFile(`egia_quest_profile_${today()}.json`, content, "application/json");
+    });
+
+    document.querySelector("#download-md").addEventListener("click", () => {
+      const pkg = buildExportPackage();
+      const content = buildMarkdown(pkg);
+      downloadFile(`egia_quest_portfolio_${today()}.md`, content, "text/markdown;charset=utf-8");
+    });
+
+    ["#export-profile","#export-progress","#export-challenges","#export-badges","#export-competencies","#export-reflections","#export-evidence","#export-ethics","#export-accessibility","#privacy-alias-only","#privacy-exclude-private"]
+      .forEach(sel => document.querySelector(sel).addEventListener("change", refreshPreview));
+
+    renderTabs();
+    renderDilemmas();
+    render();
+  </script>
+</body>
+</html>

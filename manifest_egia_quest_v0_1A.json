@@ -1,0 +1,14 @@
+{
+  "project": "EGIA Quest",
+  "version": "v0.1A-monolith",
+  "created_at": "2026-05-08T00:55:45.456987",
+  "files": [
+    "index.html",
+    "README.md",
+    "EGIA_Quest_MVP_HTML_JSON_MD_v0_1A.md",
+    "MODELO_JSON_EGIA_QUEST_v0_1A.md",
+    "GUIA_GITHUB_PAGES_SIN_ACTIONS.md"
+  ],
+  "deployment": "GitHub Pages: Deploy from a branch, main /root",
+  "privacy": "No real participant data included"
+}
