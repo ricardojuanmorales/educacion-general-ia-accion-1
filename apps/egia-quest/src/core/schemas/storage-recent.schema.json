@@ -1,0 +1,31 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-storylab.local/schemas/storage/recent-pointer/v1",
+  "title": "AI StoryLab Recent Pointer v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "storageFormat",
+    "storageFormatVersion",
+    "projectId",
+    "updatedAt"
+  ],
+  "properties": {
+    "storageFormat": {
+      "const": "ai-storylab-recent-pointer"
+    },
+    "storageFormatVersion": {
+      "const": 1
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

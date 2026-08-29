@@ -1,0 +1,57 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-storylab.local/schemas/storage/project-envelope/v1",
+  "title": "AI StoryLab Project Envelope v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "storageFormat",
+    "storageFormatVersion",
+    "projectSchemaVersion",
+    "projectId",
+    "writtenAt",
+    "payload",
+    "integrity"
+  ],
+  "properties": {
+    "storageFormat": {
+      "const": "ai-storylab-project"
+    },
+    "storageFormatVersion": {
+      "const": 1
+    },
+    "projectSchemaVersion": {
+      "const": "0.8.0-alpha.2"
+    },
+    "projectId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "writtenAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "$ref": "https://ai-storylab.local/schemas/project/0.8.0-alpha.2"
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "value"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "value": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

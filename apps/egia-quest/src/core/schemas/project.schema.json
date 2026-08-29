@@ -1,0 +1,431 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-storylab.local/schemas/project/0.8.0-alpha.2",
+  "title": "AI StoryLab CreativeProject",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "title",
+    "status",
+    "profile",
+    "missions",
+    "activityResponses",
+    "evidence",
+    "reflections",
+    "decisions",
+    "portfolio",
+    "featureFlags",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "0.8.0-alpha.2"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "status": {
+      "enum": [
+        "new",
+        "active",
+        "review",
+        "completed",
+        "archived"
+      ]
+    },
+    "profile": {
+      "$ref": "#/$defs/localProfile"
+    },
+    "missions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/missionProgress"
+      }
+    },
+    "activityResponses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/activityResponse"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "reflections": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/reflection"
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/humanDecision"
+      }
+    },
+    "portfolio": {
+      "$ref": "#/$defs/portfolio"
+    },
+    "featureFlags": {
+      "$ref": "#/$defs/featureFlags"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "accessibilityPreferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reducedMotion",
+        "highContrast",
+        "textScale"
+      ],
+      "properties": {
+        "reducedMotion": {
+          "type": "boolean"
+        },
+        "highContrast": {
+          "type": "boolean"
+        },
+        "textScale": {
+          "enum": [
+            "default",
+            "large",
+            "extra_large"
+          ]
+        }
+      }
+    },
+    "localProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pseudonym",
+        "accessibility"
+      ],
+      "properties": {
+        "pseudonym": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "context": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "accessibility": {
+          "$ref": "#/$defs/accessibilityPreferences"
+        }
+      }
+    },
+    "missionProgress": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "missionId",
+        "status"
+      ],
+      "properties": {
+        "missionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "status": {
+          "enum": [
+            "not_started",
+            "in_progress",
+            "ready_for_review",
+            "completed",
+            "reopened"
+          ]
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "completedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "activityResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "missionId",
+        "text",
+        "updatedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "missionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 20000
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "missionId",
+        "title",
+        "kind",
+        "summary",
+        "status",
+        "createdAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "missionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "kind": {
+          "enum": [
+            "text",
+            "image_metadata",
+            "audio_metadata",
+            "video_metadata",
+            "link_metadata"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "status": {
+          "enum": [
+            "draft",
+            "reviewed",
+            "accepted_for_portfolio",
+            "removed"
+          ]
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "reflection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "missionId",
+        "text",
+        "privacyClass",
+        "selectedForExport",
+        "createdAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "missionId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "text": {
+          "type": "string",
+          "maxLength": 12000
+        },
+        "privacyClass": {
+          "enum": [
+            "private",
+            "shareable_with_purpose",
+            "exportable_after_review",
+            "high_care"
+          ]
+        },
+        "selectedForExport": {
+          "type": "boolean"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "humanDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "evidenceId",
+        "actor",
+        "value",
+        "decidedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "evidenceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "actor": {
+          "const": "human_user"
+        },
+        "value": {
+          "enum": [
+            "accept",
+            "revise",
+            "reject",
+            "defer"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "decidedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "portfolioItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "evidenceId",
+        "title",
+        "order",
+        "includedAt"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "evidenceId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "includedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "portfolio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "items"
+      ],
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/portfolioItem"
+          }
+        }
+      }
+    },
+    "featureFlags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "facilitatorView",
+        "groupDashboard",
+        "embeddedAI",
+        "cloudSync",
+        "analytics",
+        "autoPublish",
+        "realData"
+      ],
+      "properties": {
+        "facilitatorView": {
+          "const": false
+        },
+        "groupDashboard": {
+          "const": false
+        },
+        "embeddedAI": {
+          "const": false
+        },
+        "cloudSync": {
+          "const": false
+        },
+        "analytics": {
+          "const": false
+        },
+        "autoPublish": {
+          "const": false
+        },
+        "realData": {
+          "const": false
+        }
+      }
+    }
+  }
+}
