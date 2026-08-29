@@ -31,6 +31,7 @@ Una decisión registrada no se edita: se sucede con una decisión nueva que la d
 | DEC-EGIA-032 | 2026-08-28 | El portafolio migra al esquema de AI StoryLab con perfil EGIA encima | Es la condición para que un mismo estudiante use ambas aplicaciones con un solo portafolio | Confirmada |
 | DEC-EGIA-033 | 2026-08-28 | El monolito se congela como v0.1B y se preserva en `legacy/v0.1B/` | Nadie se queda sin aplicación durante la migración; el MVP se retira solo tras el Gate 4 | Confirmada |
 | DEC-EGIA-034 | 2026-08-29 | Se aprueba el Marco de Competencias y Andamiaje v0.1 | Habilita la redacción de los quince retos. Adopta las diez familias competenciales de AI StoryLab como canónicas, ancla los siete niveles Q a los siete verbos de la taxonomía de acción y construye el mapeo a DigComp 3.0 como pieza propia | Confirmada |
+| DEC-EGIA-036 | 2026-08-29 | Subjetividad estratégica: estudiante universitario de educación general | Fija la voz, el andamiaje y el nivel de exigencia de los quince retos. Coherente con la política AIAS del curso declarada en la Guía Rápida: Nivel 4 (Uso Abierto) en tareas no supervisadas con controles obligatorios, Nivel 0 en pruebas supervisadas. Cierra DEUDA-EGIA-014 | Confirmada |
 | DEC-EGIA-035 | 2026-08-29 | Se corrige la ubicación de la etiqueta `v0.1B` | La etiqueta se creó apuntando a `371f361`, el merge del PR #1, que no contiene la Fase 0. Se reubica sobre el `main` resultante de fusionar el PR #2. Requiere reescritura de una referencia ya publicada, autorizada por esta decisión | Confirmada |
 
 ---
