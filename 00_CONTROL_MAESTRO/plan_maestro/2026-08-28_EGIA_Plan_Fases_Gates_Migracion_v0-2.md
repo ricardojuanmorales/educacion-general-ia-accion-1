@@ -93,7 +93,9 @@ antídoto contra la parsimonia no es escribir menos: es tener fecha y declarar d
 
 ## 5. Los quince retos y su andamiaje
 
-Andamiaje con desvanecimiento: Q0–Q1 plantilla rellenable, Q2–Q3 checklist, Q4 solo criterio.
+EGIA Quest tiene siete niveles, Q0 a Q6, y la taxonomía de acción heredada de AI StoryLab tiene
+siete verbos: reconocer, explorar, crear, documentar, evaluar, reflexionar, transferir. El anclaje es
+uno a uno. Andamiaje con desvanecimiento: Q0–Q1 plantilla rellenable, Q2–Q4 checklist, Q5–Q6 solo criterio.
 
 | Reto | Práctica / eje | Nivel | Evidencia mínima | Apoyo |
 |---|---|---|---|---|
@@ -103,15 +105,15 @@ Andamiaje con desvanecimiento: Q0–Q1 plantilla rellenable, Q2–Q3 checklist, 
 | R-04 | Defiende tu aporte humano | Q1 | Sección «qué hice yo vs. IA» y guion de defensa | Plantilla |
 | R-05 | Explicabilidad mínima | Q2 | Nota metodológica y un caso de abstención justificada | Checklist |
 | R-06 | Privacidad y propiedad intelectual | Q2 | Matriz de licencias y descargo de privacidad | Checklist |
-| R-07 | Justicia y accesibilidad (DUA/POUR) | Q2 | Checklist de accesibilidad y versión low-tech del producto | Checklist |
-| R-08 | Proporcionaliza el riesgo (mini-IBATA) | Q3 | Mini-IBATA de una página con umbrales declarados | Checklist |
-| R-09 | Aprende, no solo produzcas | Q3 | Reflexión de 100–150 palabras y registro de progreso | Checklist |
-| R-10 | Juego limpio en evaluaciones (AIAS) | Q3 | Nivel AIAS declarado y coherencia con bitácora | Checklist |
-| R-11 | Integrador · producto multimodal documentado | Q4 | Producto con trazabilidad completa de decisiones de autoría | Solo criterio |
-| R-12 | Integrador · curaduría crítica de herramientas | Q4 | Ficha comparativa con límites y «cuándo no usar» | Solo criterio |
-| R-13 | Integrador · dilema situado propio | Q4 | Caso real del curso analizado con IBATA completo | Solo criterio |
-| R-14 | Integrador · portafolio íntegro | Q4 | Exportación revisada por pares y defensa en cinco láminas | Solo criterio |
-| R-15 | Integrador · transferencia | Q4 | Aplicación a otro contexto y enseñanza a otra persona | Solo criterio |
+| R-07 | Justicia y accesibilidad (DUA/POUR) | Q3 | Checklist de accesibilidad y versión low-tech del producto | Checklist |
+| R-08 | Proporcionaliza el riesgo (mini-IBATA) | Q4 | Mini-IBATA de una página con umbrales declarados | Checklist |
+| R-09 | Aprende, no solo produzcas | Q5 | Reflexión de 100–150 palabras y registro de progreso | Solo criterio |
+| R-10 | Juego limpio en evaluaciones (AIAS) | Q4 | Nivel AIAS declarado y coherencia con bitácora | Checklist |
+| R-11 | Integrador · producto multimodal documentado | Q5 | Producto con trazabilidad completa de decisiones de autoría | Solo criterio |
+| R-12 | Integrador · curaduría crítica de herramientas | Q5 | Ficha comparativa con límites y «cuándo no usar» | Solo criterio |
+| R-13 | Integrador · dilema situado propio | Q5 | Caso real del curso analizado con IBATA completo | Solo criterio |
+| R-14 | Integrador · portafolio íntegro | Q6 | Exportación revisada por pares y defensa en cinco láminas | Solo criterio |
+| R-15 | Integrador · transferencia | Q6 | Aplicación a otro contexto y enseñanza a otra persona | Solo criterio |
 
 ### 5.1 Campo nuevo obligatorio
 

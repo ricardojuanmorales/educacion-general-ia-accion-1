@@ -18,7 +18,7 @@ aceptado, decisión diferida o condición de transición. Serie nueva: `DEUDA-EG
 
 | ID | Prioridad | Descripción | Origen | Criterio de cierre | Estado |
 |---|---|---|---|---|---|
-| DEUDA-EGIA-001 | P1 | El aviso de validación del reto se mostraba fuera del área visible; el botón parecía muerto | Prueba de humo 2026-08-28 | Aviso dentro de la tarjeta y prueba en verde | Resuelta en F0 |
+| DEUDA-EGIA-001 | P1 | El aviso de validación del reto se mostraba fuera del área visible; el botón parecía muerto | Prueba de humo 2026-08-28 | Aviso dentro de la tarjeta y prueba en verde | **Resuelta** en F0, pendiente de publicar |
 | DEUDA-EGIA-002 | P1 | El monolito no tiene pruebas unitarias; solo prueba de humo de extremo a extremo | Análisis de brecha | Muere con el monolito tras el Gate 4 | Aceptada |
 | DEUDA-EGIA-003 | P2 | No existe migración formal de esquema; la fusión de perfil es un parche defensivo | Análisis de brecha | Registro de esquemas heredado de AI StoryLab | Abierta · F2 |
 | DEUDA-EGIA-004 | P2 | El marco de competencias no está mapeado a DigComp | DEC-EGIA-029 | Tabla de equivalencia publicada y aprobada | Abierta · F1 |
@@ -28,3 +28,11 @@ aceptado, decisión diferida o condición de transición. Serie nueva: `DEUDA-EG
 | DEUDA-EGIA-008 | P3 | La ruta docente queda fuera de v1.0 | DEC-EGIA-022 | Entrega en v1.1 | Aceptada |
 | DEUDA-EGIA-009 | P3 | npm introduce superficie de cadena de suministro que hoy no existe | DEC-EGIA-023 | `audit:secrets` y versiones fijadas | Abierta · mitigada desde F2 |
 | DEUDA-EGIA-010 | P3 | `legacy/v0.1B/index.html` duplica el monolito; ambos archivos pueden divergir | DEC-EGIA-033 | `verify:legacy` en verde en cada PR | Abierta · mitigada desde F0 |
+| DEUDA-EGIA-011 | P2 | La economía de puntos se calibró para 8 retos; con 15 retos y dilemas ramificados los umbrales Q0–Q6 quedan desajustados | Marco de Competencias v0.1 | Umbrales recalculados y probados | Abierta · F3 |
+| DEUDA-EGIA-012 | P3 | El anclaje del nivel Q3 al verbo `documentar` es el más débil de los siete | Marco de Competencias v0.1 | Revisión humana en el Gate 1 | Abierta · Gate 1 |
+| DEUDA-EGIA-013 | P3 | El mapeo a DigComp 3.0 es lectura de equivalencia sin validación externa | Marco de Competencias v0.1 | Se declara la limitación en la aplicación | Aceptada |
+| DEUDA-EGIA-014 | P2 | El marco no fija la subjetividad estratégica concreta: AI StoryLab distingue estudiante de escuela superior y estudiante universitario, y la voz y el andamiaje cambian según cuál sea | Marco de Competencias v0.1 | Decisión humana registrada antes de fijar la voz definitiva | Abierta · F1 |
+| DEUDA-EGIA-015 | P2 | Falta la regla de progresión de competencia: cómo se pasa de nivel 1 a 4 con evidencias. El MVP usa un umbral heredado de tres evidencias que no corresponde a los cuatro niveles nuevos | Marco de Competencias v0.1 | Regla escrita y probada; necesaria para el tablero | Abierta · F3 |
+| DEUDA-EGIA-016 | P3 | No hay rúbricas ni mapeo competencia↔badge. AI StoryLab tiene una Matriz de Relación Competencias-Rúbricas-Portafolios que aún no se ha leído | Marco de Competencias v0.1 | Matriz leída y adaptada | Abierta · F3 |
+| DEUDA-EGIA-017 | P1 | La etiqueta `v0.1B` se publicó apuntando a `371f361`, que no contiene la Fase 0, y el PR #2 quedó sin fusionar. El Gate 0 se dio por firmado sobre una rama, no sobre el estado publicado | Verificación de estado 2026-08-29 | PR #2 fusionado, etiqueta reubicada y sitio publicado verificado | Abierta · acción humana |
+| DEUDA-EGIA-018 | P2 | Los instrumentos de trazabilidad (bitácora de sesión, transferencia simétrica, prompt de activación, tabla de ubicación documental) no existían durante F0; el proceso se reconstruyó a posteriori | Pregunta humana sobre trazabilidad 2026-08-29 | Instrumentos creados y mantenidos en cada cierre | **Resuelta** 2026-08-29 |
