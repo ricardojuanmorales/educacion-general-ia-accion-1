@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ricardojuanmorales.github.io/educacion-general-ia-accion-1/contenido/esquemas/dilemas.schema.json",
+  "title": "Catálogo de dilemas éticos ramificados de EGIA Quest",
+  "description": "Contrato de datos de los dilemas. Sirve al Gate 1 y a DEC-EGIA-026: la decisión tiene consecuencia y, donde hubo daño, reparación.",
+  "type": "object",
+  "required": ["schema_version", "estado", "fecha", "subjetividad_estrategica", "dilemas"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "egia-quest.contenido.dilemas.v0.1.0" },
+    "estado": { "type": "string", "minLength": 1 },
+    "fecha": { "type": "string", "format": "date" },
+    "sirve_a": { "type": "string" },
+    "subjetividad_estrategica": { "const": "estudiante universitario de educación general" },
+    "nota_autoria": { "type": "string" },
+    "principio": { "type": "string" },
+    "herencia": { "type": "string" },
+    "pendiente_de_confirmacion_humana": { "type": "array", "items": { "type": "string" } },
+    "dilemas": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/dilema" } }
+  },
+  "$defs": {
+    "familia": {
+      "enum": [
+        "agencia_humana", "aprendizaje_ludico", "investigacion_creacion", "literacidad_ia",
+        "etica_responsabilidad", "diseno_universal", "conocimiento_situado",
+        "colaboracion_transdisciplinaria", "reflexion_portafolio", "evaluacion_criterio"
+      ]
+    },
+    "opcion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "texto", "calidad", "consecuencia", "reparacion"],
+      "properties": {
+        "id": { "enum": ["a", "b", "c", "d"] },
+        "texto": { "type": "string", "minLength": 15 },
+        "calidad": {
+          "description": "Se registra para el tablero. Nunca se le muestra a la persona como nota.",
+          "enum": ["cuidadosa", "apresurada", "evasiva", "dañina"]
+        },
+        "consecuencia": {
+          "description": "Qué ocurre después de elegir. Obligatoria: una opción sin consecuencia convierte el dilema en trivia.",
+          "type": "string",
+          "minLength": 60
+        },
+        "reparacion": {
+          "description": "Acción concreta de reparación. Obligatoria si la calidad es dañina, apresurada o evasiva; null si la decisión no dejó daño que reparar.",
+          "type": ["string", "null"],
+          "minLength": 20
+        }
+      }
+    },
+    "dilema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "titulo", "nivel", "eje_ibata", "practica_relacionada", "competencias",
+        "sensibilidad", "escenario", "pregunta", "opciones", "reflexion_posterior", "puntos_base"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^EGIA-D-[0-9]{3}$" },
+        "titulo": { "type": "string", "minLength": 5, "maxLength": 60 },
+        "nivel": { "enum": ["Q0", "Q1", "Q2", "Q3", "Q4", "Q5", "Q6"] },
+        "eje_ibata": {
+          "description": "Ejes nombrados en la Guía Rápida Estudiantil. El eje B queda pendiente de definición humana (DEUDA-EGIA-019).",
+          "enum": ["injusticias_danos", "autonomia", "transformaciones", "accountability"]
+        },
+        "practica_relacionada": { "type": ["integer", "null"], "minimum": 1, "maximum": 10 },
+        "competencias": {
+          "type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true,
+          "items": { "$ref": "#/$defs/familia" }
+        },
+        "sensibilidad": { "enum": ["media", "media-alta", "alta", "variable"] },
+        "escenario": { "type": "string", "minLength": 120 },
+        "pregunta": { "type": "string", "minLength": 10 },
+        "opciones": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "items": { "$ref": "#/$defs/opcion" }
+        },
+        "reflexion_posterior": { "type": "string", "minLength": 30 },
+        "puntos_base": { "type": "integer", "minimum": 5, "maximum": 25 }
+      }
+    }
+  }
+}

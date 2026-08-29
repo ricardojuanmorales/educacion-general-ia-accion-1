@@ -111,6 +111,56 @@ for (const p of datos.pendiente_de_confirmacion_humana || []) {
   avisos.push(`pendiente humano · ${p}`);
 }
 
+// --- dilemas ---
+const RUTA_DILEMAS = 'contenido/dilemas/dilemas_egia_quest_v0-1.json';
+const RUTA_ESQUEMA_DILEMAS = 'contenido/esquemas/dilemas.schema.json';
+let dilemas = [];
+
+try {
+  const datosD = JSON.parse(readFileSync(resolve(RUTA_DILEMAS), 'utf8'));
+  const esquemaD = JSON.parse(readFileSync(resolve(RUTA_ESQUEMA_DILEMAS), 'utf8'));
+  const validaD = ajv.compile(esquemaD);
+
+  if (!validaD(datosD)) {
+    for (const e of validaD.errors) {
+      errores.push(`esquema dilemas · ${e.instancePath || '/'} ${e.message}${e.params?.allowedValues ? ` (permitidos: ${e.params.allowedValues.join(', ')})` : ''}`);
+    }
+  }
+
+  dilemas = datosD.dilemas || [];
+
+  for (const d of dilemas) {
+    // DEC-EGIA-026: toda decisión tiene consecuencia, y el daño tiene reparación
+    for (const o of d.opciones || []) {
+      const dejaDano = ['dañina', 'apresurada', 'evasiva'].includes(o.calidad);
+      if (dejaDano && !o.reparacion) {
+        errores.push(`marco · ${d.id} opción ${o.id} es «${o.calidad}» y no ofrece reparación (DEC-EGIA-026)`);
+      }
+      if (o.calidad === 'cuidadosa' && o.reparacion) {
+        avisos.push(`revisar · ${d.id} opción ${o.id} es cuidadosa pero declara reparación: ¿dejó daño?`);
+      }
+    }
+    // un dilema donde todo es correcto no es un dilema
+    const cuidadosas = (d.opciones || []).filter(o => o.calidad === 'cuidadosa').length;
+    if (cuidadosas === (d.opciones || []).length) {
+      errores.push(`marco · ${d.id} tiene las cuatro opciones cuidadosas: sin tensión no hay dilema`);
+    }
+    if (cuidadosas === 0) {
+      errores.push(`marco · ${d.id} no ofrece ninguna salida cuidadosa: un dilema sin salida enseña impotencia, no juicio`);
+    }
+  }
+
+  for (const p of datosD.pendiente_de_confirmacion_humana || []) {
+    avisos.push(`pendiente humano · ${p}`);
+  }
+} catch (e) {
+  if (e.code === 'ENOENT') {
+    avisos.push('dilemas · todavía no existe el catálogo de dilemas');
+  } else {
+    errores.push(`dilemas · ${e.message}`);
+  }
+}
+
 // --- informe ---
 console.log(`\n  VALIDACIÓN DE CONTENIDO — EGIA Quest`);
 console.log(`  datos:   ${RUTA_DATOS}`);
@@ -118,9 +168,22 @@ console.log(`  esquema: ${RUTA_ESQUEMA}`);
 console.log(`  retos:   ${retos.length} · integradores: ${integradores.length} · prácticas cubiertas: ${practicas.length}/10\n`);
 
 const porNivel = ORDEN_NIVEL.map(n => `${n}:${retos.filter(r => r.nivel === n).length}`).join('  ');
-console.log(`  distribución por nivel   ${porNivel}`);
+console.log(`  retos por nivel          ${porNivel}`);
 console.log(`  familias desarrolladas   ${familias.size}/10`);
-console.log(`  puntos del catálogo      ${retos.reduce((s, r) => s + (r.puntos_base || 0), 0)}\n`);
+console.log(`  puntos del catálogo      ${retos.reduce((s, r) => s + (r.puntos_base || 0), 0)}`);
+
+if (dilemas.length) {
+  const dPorNivel = ORDEN_NIVEL.map(n => `${n}:${dilemas.filter(d => d.nivel === n).length}`).join('  ');
+  const ejes = ['injusticias_danos', 'autonomia', 'transformaciones', 'accountability']
+    .map(e => `${e.split('_')[0]}:${dilemas.filter(d => d.eje_ibata === e).length}`).join('  ');
+  const opciones = dilemas.flatMap(d => d.opciones || []);
+  const conReparacion = opciones.filter(o => o.reparacion).length;
+  console.log(`\n  dilemas                  ${dilemas.length}`);
+  console.log(`  dilemas por nivel        ${dPorNivel}`);
+  console.log(`  ejes IBATA               ${ejes}`);
+  console.log(`  opciones                 ${opciones.length} · con consecuencia: ${opciones.filter(o => o.consecuencia).length} · con reparación: ${conReparacion}`);
+}
+console.log('');
 
 for (const a of avisos) console.log(`  ! ${a}`);
 if (avisos.length) console.log('');
