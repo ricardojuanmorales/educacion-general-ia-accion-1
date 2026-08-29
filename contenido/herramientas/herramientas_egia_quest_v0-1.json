@@ -1,0 +1,204 @@
+{
+  "schema_version": "egia-quest.contenido.herramientas.v0.1.0",
+  "estado": "borrador para revisión humana",
+  "fecha": "2026-08-29",
+  "sirve_a": "Fase 1 del Plan de Fases y Gates v0.2.0 · alimenta el reto EGIA-R-012",
+  "subjetividad_estrategica": "estudiante universitario de educación general",
+  "nota_autoria": "Borrador redactado con asistencia de IA. La autoría, la revisión y la aprobación son humanas.",
+  "decision_de_diseno": "Las fichas describen TIPOS de herramienta, no productos concretos. Tres razones: la Guía Rápida Estudiantil ya usa «Model-X (v.24)» como marcador genérico y evita nombrar proveedores; una ficha con nombres y versiones caduca en meses y convierte el contenido pedagógico en mantenimiento perpetuo; y el reto EGIA-R-012 pide que sea la persona quien pruebe y compare tres herramientas reales. La aplicación aporta la rejilla de criterios; el estudiante aporta el caso.",
+  "rejilla": ["que_hace", "que_no_hace", "datos_que_toca", "riesgos_tipicos", "cuando_no_usar", "senales_de_alerta", "preguntas_antes_de_usar"],
+  "herramientas": [
+    {
+      "id": "EGIA-H-001",
+      "tipo": "Modelo de lenguaje conversacional",
+      "nivel_sugerido": "Q0",
+      "competencias": ["literacidad_ia"],
+      "que_hace": "Produce texto continuo a partir de una instrucción: reorganiza, resume, explica, propone alternativas, traduce registros.",
+      "que_no_hace": "No consulta una base de datos de hechos ni sabe si lo que afirma es cierto. Produce el texto más probable, no el verdadero.",
+      "datos_que_toca": "Todo lo que escribas en el prompt, incluidos los archivos que adjuntes. Según el servicio, puede conservarse o usarse para entrenar.",
+      "riesgos_tipicos": [
+        "Citas, cifras y autorías fabricadas con formato impecable",
+        "Tono seguro sobre afirmaciones que no puede sostener",
+        "Homogeneización del estilo: todos los trabajos empiezan a sonar igual"
+      ],
+      "cuando_no_usar": "En pruebas supervisadas (AIAS Nivel 0). Para redactar tu disclosure, tu reflexión o tu guion de defensa. Con datos de personas que no consintieron.",
+      "senales_de_alerta": [
+        "Te da exactamente la referencia que necesitabas",
+        "Aceptas párrafos completos sin cambiar nada",
+        "No sabrías defender oralmente lo que vas a entregar"
+      ],
+      "preguntas_antes_de_usar": [
+        "¿Qué haría yo si esta herramienta no existiera, y por qué no lo hago?",
+        "¿Qué de lo que voy a pegar aquí no es mío?"
+      ]
+    },
+    {
+      "id": "EGIA-H-002",
+      "tipo": "Generador de imágenes",
+      "nivel_sugerido": "Q3",
+      "competencias": ["diseno_universal", "etica_responsabilidad"],
+      "que_hace": "Produce imágenes a partir de una descripción en texto.",
+      "que_no_hace": "No representa comunidades reales ni verifica si lo que produce es representativo. Refleja los patrones de sus datos de entrenamiento.",
+      "datos_que_toca": "El texto del prompt y las imágenes de referencia que subas, incluidas fotos de personas.",
+      "riesgos_tipicos": [
+        "Representación estereotipada u homogénea de grupos humanos",
+        "Parecido no intencionado con personas reales",
+        "Licencia poco clara sobre lo que produce"
+      ],
+      "cuando_no_usar": "Para representar a una comunidad concreta a la que no perteneces sin consultarla. Para ilustrar datos: una imagen generada no es un gráfico. Con fotos de personas identificables sin permiso.",
+      "senales_de_alerta": [
+        "Todas las figuras se parecen entre sí en edad, tono y cuerpo",
+        "La imagen te gusta demasiado como para mirarla con calma",
+        "No podrías explicar de dónde salió cada elemento"
+      ],
+      "preguntas_antes_de_usar": [
+        "¿A quién deja fuera esta imagen de quienes deberían verse en ella?",
+        "¿Qué le pedí implícitamente al escribir «estudiantes» o «profesional»?"
+      ]
+    },
+    {
+      "id": "EGIA-H-003",
+      "tipo": "Transcriptor y subtitulador automático",
+      "nivel_sugerido": "Q3",
+      "competencias": ["diseno_universal"],
+      "que_hace": "Convierte audio en texto y genera subtítulos sincronizados.",
+      "que_no_hace": "No entiende el contenido. Falla sistemáticamente con nombres propios, términos técnicos, acentos regionales y varias voces solapadas.",
+      "datos_que_toca": "El audio completo, incluidas voces de terceros que aparezcan en la grabación.",
+      "riesgos_tipicos": [
+        "Términos inventados que cambian el sentido",
+        "Accesibilidad de trámite: parece accesible y no lo es",
+        "Voces de terceros procesadas sin su consentimiento"
+      ],
+      "cuando_no_usar": "Sin revisión humana posterior, nunca. En grabaciones con personas que no saben que se transcribirán.",
+      "senales_de_alerta": [
+        "No has leído los subtítulos completos ni una vez",
+        "Los nombres propios aparecen escritos de tres formas distintas",
+        "La entrega es hoy y revisarlos toma dos horas"
+      ],
+      "preguntas_antes_de_usar": [
+        "¿Voy a tener tiempo de revisarlos antes de publicar?",
+        "¿Quién más habla en este audio y qué sabe de esto?"
+      ]
+    },
+    {
+      "id": "EGIA-H-004",
+      "tipo": "Buscador con respuesta generada",
+      "nivel_sugerido": "Q1",
+      "competencias": ["literacidad_ia", "evaluacion_criterio"],
+      "que_hace": "Busca en la web y devuelve una respuesta redactada con enlaces a las fuentes.",
+      "que_no_hace": "No garantiza que la respuesta refleje lo que dicen las fuentes que enlaza, ni que las fuentes sean buenas.",
+      "datos_que_toca": "Tu consulta, que queda registrada por el servicio y puede revelar en qué estás trabajando.",
+      "riesgos_tipicos": [
+        "Resumen que distorsiona la fuente que cita",
+        "Fuentes de baja calidad presentadas con la misma autoridad que las buenas",
+        "Confianza excesiva por la presencia de enlaces"
+      ],
+      "cuando_no_usar": "Como sustituto de leer la fuente. Un enlace citado que no abriste no cuenta como verificado.",
+      "senales_de_alerta": [
+        "Citas el resumen en vez de la fuente",
+        "No abriste ninguno de los enlaces",
+        "La respuesta encaja demasiado bien con lo que querías demostrar"
+      ],
+      "preguntas_antes_de_usar": [
+        "¿Voy a abrir y leer al menos dos de estas fuentes?",
+        "¿Mi consulta revela algo que preferiría no dejar registrado?"
+      ]
+    },
+    {
+      "id": "EGIA-H-005",
+      "tipo": "Sintetizador y clonador de voz",
+      "nivel_sugerido": "Q4",
+      "competencias": ["etica_responsabilidad", "investigacion_creacion"],
+      "que_hace": "Genera habla a partir de texto, con voces genéricas o clonadas de una muestra de audio.",
+      "que_no_hace": "No pide permiso a la persona cuya voz imita, ni distingue si tienes derecho a usarla.",
+      "datos_que_toca": "El texto a narrar y la muestra de voz, que es un dato biométrico de una persona.",
+      "riesgos_tipicos": [
+        "Suplantación de identidad, aun sin intención de engañar",
+        "Atribuir a alguien afirmaciones que nunca hizo",
+        "Audio sin transcripción, inaccesible por diseño"
+      ],
+      "cuando_no_usar": "Para clonar la voz de una persona real sin su consentimiento explícito sobre el guion concreto. Que un audio sea público no lo hace disponible para clonar.",
+      "senales_de_alerta": [
+        "Piensas «total, es para un trabajo de clase»",
+        "La voz que quieres clonar es de alguien con autoridad sobre el tema",
+        "No hay aviso al inicio del audio de que la voz es sintética"
+      ],
+      "preguntas_antes_de_usar": [
+        "Si fuera mi voz, ¿qué habría querido que me preguntaran?",
+        "¿El oyente sabrá en los primeros segundos que esta voz es sintética?"
+      ]
+    },
+    {
+      "id": "EGIA-H-006",
+      "tipo": "Asistente de código",
+      "nivel_sugerido": "Q2",
+      "competencias": ["literacidad_ia", "evaluacion_criterio"],
+      "que_hace": "Sugiere, completa y explica código; propone correcciones a errores.",
+      "que_no_hace": "No garantiza que el código sea correcto, seguro ni compatible con la licencia del proyecto donde lo pegas.",
+      "datos_que_toca": "El código que le muestras, que puede incluir claves, credenciales y datos de configuración.",
+      "riesgos_tipicos": [
+        "Código que funciona en el caso obvio y falla en el borde",
+        "Fragmentos con licencia incompatible incorporados sin atribución",
+        "Credenciales enviadas al servicio dentro del contexto"
+      ],
+      "cuando_no_usar": "Con archivos que contengan claves o datos de personas. Para entregar código que no podrías explicar línea por línea.",
+      "senales_de_alerta": [
+        "Funciona y no sabes por qué",
+        "Aceptaste una sugerencia que toca autenticación o datos",
+        "No escribiste ninguna prueba"
+      ],
+      "preguntas_antes_de_usar": [
+        "¿Podría explicar este código en una defensa oral?",
+        "¿Hay algo en este archivo que no debería salir de mi máquina?"
+      ]
+    },
+    {
+      "id": "EGIA-H-007",
+      "tipo": "Detector de texto generado por IA",
+      "nivel_sugerido": "Q4",
+      "competencias": ["evaluacion_criterio", "etica_responsabilidad"],
+      "que_hace": "Devuelve una estimación de probabilidad de que un texto haya sido generado por IA.",
+      "que_no_hace": "No prueba nada. Su fiabilidad es baja y sus errores no se reparten por igual: penaliza con más frecuencia a quien escribe en una lengua que no es la suya o con estilo poco idiomático.",
+      "datos_que_toca": "El texto completo que analizas, que puede ser de otra persona y llegar ahí sin que ella lo sepa.",
+      "riesgos_tipicos": [
+        "Acusaciones basadas en un porcentaje que no prueba autoría",
+        "Sesgo contra escritura no nativa",
+        "Falsa sensación de control sobre un problema que es de proceso, no de detección"
+      ],
+      "cuando_no_usar": "Para acusar a alguien. Para decidir sobre el trabajo de otra persona. La alternativa honesta a la detección es pedir proceso: bitácora, evidencia y defensa oral.",
+      "senales_de_alerta": [
+        "Vas a tomar una decisión sobre alguien a partir de un porcentaje",
+        "Subiste un texto ajeno sin permiso",
+        "Buscas confirmar una sospecha que ya tenías"
+      ],
+      "preguntas_antes_de_usar": [
+        "¿Qué haría con este resultado, y resistiría que me lo aplicaran a mí?",
+        "¿No sería mejor pedir la bitácora y una defensa de cinco minutos?"
+      ]
+    },
+    {
+      "id": "EGIA-H-008",
+      "tipo": "Analizador de datos y hojas de cálculo",
+      "nivel_sugerido": "Q2",
+      "competencias": ["etica_responsabilidad", "investigacion_creacion"],
+      "que_hace": "Procesa tablas, calcula, agrupa y produce gráficos y resúmenes a partir de un conjunto de datos.",
+      "que_no_hace": "No sabe cómo se recogieron los datos, qué representan ni a quién dejan fuera. Calculará una media sobre una muestra sesgada sin advertirlo.",
+      "datos_que_toca": "El conjunto completo que subas, incluidas columnas con nombres, correos o respuestas abiertas.",
+      "riesgos_tipicos": [
+        "Datos identificables enviados a un servicio externo",
+        "Conclusiones sobre una muestra que no representa a quien dices",
+        "Gráficos convincentes sobre cálculos que nadie revisó"
+      ],
+      "cuando_no_usar": "Con datos de personas sin anonimizar. Cuando descartar los casos difíciles de procesar sesgaría el resultado.",
+      "senales_de_alerta": [
+        "Subiste el archivo tal como te llegó",
+        "No revisaste ninguna fila a mano",
+        "El resultado confirma exactamente tu hipótesis"
+      ],
+      "preguntas_antes_de_usar": [
+        "¿Hay alguna columna aquí que identifique a una persona?",
+        "¿A quién representa esta muestra y a quién no?"
+      ]
+    }
+  ]
+}

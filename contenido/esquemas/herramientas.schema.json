@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ricardojuanmorales.github.io/educacion-general-ia-accion-1/contenido/esquemas/herramientas.schema.json",
+  "title": "Fichas de tipos de herramienta de IA",
+  "description": "Fichas por TIPO de herramienta, no por producto. Alimentan el reto EGIA-R-012, donde la persona compara tres herramientas reales usando esta rejilla.",
+  "type": "object",
+  "required": ["schema_version", "estado", "fecha", "herramientas"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "egia-quest.contenido.herramientas.v0.1.0" },
+    "estado": { "type": "string", "minLength": 1 },
+    "fecha": { "type": "string", "format": "date" },
+    "sirve_a": { "type": "string" },
+    "subjetividad_estrategica": { "type": "string" },
+    "nota_autoria": { "type": "string" },
+    "decision_de_diseno": { "type": "string" },
+    "rejilla": { "type": "array", "items": { "type": "string" } },
+    "herramientas": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/ficha" } }
+  },
+  "$defs": {
+    "familia": {
+      "enum": ["agencia_humana","aprendizaje_ludico","investigacion_creacion","literacidad_ia","etica_responsabilidad","diseno_universal","conocimiento_situado","colaboracion_transdisciplinaria","reflexion_portafolio","evaluacion_criterio"]
+    },
+    "ficha": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id","tipo","nivel_sugerido","competencias","que_hace","que_no_hace","datos_que_toca","riesgos_tipicos","cuando_no_usar","senales_de_alerta","preguntas_antes_de_usar"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^EGIA-H-[0-9]{3}$" },
+        "tipo": { "type": "string", "minLength": 5, "maxLength": 60 },
+        "nivel_sugerido": { "enum": ["Q0","Q1","Q2","Q3","Q4","Q5","Q6"] },
+        "competencias": { "type": "array", "minItems": 1, "maxItems": 3, "uniqueItems": true, "items": { "$ref": "#/$defs/familia" } },
+        "que_hace": { "type": "string", "minLength": 40 },
+        "que_no_hace": { "type": "string", "minLength": 40 },
+        "datos_que_toca": { "type": "string", "minLength": 30 },
+        "riesgos_tipicos": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 15 } },
+        "cuando_no_usar": { "type": "string", "minLength": 40 },
+        "senales_de_alerta": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 10 } },
+        "preguntas_antes_de_usar": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 15 } }
+      }
+    }
+  }
+}

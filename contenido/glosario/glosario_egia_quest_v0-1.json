@@ -1,0 +1,428 @@
+{
+  "schema_version": "egia-quest.contenido.glosario.v0.1.0",
+  "estado": "borrador para revisión humana",
+  "fecha": "2026-08-29",
+  "sirve_a": "Fase 1 del Plan de Fases y Gates v0.2.0 · DEC-EGIA-029",
+  "subjetividad_estrategica": "estudiante universitario de educación general",
+  "nota_autoria": "Borrador redactado con asistencia de IA. La autoría, la revisión y la aprobación son humanas.",
+  "metodo": "Cada entrada tiene definición breve, definición operativa para este curso y una distinción: qué NO es. La distinción es la parte que evita el uso decorativo del término, y sigue el método del glosario canónico de AI StoryLab.",
+  "terminos": [
+    {
+      "termino": "Abstención justificada",
+      "definicion_breve": "Decidir no usar IA en un caso concreto, y poder explicar por qué.",
+      "definicion_operativa": "Un caso fechado en el que te apartaste de la herramienta, con la alternativa que tomaste en su lugar.",
+      "distincion": "No es desconfianza general ni rechazo de la tecnología. Es una decisión situada, sobre un caso, con razones.",
+      "relacionados": [
+        "Explicabilidad mínima",
+        "Agencia humana"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP5"
+    },
+    {
+      "termino": "Accountability",
+      "definicion_breve": "Asumir la responsabilidad por lo que produjiste, incluida la reparación cuando sale mal.",
+      "definicion_operativa": "Una acción concreta con plazo: qué harías, cuándo y ante quién, si tu trabajo resultara dañino o incorrecto.",
+      "distincion": "No es disculparse. Es reparar, y hacerlo donde ocurrió el daño, no en privado con quien te lo señaló.",
+      "relacionados": [
+        "Reparación",
+        "IBATA"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP8"
+    },
+    {
+      "termino": "Agencia humana",
+      "definicion_breve": "La persona decide, selecciona, interpreta y conserva la autoría.",
+      "definicion_operativa": "En cada trabajo hay decisiones que no se delegan: qué entra en el portafolio, qué reflexión escribes, qué defiendes oralmente.",
+      "distincion": "No significa hacerlo todo a mano. Significa que la responsabilidad no cambia de manos aunque cambien las herramientas.",
+      "relacionados": [
+        "Aporte humano",
+        "Autoría"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "AIAS",
+      "definicion_breve": "Escala que declara qué nivel de uso de IA corresponde a cada tarea.",
+      "definicion_operativa": "En este curso: Nivel 4, Uso Abierto, en tareas no supervisadas con controles obligatorios; Nivel 0 en exámenes y pruebas supervisadas.",
+      "distincion": "No es una escala de permisividad creciente que puedas escoger tú. El nivel lo fija la tarea, y ante la duda se pregunta a la docencia antes de usar IA.",
+      "relacionados": [
+        "Disclosure",
+        "Juego limpio"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP10"
+    },
+    {
+      "termino": "Andamiaje",
+      "definicion_breve": "Apoyo temporal que se retira a medida que ganas autonomía.",
+      "definicion_operativa": "En EGIA Quest: plantilla rellenable en Q0 y Q1, checklist de criterios en Q2 a Q4, y solo el criterio en Q5 y Q6.",
+      "distincion": "No se retira la exigencia, se retira el apoyo. La evidencia pedida en Q6 es más difícil, no está menos acompañada por descuido.",
+      "relacionados": [
+        "Nivel Q",
+        "Transferencia"
+      ],
+      "fuente": "propio EGIA Quest"
+    },
+    {
+      "termino": "Anonimización",
+      "definicion_breve": "Quitar de un material lo que permite identificar a una persona.",
+      "definicion_operativa": "Antes de procesar respuestas, entrevistas o textos ajenos: fuera nombres, fuera detalles que identifiquen por combinación, y revisión humana del resultado.",
+      "distincion": "No basta con borrar el nombre. Una combinación de detalles puede identificar a alguien igual de bien que su nombre.",
+      "relacionados": [
+        "Dato sensible",
+        "Consentimiento situado"
+      ],
+      "fuente": "heredado de AI StoryLab, SPEC-OP-007"
+    },
+    {
+      "termino": "Aporte humano",
+      "definicion_breve": "Lo que tú decidiste, seleccionaste, descartaste y justificaste en un trabajo.",
+      "definicion_operativa": "Una sección que separa lo que hizo la herramienta de lo que hiciste tú, con los criterios que aplicaste. Se defiende oralmente en cinco a siete minutos.",
+      "distincion": "No se mide en palabras escritas a mano. Un párrafo que reorganizaste con criterio aporta más que tres que tecleaste sin pensar.",
+      "relacionados": [
+        "Agencia humana",
+        "Defensa oral"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP4"
+    },
+    {
+      "termino": "Atribución",
+      "definicion_breve": "Dar crédito visible a quien produjo lo que usas.",
+      "definicion_operativa": "Junto al activo, no en un pie de página que nadie abre: autoría, origen y licencia de cada imagen, audio, texto o fragmento de código.",
+      "distincion": "No es lo mismo que citar en la bibliografía. Un activo visual mal atribuido no se arregla con una entrada al final.",
+      "relacionados": [
+        "Matriz de licencias",
+        "Propiedad intelectual"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP6"
+    },
+    {
+      "termino": "Autoría",
+      "definicion_breve": "Quien firma un trabajo responde por él.",
+      "definicion_operativa": "La IA se cita como herramienta en métodos o agradecimientos, nunca como autora. Tu nombre va como autor o autora.",
+      "distincion": "No se comparte con una herramienta. Un modelo no puede responder por lo que produjo; tú sí.",
+      "relacionados": [
+        "Agencia humana",
+        "Disclosure"
+      ],
+      "fuente": "Guía Rápida Estudiantil, consejo 2"
+    },
+    {
+      "termino": "Bitácora de proceso",
+      "definicion_breve": "Registro breve de prompts, decisiones y verificaciones mientras trabajas.",
+      "definicion_operativa": "De dos a cinco prompts clave, con qué aceptaste, qué rechazaste y por qué; más las fuentes con que verificaste.",
+      "distincion": "No es un diario libre ni un volcado del historial de conversación. Es evidencia de proceso, seleccionada por ti.",
+      "relacionados": [
+        "Disclosure",
+        "Evidencia"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP2"
+    },
+    {
+      "termino": "Competencia",
+      "definicion_breve": "Familia de saberes y decisiones que se desarrolla con evidencias a lo largo del tiempo.",
+      "definicion_operativa": "EGIA Quest usa las diez familias heredadas de AI StoryLab, con cuatro niveles orientadores: inicial guiado, exploratorio, autónomo situado y transferente crítico.",
+      "distincion": "No es una habilidad que se tiene o no se tiene. Los niveles son orientadores, no calificaciones cerradas.",
+      "relacionados": [
+        "Nivel Q",
+        "Evidencia"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "Conocimiento situado",
+      "definicion_breve": "Saber que depende del contexto donde se produce y se usa.",
+      "definicion_operativa": "Un método que funciona en tu facultad puede no funcionar en otra. Nombrar el contexto es parte de afirmar algo con rigor.",
+      "distincion": "No es relativismo. Es precisión sobre el alcance de lo que afirmas.",
+      "relacionados": [
+        "Transferencia",
+        "Transdisciplinariedad"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "Consentimiento situado",
+      "definicion_breve": "Permiso informado, específico y revocable, dado en el contexto concreto de uso.",
+      "definicion_operativa": "Antes de usar la voz, la imagen o los datos de una persona, se explica qué se hará exactamente, quién lo verá y hasta cuándo se conserva.",
+      "distincion": "No es una casilla aceptada una vez. Cambia con el contexto: permiso para una clase no es permiso para publicar.",
+      "relacionados": [
+        "Dato sensible",
+        "Anonimización"
+      ],
+      "fuente": "heredado de AI StoryLab, SPEC-OP-006"
+    },
+    {
+      "termino": "Cuándo no usar IA",
+      "definicion_breve": "Campo obligatorio en cada reto: la situación concreta en la que esa herramienta no debe entrar.",
+      "definicion_operativa": "Una frase que nombra el caso y la razón. Ejemplo: no uses IA para redactar tu propio disclosure, porque el documento se contradiría a sí mismo.",
+      "distincion": "No es una advertencia general de riesgo. Es un límite operativo aplicable a la tarea que tienes delante.",
+      "relacionados": [
+        "Abstención justificada"
+      ],
+      "fuente": "propio EGIA Quest"
+    },
+    {
+      "termino": "Dato sensible",
+      "definicion_breve": "Información cuya exposición puede dañar a una persona.",
+      "definicion_operativa": "Nombres, rostros, voces, situaciones personales, salud, situación económica. Regla práctica: si tienes que preguntar si algo es sensible, trátalo como si lo fuera.",
+      "distincion": "No se define por lo secreto que parezca, sino por el daño posible. Una respuesta de encuesta de clase puede serlo.",
+      "relacionados": [
+        "Anonimización",
+        "Consentimiento situado"
+      ],
+      "fuente": "heredado de AI StoryLab, SPEC-OP-007"
+    },
+    {
+      "termino": "Defensa oral",
+      "definicion_breve": "Explicar tu trabajo en voz alta, sin apoyarte en la herramienta.",
+      "definicion_operativa": "Cinco a siete minutos, o cinco láminas: problema, decisiones, verificación, límites y «cuándo no usar», transferencia.",
+      "distincion": "No es una presentación del resultado. Es una explicación de tus decisiones, y por eso no se puede preparar con IA sin vaciarla.",
+      "relacionados": [
+        "Aporte humano",
+        "Portafolio"
+      ],
+      "fuente": "Guía Rápida Estudiantil, consejo 9"
+    },
+    {
+      "termino": "Deuda pedagógica",
+      "definicion_breve": "Trabajo empezado y no cerrado que el tablero mantiene visible.",
+      "definicion_operativa": "Retos iniciados sin evidencia, reflexiones vacías, accesibilidad declarada sin verificar. Se muestra para que puedas cerrarla, no para penalizarte.",
+      "distincion": "No es una falta. Puede ser trabajo en curso o una decisión de dejarlo para después; lo que no puede es quedar invisible.",
+      "relacionados": [
+        "Portafolio",
+        "Evidencia"
+      ],
+      "fuente": "propio EGIA Quest, por analogía con el registro de deuda de gobernanza"
+    },
+    {
+      "termino": "Disclosure",
+      "definicion_breve": "Declaración explícita del uso que hiciste de IA en un trabajo.",
+      "definicion_operativa": "Un párrafo al cierre de la entrega con herramienta, versión, para qué la usaste, qué revisaste tú y qué no le pediste.",
+      "distincion": "No es una confesión ni una disculpa. Es una nota de método, del mismo tipo que decir qué base de datos consultaste.",
+      "relacionados": [
+        "Bitácora de proceso",
+        "Aporte humano"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP1"
+    },
+    {
+      "termino": "DUA",
+      "definicion_breve": "Diseño Universal para el Aprendizaje: diseñar desde el principio para la diversidad humana.",
+      "definicion_operativa": "Ofrecer más de una vía de acceso al mismo contenido: texto y audio, imagen y descripción, versión completa y versión ligera.",
+      "distincion": "No es adaptar después para quien lo pida. Adaptar al final produce accesibilidad de trámite, y se nota.",
+      "relacionados": [
+        "POUR",
+        "Texto alternativo"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP7"
+    },
+    {
+      "termino": "Evidencia",
+      "definicion_breve": "Pieza concreta que muestra lo que hiciste y cómo lo decidiste.",
+      "definicion_operativa": "En EGIA Quest hay trece tipos, cada uno con su nivel de sensibilidad: bitácora, mapa de decisiones, declaración de uso de IA, artefacto creativo, análisis ético, adaptación accesible, transferencia y otros.",
+      "distincion": "No es el producto final. El producto muestra el resultado; la evidencia muestra el proceso.",
+      "relacionados": [
+        "Portafolio",
+        "Bitácora de proceso"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "Explicabilidad mínima",
+      "definicion_breve": "Poder decir en lenguaje claro qué hace una herramienta, por qué sugirió algo y cuándo no usarla.",
+      "definicion_operativa": "Nota metodológica de cinco a ocho líneas, sin jerga sin definir, más un caso real de abstención justificada.",
+      "distincion": "No exige entender la arquitectura del modelo. Exige saber en qué condiciones dejarías de confiar en su salida.",
+      "relacionados": [
+        "Abstención justificada",
+        "Cuándo no usar IA"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP5"
+    },
+    {
+      "termino": "Fabricación",
+      "definicion_breve": "Contenido que un modelo produce con forma correcta y sin correspondencia con la realidad.",
+      "definicion_operativa": "Citas que no existen, cifras plausibles pero falsas, autorías atribuidas a quien nunca escribió eso. Se detecta verificando, no leyendo con más atención.",
+      "distincion": "No es un error de programación ni una mentira intencionada: es una consecuencia normal de cómo funcionan estos sistemas. Esperarla es parte de usarlos bien.",
+      "relacionados": [
+        "Triangulación",
+        "Explicabilidad mínima"
+      ],
+      "fuente": "propio EGIA Quest"
+    },
+    {
+      "termino": "Fuente verificable",
+      "definicion_breve": "Fuente que puedes abrir, leer y citar por su identificador.",
+      "definicion_operativa": "Tiene autoría, año e identificador estable (DOI o URL que resuelve). Si no puedes abrirla, no la has verificado.",
+      "distincion": "No es una fuente que suene creíble. Una referencia con formato impecable que no existe es lo contrario de una fuente verificable.",
+      "relacionados": [
+        "Triangulación",
+        "Fabricación"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP3"
+    },
+    {
+      "termino": "IBATA",
+      "definicion_breve": "Marco para proporcionar el análisis de riesgo al riesgo real de un trabajo.",
+      "definicion_operativa": "Una página, una métrica o umbral por eje: injusticias y daños, autonomía de la decisión humana, transformaciones que provoca, y accountability con su reparación.",
+      "distincion": "No es un ensayo de ética. Si no cabe en una página, no está proporcionado al riesgo, está inflado.",
+      "relacionados": [
+        "Reparación",
+        "Accountability"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP8",
+      "nota_pendiente": "El eje B está pendiente de definición humana (DEUDA-EGIA-019)."
+    },
+    {
+      "termino": "Juego limpio",
+      "definicion_breve": "Coherencia entre lo que declaraste, lo que hiciste y lo que puedes defender.",
+      "definicion_operativa": "Que tu nivel AIAS declarado, tu bitácora y tu desempeño en la defensa cuenten la misma historia. Ante la duda, se pregunta antes de usar IA, no después.",
+      "distincion": "No es cumplir la norma por miedo a que te descubran. Es que no haya nada que descubrir.",
+      "relacionados": [
+        "AIAS",
+        "Disclosure"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP10"
+    },
+    {
+      "termino": "Local-first",
+      "definicion_breve": "Los datos viven en tu máquina y no salen sin que tú lo decidas.",
+      "definicion_operativa": "EGIA Quest funciona sin cuenta, sin servidor y sin telemetría. Lo que guardas está en tu navegador; lo que exportas sale porque lo exportaste.",
+      "distincion": "No es lo mismo que privado en la nube. Aquí no hay nube: si borras tu perfil local, no queda copia en ningún sitio.",
+      "relacionados": [
+        "Portafolio",
+        "Privacidad por defecto"
+      ],
+      "fuente": "heredado de AI StoryLab, SPEC-OP-008"
+    },
+    {
+      "termino": "Matriz de licencias",
+      "definicion_breve": "Inventario de todo lo que entra en tu trabajo con su origen y permiso de uso.",
+      "definicion_operativa": "Una fila por activo —texto, imagen, audio, código, datos, incluido lo que generaste con IA— con origen, licencia y forma de atribución.",
+      "distincion": "«Lo encontré en internet» no es una licencia. Un activo cuya licencia no puedes determinar se marca como tal, no se asume libre.",
+      "relacionados": [
+        "Atribución",
+        "Propiedad intelectual"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP6"
+    },
+    {
+      "termino": "Nivel Q",
+      "definicion_breve": "Los siete peldaños de progreso de EGIA Quest, de Q0 a Q6.",
+      "definicion_operativa": "Q0 activación responsable, Q1 práctica situada, Q2 producción documentada, Q3 accesibilidad aplicada, Q4 juicio ético, Q5 integración caleidoscópica, Q6 transferencia portable. Cada uno se ancla a un verbo: reconocer, explorar, crear, documentar, evaluar, reflexionar, transferir.",
+      "distincion": "No es una nota ni una clasificación de personas. Es una posición en un recorrido, y los puntos son señales de cuidado, no una carrera.",
+      "relacionados": [
+        "Andamiaje",
+        "Competencia"
+      ],
+      "fuente": "propio EGIA Quest"
+    },
+    {
+      "termino": "Portafolio",
+      "definicion_breve": "Conjunto de evidencias y reflexiones organizadas por ti.",
+      "definicion_operativa": "Privado por defecto. Exportar es un acto explícito, pieza por pieza, y lo que marcaste como privado no sale aunque exportes el resto.",
+      "distincion": "No es una carpeta con todo lo que hiciste. La curaduría, decidir qué entra y qué no, es parte de lo que el portafolio demuestra.",
+      "relacionados": [
+        "Evidencia",
+        "Consentimiento situado"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "POUR",
+      "definicion_breve": "Cuatro principios de accesibilidad: perceptible, operable, comprensible y robusto.",
+      "definicion_operativa": "Perceptible: se puede percibir por más de un sentido. Operable: se puede usar con teclado. Comprensible: el lenguaje y el orden son claros. Robusto: funciona con distintas tecnologías de apoyo.",
+      "distincion": "No es una lista de verificación técnica opcional. Un material que falla en uno de los cuatro está incompleto, no imperfecto.",
+      "relacionados": [
+        "DUA",
+        "Texto alternativo"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP7"
+    },
+    {
+      "termino": "Privacidad por defecto",
+      "definicion_breve": "Lo más protector es lo que ocurre si no haces nada.",
+      "definicion_operativa": "Las evidencias voluntarias no se exportan salvo que marques la casilla; las reflexiones nacen clasificadas como privadas.",
+      "distincion": "No es una promesa de confidencialidad. Es un diseño donde el descuido protege en vez de exponer.",
+      "relacionados": [
+        "Local-first",
+        "Consentimiento situado"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "Propiedad intelectual",
+      "definicion_breve": "Conjunto de derechos sobre lo que alguien creó.",
+      "definicion_operativa": "Determina qué puedes usar, cómo y con qué condiciones. Aplica también a lo que genera una IA: revisa qué licencia tiene la salida antes de publicarla.",
+      "distincion": "No es lo mismo que disponibilidad. Que algo sea accesible en internet no dice nada sobre si puedes usarlo en tu trabajo.",
+      "relacionados": [
+        "Matriz de licencias",
+        "Atribución"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP6"
+    },
+    {
+      "termino": "Reflexión",
+      "definicion_breve": "Texto donde nombras qué aprendiste y qué decidiste, no qué hiciste.",
+      "definicion_operativa": "En EGIA Quest, completar un reto exige una reflexión propia. Se guarda con identificador propio y clasificación de privacidad.",
+      "distincion": "No es un resumen del trabajo. Si tu reflexión se puede escribir sin haber hecho el trabajo, todavía no es una reflexión.",
+      "relacionados": [
+        "Portafolio",
+        "Evidencia"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "Reparación",
+      "definicion_breve": "Acción que corrige un daño ya producido.",
+      "definicion_operativa": "En los dilemas de EGIA Quest, toda decisión que deja daño ofrece una reparación concreta. Se registra con la fecha en que la tomaste.",
+      "distincion": "No es lo mismo que retirar. Retirar detiene la propagación; reparar además alcanza a quien ya recibió el error.",
+      "relacionados": [
+        "Accountability"
+      ],
+      "fuente": "propio EGIA Quest"
+    },
+    {
+      "termino": "Texto alternativo",
+      "definicion_breve": "Descripción de una imagen para quien no puede verla.",
+      "definicion_operativa": "Dice lo que la imagen aporta al argumento, no lo que se ve. «Gráfico de barras» no sirve; «las matrículas cayeron un tercio entre 2020 y 2024» sí.",
+      "distincion": "No es una etiqueta ni un pie de foto. El pie acompaña a la imagen; el alternativo la sustituye.",
+      "relacionados": [
+        "POUR",
+        "DUA"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP7"
+    },
+    {
+      "termino": "Transdisciplinariedad",
+      "definicion_breve": "Integrar saberes de campos distintos para atender un problema que ninguno resuelve solo.",
+      "definicion_operativa": "En los retos integradores: conectar tu campo con al menos otro, nombrar qué aporta cada uno y qué se pierde al traducirlos.",
+      "distincion": "No es acumular disciplinas ni citar varias áreas. Es que el problema, no el índice, obligue a cruzarlas.",
+      "relacionados": [
+        "Conocimiento situado",
+        "Transferencia"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "Transferencia",
+      "definicion_breve": "Aplicar lo aprendido en un contexto distinto de aquel donde lo aprendiste.",
+      "definicion_operativa": "Llevar una práctica a otro curso, a tu trabajo o a un proyecto propio, y documentar qué hubo que cambiar para que sirviera allí.",
+      "distincion": "No es repetir el método igual en otro sitio. Lo que no se puede transferir sin cambios marca el límite real de lo que entendiste.",
+      "relacionados": [
+        "Conocimiento situado",
+        "Nivel Q"
+      ],
+      "fuente": "heredado de AI StoryLab"
+    },
+    {
+      "termino": "Triangulación",
+      "definicion_breve": "Contrastar una afirmación con al menos dos fuentes independientes.",
+      "definicion_operativa": "Por cada dato factual que vayas a afirmar, dos fuentes que puedas abrir y leer, y una decisión registrada: confirmé, corregí o descarté.",
+      "distincion": "No es buscar hasta encontrar algo que te dé la razón. Si las dos fuentes se contradicen, eso también es un resultado.",
+      "relacionados": [
+        "Fabricación",
+        "Fuente verificable"
+      ],
+      "fuente": "Guía Rápida Estudiantil, BP3"
+    }
+  ]
+}

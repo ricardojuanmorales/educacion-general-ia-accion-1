@@ -161,6 +161,57 @@ try {
   }
 }
 
+// --- glosario y fichas de herramientas ---
+let terminos = [];
+let fichas = [];
+
+function validarCatalogo(ruta, rutaEsquema, clave, etiqueta) {
+  try {
+    const d = JSON.parse(readFileSync(resolve(ruta), 'utf8'));
+    const e = JSON.parse(readFileSync(resolve(rutaEsquema), 'utf8'));
+    const v = ajv.compile(e);
+    if (!v(d)) {
+      for (const err of v.errors) {
+        errores.push(`esquema ${etiqueta} · ${err.instancePath || '/'} ${err.message}`);
+      }
+    }
+    return d[clave] || [];
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      avisos.push(`${etiqueta} · todavía no existe el catálogo`);
+      return [];
+    }
+    errores.push(`${etiqueta} · ${err.message}`);
+    return [];
+  }
+}
+
+terminos = validarCatalogo('contenido/glosario/glosario_egia_quest_v0-1.json', 'contenido/esquemas/glosario.schema.json', 'terminos', 'glosario');
+fichas = validarCatalogo('contenido/herramientas/herramientas_egia_quest_v0-1.json', 'contenido/esquemas/herramientas.schema.json', 'herramientas', 'herramientas');
+
+// términos duplicados
+const nombres = terminos.map(t => t.termino.toLowerCase());
+const dup = nombres.filter((n, i) => nombres.indexOf(n) !== i);
+if (dup.length) errores.push(`glosario · términos duplicados: ${[...new Set(dup)].join(', ')}`);
+
+// referencias cruzadas del glosario
+for (const t of terminos) {
+  for (const r of t.relacionados || []) {
+    if (!nombres.includes(r.toLowerCase())) {
+      avisos.push(`glosario · «${t.termino}» remite a «${r}», que no existe como entrada`);
+    }
+  }
+}
+
+// las fichas de herramientas describen tipos, no productos
+const MARCAS = /\b(chatgpt|gpt-?[0-9]|claude|gemini|copilot|midjourney|dall-?e|stable diffusion|perplexity|notebooklm|grammarly|turnitin|whisper)\b/i;
+for (const f of fichas) {
+  const texto = JSON.stringify(f);
+  if (MARCAS.test(texto)) {
+    errores.push(`herramientas · ${f.id} nombra un producto concreto; las fichas describen tipos de herramienta y caducan si nombran marcas`);
+  }
+}
+
 // --- informe ---
 console.log(`\n  VALIDACIÓN DE CONTENIDO — EGIA Quest`);
 console.log(`  datos:   ${RUTA_DATOS}`);
@@ -182,6 +233,10 @@ if (dilemas.length) {
   console.log(`  dilemas por nivel        ${dPorNivel}`);
   console.log(`  ejes IBATA               ${ejes}`);
   console.log(`  opciones                 ${opciones.length} · con consecuencia: ${opciones.filter(o => o.consecuencia).length} · con reparación: ${conReparacion}`);
+}
+if (terminos.length || fichas.length) {
+  console.log(`\n  términos de glosario     ${terminos.length}`);
+  console.log(`  fichas de herramienta    ${fichas.length} (por tipo, no por producto)`);
 }
 console.log('');
 
