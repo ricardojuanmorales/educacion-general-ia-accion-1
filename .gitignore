@@ -1,6 +1,4 @@
 .DS_Store
 .obsidian/
 node_modules/
-
-# dependencias de la app
-apps/*/node_modules/
+tools/cuadernillo/cuadernillo-revision.html

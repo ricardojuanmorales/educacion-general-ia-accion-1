@@ -10,7 +10,8 @@
   "scripts": {
     "verify:freeze": "node tools/smoke-monolito.mjs index.html",
     "verify:legacy": "node tools/smoke-monolito.mjs legacy/v0.1B/index.html",
-    "validate:content": "node tools/validate-content.mjs"
+    "validate:content": "node tools/validate-content.mjs",
+    "revision:cuadernillo": "python3 tools/cuadernillo/construir.py && node tools/cuadernillo/pdf.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",
