@@ -82,17 +82,91 @@ Dos de esas verificaciones miden en píxeles reales las dos mitades de DEUDA-EGI
 bloqueado esté desactivado **y se vea** desactivado (opacidad 0.45), y que el aviso de validación
 caiga dentro de la tarjeta del reto.
 
+## Segundo tramo de la sesión · glosario y fichas de herramienta
+
+Con el prototipo verificado, se añadieron las dos secciones de referencia que faltaban del
+alcance original. Son de consulta: no pasan por el motor, no producen evidencia y no guardan
+estado. Están en la aplicación porque el trabajo de los retos las necesita a mano.
+
+| Pieza | Archivo |
+|---|---|
+| Tipos y búsqueda sin acentos | `src/egia/dominio/referencia.ts` |
+| Cargadores con verificación de remisiones | `src/egia/contenido/cargar-referencia.ts` |
+| Glosario, 38 términos | `src/egia/presentacion/Glosario.tsx` |
+| Fichas de herramienta, 8 tipos | `src/egia/presentacion/Herramientas.tsx` |
+
+Tres decisiones de interfaz que vienen del método del contenido, no del gusto:
+
+1. **La distinción —«qué no es»— se muestra marcada**, no como un párrafo más. Es la parte del
+   método que evita el uso decorativo del término; diluirla sería devolver el glosario a la
+   decoración.
+2. **Las remisiones son navegables.** El cargador falla si una remisión no resuelve, y hay prueba
+   que lo comprueba: la primera redacción del glosario tenía nueve remisiones rotas.
+3. **«Qué hace» y «qué no hace» ocupan el mismo ancho**, y el humo en navegador lo mide en
+   píxeles. Una ficha que destaca la capacidad y esconde el límite es publicidad.
+
+Hay además una prueba que quizá parezca excesiva y no lo es: **ninguna ficha puede nombrar un
+producto concreto**. La decisión de contenido dice tipos, no marcas, porque una ficha con nombres
+y versiones caduca en meses. La prueba sostiene esa decisión en vez de confiar en que nadie la
+olvide en dos años.
+
+`DEUDA-EGIA-025` queda resuelta. Verificación: 66 pruebas y 23 verificaciones en navegador.
+
+## Análisis de umbrales entregado
+
+Se entrega `12_DISENO_INSTRUCCIONAL_UNIVERSAL/2026-08-31_EGIA_Analisis_Umbrales_Nivel_v0-1.md`
+como insumo para cerrar `DEUDA-EGIA-011`. No cambia nada: pone los números, propone tres caminos
+y nombra sus consecuencias.
+
+Al desglosar los 420 puntos por nivel apareció algo que el análisis no buscaba: **Q3 tiene un
+solo reto y Q5 tiene cuatro**. Es la forma real del catálogo, y afecta a cualquier esquema de
+nivel que se elija. Se registra como `DEUDA-EGIA-027`, separada de los umbrales, porque tocar el
+reparto de retos es modificar contenido aprobado y eso exige decisión humana con el texto
+delante. Vale la pena notar que Q3 es también el nivel que `DEUDA-EGIA-012` ya señalaba como el
+anclaje más débil de los siete.
+
+## Tercer tramo · el nivel deja de ser moneda
+
+Decisión humana sobre el análisis: **Esquema C**. Al implementarlo se verificó el grafo de
+prerrequisitos y apareció que **la afirmación en que se apoyaba la propuesta era falsa**: los
+prerrequisitos no protegen el orden de los niveles.
+
+- `EGIA-R-010` es de Q4 y solo exige dos retos de Q0. Tres retos bastarían para ser «Q4 · Juicio
+  ético» sin pasar por Q1, Q2 ni Q3.
+- `EGIA-R-015` (Q6) se alcanza por un camino de seis retos que nunca toca Q2, Q3 ni Q4.
+
+Se adoptó la reparación mínima que conserva la intención de C, y se registró como
+`DEC-EGIA-044`: **subes a Qn cuando tienes al menos un reto completado en cada nivel desde Q1
+hasta Qn, sin saltarte ninguno.** Se explica en una frase, no toca contenido aprobado y es
+robusta al reparto irregular de `DEUDA-EGIA-027`, porque pide uno de cada tramo y no todos.
+
+El tablero cambió de protagonista: el número grande ya no son los puntos, es la escalera de los
+siete tramos, con el que se pisa, el que sigue y qué retos lo abren. Los puntos quedan como
+«puntos de cuidado», declarados en la propia pantalla como lo que son.
+
+`DEUDA-EGIA-011` se cierra **eliminando el mecanismo, no recalibrándolo**. Dos pruebas fijan los
+dos agujeros por su nombre: si alguien reescribe la regla del nivel, fallan.
+
+El documento de análisis se corrigió a la vista, con una sección 6 que dice qué se afirmó mal y
+por qué. No se reescribió en silencio: la decisión se tomó leyendo la versión equivocada, y eso
+pertenece al registro. Es la misma lección de `DEUDA-EGIA-017` — un razonamiento plausible no es
+un resultado verificado.
+
+Verificación tras el cambio: 73 pruebas y 26 verificaciones en navegador.
+
 ## Lo que queda antes del Gate 3
 
-1. Recalibrar los umbrales de nivel (`DEUDA-EGIA-011`) — cambio de datos, decisión humana.
+1. ~~Recalibrar los umbrales de nivel~~ (`DEUDA-EGIA-011`) — **cerrada** por `DEC-EGIA-044`.
 2. Escribir la regla de progresión competencial (`DEUDA-EGIA-015`) — decisión humana.
 3. Confirmar el eje **B** del acrónimo IBATA (`DEUDA-EGIA-019`) — sigue abierta desde F1; el
    validador la reporta en cada ejecución.
-4. Glosario y fichas de herramienta (`DEUDA-EGIA-025`).
+4. ~~Glosario y fichas de herramienta~~ (`DEUDA-EGIA-025`) — **hecho**.
 5. Introducción ilustrada a las competencias del siglo 21 y buenas prácticas.
 6. Exportación del portafolio (`DEUDA-EGIA-022`).
+7. Salida estática low-tech (`DEUDA-EGIA-005`), abierta desde la Fase 0.
+8. El reparto de retos por nivel (`DEUDA-EGIA-027`) — decisión humana sobre contenido aprobado.
 
-Los puntos 1, 2 y 3 no los puede cerrar la máquina: son datos y criterio pedagógico.
+Los puntos 1, 2, 3 y 8 no los puede cerrar la máquina: son datos y criterio pedagógico.
 
 ## Estado del repositorio al cierre
 

@@ -69,8 +69,8 @@ async function esperarPaso(paso: string) {
   return screen.getByRole("textbox");
 }
 
-describe("Armazón · las cuatro secciones", () => {
-  it("abre en el tablero y ofrece las cuatro secciones como pestañas", async () => {
+describe("Armazón · las seis secciones", () => {
+  it("abre en el tablero y ofrece las seis secciones como pestañas", async () => {
     montar();
     await screen.findByRole("heading", { name: "Tu progreso" });
     const tablist = screen.getByRole("tablist");
@@ -79,6 +79,8 @@ describe("Armazón · las cuatro secciones", () => {
       "Tablero",
       "Retos",
       "Dilemas",
+      "Glosario",
+      "Herramientas",
       "Portafolio",
     ]);
     expect(pestanas[0]?.getAttribute("aria-selected")).toBe("true");
@@ -253,10 +255,26 @@ describe("Armazón · dilemas", () => {
 });
 
 describe("Armazón · el tablero dice la verdad sobre sí mismo", () => {
-  it("declara en pantalla que los umbrales son provisionales (DEUDA-EGIA-011)", async () => {
+  it("DEC-EGIA-044 · muestra la escalera de tramos, no un marcador de puntos", async () => {
     montar();
     await screen.findByRole("heading", { name: "Tu progreso" });
-    expect(screen.getByText(/Umbrales provisionales/)).toBeDefined();
+
+    // Los siete tramos están a la vista, incluidos los que faltan por recorrer.
+    expect(document.querySelectorAll("[data-nivel]")).toHaveLength(7);
+    expect(screen.getByText(/El nivel no se compra con puntos/)).toBeDefined();
+
+    // Y los puntos siguen ahí, pero declarados como lo que son.
+    expect(screen.getByText("Puntos de cuidado")).toBeDefined();
+    expect(screen.getByText(/señal de cuidado, no una moneda/)).toBeDefined();
+  });
+
+  it("empieza en Q0 con todos los tramos superiores sin pisar", async () => {
+    montar();
+    await screen.findByRole("heading", { name: "Tu progreso" });
+    const pisados = document.querySelectorAll('[data-nivel][data-pisado="true"]');
+    expect(pisados).toHaveLength(1);
+    expect(pisados[0]?.getAttribute("data-nivel")).toBe("Q0");
+    expect(document.querySelector('[data-actual="true"]')?.getAttribute("data-nivel")).toBe("Q0");
   });
 
   it("un proyecto vacío no suma puntos ni inventa competencias", () => {

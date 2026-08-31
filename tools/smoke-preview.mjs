@@ -65,10 +65,17 @@ try {
   await pagina.waitForSelector('h2:has-text("Tu progreso")', { timeout: 10_000 });
   comprobar("La aplicación monta y abre en el tablero", true);
 
-  // 2. El tablero declara sus umbrales provisionales, como exige DEUDA-EGIA-011.
+  // 2. DEC-EGIA-044: el tablero enseña la escalera, no un marcador de puntos.
+  const peldanos = await pagina.locator("[data-nivel]").count();
+  comprobar("El tablero muestra los siete tramos del recorrido", peldanos === 7, `${peldanos} peldaños`);
   comprobar(
-    "El tablero declara que los umbrales son provisionales",
-    await pagina.locator("text=Umbrales provisionales").isVisible(),
+    "Se empieza en Q0 y ningún tramo superior aparece pisado",
+    (await pagina.locator('[data-nivel][data-pisado="true"]').count()) === 1 &&
+      (await pagina.locator('[data-actual="true"]').getAttribute("data-nivel")) === "Q0",
+  );
+  comprobar(
+    "Los puntos se declaran señal de cuidado, no moneda",
+    await pagina.locator("text=señal de cuidado, no una moneda").isVisible(),
   );
 
   // 3. Los quince retos están.
@@ -162,18 +169,64 @@ try {
     (await pagina.locator(".reparacion").count()) === 1,
   );
 
-  // 10. Persistencia real: recargar no borra nada.
+  // 10. Glosario: la distinción está, y las remisiones navegan de verdad.
+  await pagina.getByRole("tab", { name: "Glosario" }).click();
+  await pagina.waitForSelector("[data-termino]");
+  const terminos = await pagina.locator("[data-termino]").count();
+  comprobar("Se listan los 38 términos del glosario", terminos === 38, `encontrados ${terminos}`);
+
+  await pagina.locator('[data-termino] summary').first().click();
+  comprobar(
+    "El término abierto muestra su distinción, que es el método del glosario",
+    await pagina.locator(".termino__distincion").first().isVisible(),
+  );
+
+  await pagina.getByRole("searchbox").fill("abstencion");
+  const filtrados = await pagina.locator("[data-termino]").count();
+  comprobar(
+    "La búsqueda encuentra sin acentos",
+    filtrados > 0 && filtrados < 38,
+    `«abstencion» deja ${filtrados} de 38`,
+  );
+  await pagina.getByRole("searchbox").fill("");
+
+  // 11. Herramientas: capacidad y límite con el mismo peso, y ninguna marca.
+  await pagina.getByRole("tab", { name: "Herramientas" }).click();
+  await pagina.waitForSelector("[data-herramienta]");
+  const fichas = await pagina.locator("[data-herramienta]").count();
+  comprobar("Se listan las ocho fichas de herramienta", fichas === 8, `encontradas ${fichas}`);
+
+  const anchoHace = (await pagina.locator(".par__lado--hace").first().boundingBox())?.width ?? 0;
+  const anchoNoHace = (await pagina.locator(".par__lado--no-hace").first().boundingBox())?.width ?? 0;
+  comprobar(
+    "«Qué no hace» ocupa el mismo espacio que «qué hace»: el límite no se esconde",
+    anchoHace > 0 && Math.abs(anchoHace - anchoNoHace) < 2,
+    `hace=${Math.round(anchoHace)}px noHace=${Math.round(anchoNoHace)}px`,
+  );
+  comprobar(
+    "Toda ficha declara cuándo NO usar la herramienta",
+    (await pagina.locator(".bloque--abstencion").count()) === 8,
+  );
+
+  // 12. Persistencia real: recargar no borra nada.
   await pagina.reload({ waitUntil: "networkidle" });
   await pagina.waitForSelector('h2:has-text("Tu progreso")');
-  const puntos = await pagina.locator(".tablero__puntos").innerText();
-  comprobar(
-    "Tras recargar, el progreso sigue ahí",
-    /^(?!0\s)\d+/.test(puntos.trim()),
-    `tablero muestra «${puntos.replace(/\s+/g, " ").trim()}»`,
-  );
-  comprobar("Un reto completado cuenta como completado", (await pagina.locator("text=1 de 15").count()) > 0);
+  comprobar("Tras recargar, el progreso sigue ahí", (await pagina.locator("text=1 de 15").count()) > 0);
 
-  // 11. Ningún error de consola en todo el recorrido.
+  // 13. DEC-EGIA-044 en vivo: el reto completado es de Q0, así que el nivel NO sube.
+  //     Es exactamente la diferencia entre recorrer y acumular: hay 15 puntos en el marcador
+  //     y el nivel sigue en Q0 porque no se ha pisado ningún tramo por encima.
+  comprobar(
+    "Completar un reto de Q0 no sube de tramo: el nivel es recorrido",
+    (await pagina.locator('[data-actual="true"]').getAttribute("data-nivel")) === "Q0",
+    `Q0 con ${(await pagina.locator(".peldano[data-nivel='Q0'] .peldano__cuenta").innerText()).trim()} en el tramo`,
+  );
+  comprobar(
+    "El tablero dice qué retos abren el tramo siguiente",
+    await pagina.locator(".escalera__pista").isVisible(),
+  );
+
+  // 13. Ningún error de consola en todo el recorrido.
   comprobar(
     "Ningún error en la consola del navegador",
     erroresDeConsola.length === 0,

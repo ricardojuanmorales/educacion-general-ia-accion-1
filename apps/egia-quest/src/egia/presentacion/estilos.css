@@ -1072,3 +1072,309 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ─── Buscador (glosario y herramientas) ──────────────────────────────── */
+
+.buscador {
+  margin-block-end: 2rem;
+}
+
+.campo--linea {
+  margin-block-end: 0.4rem;
+  max-inline-size: 26rem;
+}
+
+.buscador__cuenta {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--tinta-tenue);
+}
+
+/* ─── Glosario ────────────────────────────────────────────────────────── */
+
+.grupo-letra__titulo {
+  margin: 2rem 0 0.75rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--acento);
+  padding-block-end: 0.35rem;
+  border-block-end: 1px solid var(--borde);
+}
+
+.terminos {
+  margin: 0;
+}
+
+.termino {
+  padding: 0.9rem 0;
+  border-block-end: 1px solid var(--borde);
+}
+
+.termino[data-abierto="true"] {
+  background: color-mix(in srgb, var(--acento) 5%, transparent);
+  border-radius: var(--radio);
+  padding-inline: 0.9rem;
+}
+
+.termino__nombre {
+  font-weight: 650;
+  font-size: 1.08rem;
+  margin-block-end: 0.2rem;
+}
+
+.termino__cuerpo {
+  margin: 0;
+}
+
+.termino__breve {
+  margin: 0 0 0.5rem;
+  color: var(--tinta-suave);
+}
+
+.termino details > summary {
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--acento);
+}
+
+.termino details > *:not(summary) {
+  margin-block: 0.35rem;
+}
+
+.termino__etiqueta {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+  margin-block: 0.85rem 0.15rem !important;
+}
+
+/* La distinción es el método del glosario: se marca, no se esconde. */
+.termino__distincion {
+  padding: 0.55rem 0.85rem;
+  border-inline-start: 3px solid var(--rojo);
+  background: color-mix(in srgb, var(--rojo) 6%, transparent);
+  border-radius: 0 var(--radio) var(--radio) 0;
+}
+
+.termino__relacionados .termino__etiqueta {
+  display: inline;
+  margin: 0 !important;
+}
+
+.termino__fuente {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--tinta-tenue);
+  font-style: italic;
+}
+
+/* ─── Fichas de herramienta ───────────────────────────────────────────── */
+
+.porque {
+  margin-block-end: 1.75rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+
+.porque summary {
+  cursor: pointer;
+  color: var(--acento);
+  font-weight: 550;
+}
+
+.porque p {
+  margin-block-start: 0.6rem;
+  max-inline-size: 62ch;
+}
+
+.fichas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.ficha-herramienta {
+  padding: 1.5rem;
+  background: var(--papel);
+  border: 1.5px solid var(--borde);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+}
+
+.ficha-herramienta__titulo {
+  margin: 0.6rem 0 1.1rem;
+  font-size: 1.3rem;
+  font-weight: 650;
+}
+
+/* Capacidad y límite, lado a lado y con el mismo peso. Una ficha que destaca
+   lo que la herramienta hace y esconde lo que no hace es publicidad. */
+.par {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-block-end: 1.25rem;
+}
+
+.par__lado {
+  padding: 0.9rem 1.05rem;
+  border-radius: var(--radio);
+  border-inline-start: 3px solid var(--borde);
+  background: var(--pergamino);
+}
+
+.par__lado--hace {
+  border-inline-start-color: var(--verde);
+}
+
+.par__lado--no-hace {
+  border-inline-start-color: var(--rojo);
+}
+
+.ficha-herramienta h4 {
+  margin: 0 0 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.76rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--tinta-tenue);
+}
+
+.par__lado--hace h4 {
+  color: var(--verde);
+}
+
+.par__lado--no-hace h4 {
+  color: var(--rojo);
+}
+
+.ficha-herramienta p {
+  margin: 0;
+}
+
+.bloque {
+  margin-block-end: 1.15rem;
+}
+
+.bloque--abstencion {
+  padding: 0.9rem 1.05rem;
+  border-inline-start: 3px solid var(--rojo);
+  background: color-mix(in srgb, var(--rojo) 7%, transparent);
+  border-radius: 0 var(--radio) var(--radio) 0;
+}
+
+.bloque--abstencion h4 {
+  color: var(--rojo);
+}
+
+.bloque--preguntas {
+  padding: 0.9rem 1.05rem;
+  background: var(--pergamino-hondo);
+  border-radius: var(--radio);
+  margin-block-end: 0;
+}
+
+.bloque--preguntas li {
+  font-style: italic;
+}
+
+.lista-puntos {
+  margin: 0;
+  padding-inline-start: 1.15rem;
+}
+
+.lista-puntos li {
+  margin-block-end: 0.25rem;
+}
+
+.lista-puntos--alerta li::marker {
+  color: var(--ambar);
+}
+
+/* ─── Escalera de niveles (DEC-EGIA-044) ──────────────────────────────── */
+
+.escalera {
+  margin-block: 2rem;
+}
+
+.escalera h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.peldanos {
+  list-style: none;
+  margin: 1.1rem 0 0;
+  padding: 0;
+  counter-reset: peldano;
+}
+
+.peldano {
+  display: grid;
+  grid-template-columns: 3.1rem 1fr auto;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.65rem 0.9rem;
+  border-inline-start: 4px solid var(--borde);
+  background: var(--pergamino-hondo);
+  margin-block-end: 3px;
+  border-radius: 0 var(--radio) var(--radio) 0;
+  color: var(--tinta-tenue);
+}
+
+/* Un tramo recorrido se ve recorrido. Un tramo sin pisar no se esconde: se ve pendiente. */
+.peldano[data-pisado="true"] {
+  color: var(--tinta);
+  background: var(--papel);
+  border-inline-start-color: var(--verde);
+}
+
+.peldano[data-actual="true"] {
+  border-inline-start-color: var(--acento);
+  background: color-mix(in srgb, var(--acento) 9%, var(--papel));
+  color: var(--tinta);
+  font-weight: 600;
+}
+
+.peldano__clave {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.peldano[data-actual="true"] .peldano__clave {
+  color: var(--acento);
+}
+
+.peldano[data-pisado="true"]:not([data-actual="true"]) .peldano__clave {
+  color: var(--verde);
+}
+
+.peldano__cuenta {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--tinta-tenue);
+}
+
+.escalera__pista {
+  margin-block-start: 0.9rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--tinta-suave);
+}
+
+.tablero__cifras {
+  margin-block-start: 2rem;
+}

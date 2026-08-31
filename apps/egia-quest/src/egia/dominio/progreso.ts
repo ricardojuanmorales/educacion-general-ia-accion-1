@@ -1,11 +1,20 @@
 // Cálculo del progreso que alimenta el tablero.
 //
-// Los umbrales de nivel vienen del MVP v0.1A y están pendientes de recalibrar
-// (DEUDA-EGIA-011): con 270 puntos en el catálogo de retos y Q6 en 140, se llega al último
-// nivel a mitad del recorrido. El tablero lo declara en pantalla en vez de disimularlo.
+// Desde DEC-EGIA-044 el nivel es recorrido, no moneda: se calcula por los retos completados,
+// no por puntos acumulados. Los puntos siguen existiendo y siguen sumando, pero como señal de
+// cuidado. Esa separación es la que devuelve al nivel su significado: «Q4 · Juicio ético» dice
+// que la persona hizo un reto de juicio ético, no que juntó setenta y cinco puntos.
 
 import type { CreativeProject } from "../../core/domain/model";
-import { nivelPorPuntos, type Familia, type NivelQ, type RetoMetadata } from "./reto";
+import {
+  ETIQUETA_NIVEL,
+  NIVELES_Q,
+  nivelPorRecorrido,
+  nivelSiguiente,
+  type Familia,
+  type NivelQ,
+  type RetoMetadata,
+} from "./reto";
 import { puntosDeDilemas, type Dilema, type EstadoDilemas } from "./dilema";
 
 export interface DeudaPedagogica {
@@ -14,18 +23,34 @@ export interface DeudaPedagogica {
   readonly motivo: string;
 }
 
+/** Un peldaño de la escalera de niveles, tal como se dibuja en el tablero. */
+export interface PeldanoNivel {
+  readonly nivel: NivelQ;
+  readonly etiqueta: string;
+  readonly completados: number;
+  readonly total: number;
+  /** Verdadero si este tramo ya cuenta como recorrido: al menos un reto completado. */
+  readonly pisado: boolean;
+}
+
 export interface Progreso {
   readonly puntos: number;
   readonly puntosDeRetos: number;
   readonly puntosDeDilemas: number;
   readonly nivel: NivelQ;
   readonly etiquetaNivel: string;
+  /** El tramo que sigue, y qué retos lo abren. `null` cuando ya se está en Q6. */
+  readonly siguiente: {
+    readonly nivel: NivelQ;
+    readonly etiqueta: string;
+    readonly retosQueLoAbren: readonly string[];
+  } | null;
+  readonly escalera: readonly PeldanoNivel[];
   readonly retosCompletados: readonly string[];
   readonly retosEnCurso: readonly string[];
   readonly dilemasResueltos: number;
   readonly competencias: ReadonlyArray<{ familia: Familia; evidencias: number }>;
   readonly deudaPedagogica: readonly DeudaPedagogica[];
-  readonly umbralesProvisionales: true;
 }
 
 /**
@@ -87,16 +112,41 @@ export function calcularProgreso(
     }
   }
 
+  const nivel = nivelPorRecorrido(completados, retos);
+  const hechos = new Set(completados);
+
+  const escalera: PeldanoNivel[] = NIVELES_Q.map((n) => {
+    const delNivel = retos.filter((r) => r.nivel === n);
+    const hechosAqui = delNivel.filter((r) => hechos.has(r.retoId)).length;
+    return {
+      nivel: n,
+      etiqueta: ETIQUETA_NIVEL[n],
+      completados: hechosAqui,
+      total: delNivel.length,
+      pisado: n === "Q0" ? true : hechosAqui > 0,
+    };
+  });
+
+  const proximo = nivelSiguiente(nivel);
   const puntosDil = puntosDeDilemas(dilemas, estadoDilemas);
-  const puntos = puntosRetos + puntosDil;
-  const nivel = nivelPorPuntos(puntos);
 
   return {
-    puntos,
+    puntos: puntosRetos + puntosDil,
     puntosDeRetos: puntosRetos,
     puntosDeDilemas: puntosDil,
-    nivel: nivel.nivel,
-    etiquetaNivel: nivel.etiqueta,
+    nivel,
+    etiquetaNivel: ETIQUETA_NIVEL[nivel],
+    siguiente: proximo
+      ? {
+          nivel: proximo,
+          etiqueta: ETIQUETA_NIVEL[proximo],
+          // Cualquier reto de ese tramo abre el peldaño: basta uno.
+          retosQueLoAbren: retos
+            .filter((r) => r.nivel === proximo && !hechos.has(r.retoId))
+            .map((r) => r.retoId),
+        }
+      : null,
+    escalera,
     retosCompletados: completados,
     retosEnCurso: enCurso,
     dilemasResueltos: estadoDilemas.resoluciones.length,
@@ -104,6 +154,5 @@ export function calcularProgreso(
       .map(([familia, evidencias]) => ({ familia, evidencias }))
       .sort((a, b) => b.evidencias - a.evidencias),
     deudaPedagogica: deuda,
-    umbralesProvisionales: true,
   };
 }

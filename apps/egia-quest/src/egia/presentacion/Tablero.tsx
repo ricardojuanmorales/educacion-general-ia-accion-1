@@ -1,15 +1,17 @@
 // Tablero de progreso.
 //
-// Tres reglas de diseño que vienen del contenido aprobado, no del gusto:
-//   1. Sin ranking, sin comparación con otras personas, sin cronómetro. Los puntos son
-//      señales de cuidado, no una carrera (README, «Lo que la aplicación evita, a propósito»).
-//   2. Los umbrales de nivel están sin recalibrar (DEUDA-EGIA-011). El tablero lo dice en
-//      pantalla en vez de disimularlo: con 270 puntos disponibles y Q6 en 140, se llega al
-//      último nivel a mitad de camino.
-//   3. La «deuda pedagógica» no es un regaño: es la lista de lo que quedó abierto, con el
+// Cambio de protagonista (DEC-EGIA-044): el número grande ya no son los puntos, es la escalera
+// de niveles. El nivel se gana recorriendo, no acumulando, y el tablero tiene que enseñar el
+// recorrido para que la regla se entienda sin leer documentación: se ve qué tramos están
+// pisados, cuál sigue y qué retos lo abren.
+//
+// Dos reglas de diseño que vienen del contenido aprobado, no del gusto:
+//   1. Sin ranking, sin comparación con otras personas, sin cronómetro. Los puntos son señales
+//      de cuidado, no una carrera (README, «Lo que la aplicación evita, a propósito»).
+//   2. La «deuda pedagógica» no es un regaño: es la lista de lo que quedó abierto, con el
 //      motivo exacto, para que se pueda cerrar.
 
-import { UMBRALES_NIVEL, type Familia } from "../dominio/reto";
+import type { Familia } from "../dominio/reto";
 import type { Progreso } from "../dominio/progreso";
 
 export interface TableroProps {
@@ -40,34 +42,66 @@ export function Tablero({
   puntosPosibles,
   alAbrirReto,
 }: TableroProps) {
-  const siguiente = UMBRALES_NIVEL.find((u) => u.puntosMinimos > progreso.puntos);
-
   return (
     <div className="tablero">
       <section className="tablero__nivel" aria-label="Nivel alcanzado">
         <p className="tablero__clave">{progreso.nivel}</p>
         <p className="tablero__etiqueta">{progreso.etiquetaNivel}</p>
-        <p className="tablero__puntos">
-          {progreso.puntos} <span>de {puntosPosibles} puntos posibles</span>
-        </p>
-        {siguiente ? (
+        {progreso.siguiente ? (
           <p className="tablero__siguiente">
-            Faltan {siguiente.puntosMinimos - progreso.puntos} puntos para {siguiente.nivel} ·{" "}
-            {siguiente.etiqueta}
+            Llegas a <strong>{progreso.siguiente.nivel} · {progreso.siguiente.etiqueta}</strong> al
+            completar un reto de ese tramo.
           </p>
         ) : (
-          <p className="tablero__siguiente">Has pasado el último umbral definido.</p>
+          <p className="tablero__siguiente">
+            Has recorrido los siete tramos. Lo que quede por hacer, lo haces porque quieres.
+          </p>
         )}
       </section>
 
-      {progreso.umbralesProvisionales ? (
-        <p className="nota nota--provisional" role="note">
-          <strong>Umbrales provisionales.</strong> Los cortes de nivel vienen del prototipo
-          anterior y están pendientes de recalibrar (DEUDA-EGIA-011). Con {puntosPosibles} puntos
-          disponibles y el último umbral en {UMBRALES_NIVEL[UMBRALES_NIVEL.length - 1]?.puntosMinimos},
-          se llega a Q6 antes de terminar el recorrido. Se declara en vez de disimularse.
+      <section className="escalera" aria-labelledby="tit-escalera">
+        <h3 id="tit-escalera">Tu recorrido</h3>
+        <p className="nota">
+          El nivel no se compra con puntos: se recorre. Subes a un tramo cuando completas al menos
+          un reto de cada nivel anterior, sin saltarte ninguno.
         </p>
-      ) : null}
+        <ol className="peldanos">
+          {progreso.escalera.map((p) => (
+            <li
+              key={p.nivel}
+              className="peldano"
+              data-nivel={p.nivel}
+              data-pisado={p.pisado}
+              data-actual={p.nivel === progreso.nivel}
+              aria-current={p.nivel === progreso.nivel ? "step" : undefined}
+            >
+              <span className="peldano__clave">{p.nivel}</span>
+              <span className="peldano__etiqueta">{p.etiqueta}</span>
+              <span className="peldano__cuenta">
+                {p.completados} de {p.total}
+                <span className="visualmente-oculto">
+                  {" "}
+                  {p.completados === 1 ? "reto completado" : "retos completados"}
+                  {p.pisado ? ", tramo recorrido" : ", tramo sin empezar"}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ol>
+        {progreso.siguiente && progreso.siguiente.retosQueLoAbren.length > 0 ? (
+          <p className="escalera__pista">
+            Abren {progreso.siguiente.nivel}:{" "}
+            {progreso.siguiente.retosQueLoAbren.map((retoId, i) => (
+              <span key={retoId}>
+                {i > 0 ? ", " : ""}
+                <button type="button" className="enlace" onClick={() => alAbrirReto(retoId)}>
+                  {retoId}
+                </button>
+              </span>
+            ))}
+          </p>
+        ) : null}
+      </section>
 
       <section className="tablero__cifras" aria-label="Recuento">
         <dl className="cifras">
@@ -88,14 +122,17 @@ export function Tablero({
             </dd>
           </div>
           <div>
-            <dt>Puntos por retos</dt>
-            <dd>{progreso.puntosDeRetos}</dd>
-          </div>
-          <div>
-            <dt>Puntos por dilemas</dt>
-            <dd>{progreso.puntosDeDilemas}</dd>
+            <dt>Puntos de cuidado</dt>
+            <dd>
+              {progreso.puntos} <span>de {puntosPosibles}</span>
+            </dd>
           </div>
         </dl>
+        <p className="nota">
+          Los puntos son una señal de cuidado, no una moneda: {progreso.puntosDeRetos} vienen de
+          retos y {progreso.puntosDeDilemas} de dilemas. No compran nivel y no se comparan con
+          nadie.
+        </p>
       </section>
 
       <section className="tablero__competencias" aria-labelledby="tit-competencias">
@@ -140,11 +177,7 @@ export function Tablero({
           <ul className="deuda">
             {progreso.deudaPedagogica.map((d) => (
               <li key={d.retoId} className="deuda__item">
-                <button
-                  type="button"
-                  className="enlace"
-                  onClick={() => alAbrirReto(d.retoId)}
-                >
+                <button type="button" className="enlace" onClick={() => alAbrirReto(d.retoId)}>
                   {d.retoId}
                 </button>
                 <span className="deuda__motivo">{d.motivo}</span>

@@ -1,4 +1,4 @@
-// Armazón de la aplicación. Cuatro secciones, navegación por pestañas accesible.
+// Armazón de la aplicación. Seis secciones, navegación por pestañas accesible.
 //
 // La navegación por flechas y el `aria-selected` vienen del monolito: se arreglaron allí en
 // v0.1B y sería absurdo perderlos al migrar. Lo que no se hereda es el aviso fuera de la
@@ -6,8 +6,17 @@
 
 import { useEffect, useRef, useState } from "react";
 
-import { CATALOGO_DILEMAS, CATALOGO_RETOS } from "../contenido/catalogo";
+import {
+  CATALOGO_DILEMAS,
+  CATALOGO_RETOS,
+  DECISION_HERRAMIENTAS,
+  GLOSARIO,
+  HERRAMIENTAS,
+  METODO_GLOSARIO,
+} from "../contenido/catalogo";
 import { resolucionDe } from "../dominio/dilema";
+import { Glosario } from "./Glosario";
+import { Herramientas } from "./Herramientas";
 import { ListaDilemas } from "./ListaDilemas";
 import { ListaRetos } from "./ListaRetos";
 import { PantallaDilema } from "./PantallaDilema";
@@ -17,12 +26,16 @@ import { Tablero } from "./Tablero";
 import { useEgia } from "./useEgia";
 import type { Runtime } from "./runtime";
 
-type Seccion = "tablero" | "retos" | "dilemas" | "portafolio";
+type Seccion = "tablero" | "retos" | "dilemas" | "glosario" | "herramientas" | "portafolio";
 
+// El orden importa: primero lo que se hace, después lo que se consulta, al final lo que se
+// conserva. Glosario y Herramientas van en medio porque es donde se necesitan, a mitad de un reto.
 const SECCIONES: ReadonlyArray<{ id: Seccion; etiqueta: string }> = [
   { id: "tablero", etiqueta: "Tablero" },
   { id: "retos", etiqueta: "Retos" },
   { id: "dilemas", etiqueta: "Dilemas" },
+  { id: "glosario", etiqueta: "Glosario" },
+  { id: "herramientas", etiqueta: "Herramientas" },
   { id: "portafolio", etiqueta: "Portafolio" },
 ];
 
@@ -202,6 +215,24 @@ export function App({ runtime }: AppProps = {}) {
               )
             ) : null}
 
+            {seccion === "glosario" ? (
+              <>
+                <h2 ref={encabezadoSeccion} tabIndex={-1} className="panel__titulo">
+                  Glosario
+                </h2>
+                <Glosario terminos={GLOSARIO} metodo={METODO_GLOSARIO} />
+              </>
+            ) : null}
+
+            {seccion === "herramientas" ? (
+              <>
+                <h2 ref={encabezadoSeccion} tabIndex={-1} className="panel__titulo">
+                  Herramientas de IA
+                </h2>
+                <Herramientas fichas={HERRAMIENTAS} decisionDeDiseno={DECISION_HERRAMIENTAS} />
+              </>
+            ) : null}
+
             {seccion === "portafolio" ? (
               <>
                 <h2 ref={encabezadoSeccion} tabIndex={-1} className="panel__titulo">
@@ -222,8 +253,8 @@ export function App({ runtime }: AppProps = {}) {
 
       <footer className="pie">
         <p>
-          Prototipo de Fase 3. Contenido aprobado el 29 de agosto de 2026 (DEC-EGIA-040); los
-          umbrales de nivel están pendientes de recalibrar (DEUDA-EGIA-011).
+          Prototipo de Fase 3. Contenido aprobado el 29 de agosto de 2026 (DEC-EGIA-040). El
+          nivel se gana recorriendo, no acumulando (DEC-EGIA-044).
         </p>
         <button
           type="button"

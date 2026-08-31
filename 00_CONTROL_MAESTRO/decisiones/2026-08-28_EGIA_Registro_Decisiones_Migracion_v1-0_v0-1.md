@@ -40,6 +40,34 @@ Una decisión registrada no se edita: se sucede con una decisión nueva que la d
 | DEC-EGIA-035 | 2026-08-29 | Se corrige la ubicación de la etiqueta `v0.1B` | La etiqueta se creó apuntando a `371f361`, el merge del PR #1, que no contiene la Fase 0. Se reubica sobre el `main` resultante de fusionar el PR #2. Requiere reescritura de una referencia ya publicada, autorizada por esta decisión | Confirmada |
 | DEC-EGIA-042 | 2026-08-31 | Un reto se cierra con cuatro pasos, no con tres: trabajo, evidencia, reflexión y **decisión humana registrada** sobre la propia evidencia | Hallazgo de Fase 3 al conectar la pantalla al motor completo. El núcleo heredado no da la misión por completada con evidencia y reflexión: exige `decideEvidence`, y solo entonces la evidencia se vuelve elegible para el portafolio. Se adopta como mecánica visible en vez de disimularla, porque replica en el trabajo de la persona estudiante la misma exigencia que gobierna los gates del proyecto: comando ejecutable y decisión humana registrada | Confirmada |
 | DEC-EGIA-043 | 2026-08-31 | La vista previa compilada se publica versionada en `preview/`, junto al monolito y sin sustituirlo | Permite ver y probar el sucesor antes del Gate 3 sin montar el flujo de despliegue. Se acepta a conciencia el artefacto compilado dentro del repositorio y se registra como DEUDA-EGIA-024, que se cierra al montar GitHub Actions. La ruta raíz del sitio sigue sirviendo el monolito v0.1B | Confirmada |
+| DEC-EGIA-044 | 2026-08-31 | El nivel Q deja de ser moneda y pasa a ser recorrido: se sube a Qn al completar al menos un reto en cada nivel desde Q1 hasta Qn, sin saltarse ninguno. Los puntos siguen existiendo como señal de cuidado y ya no compran nivel | Esquema C del Análisis de Umbrales, con la reparación que exigió el grafo real de prerrequisitos. Los niveles Q ya estaban definidos por siete verbos y por un andamiaje que se desvanece; hacerlos depender además de puntos los obligaba a significar dos cosas, y de ahí venía el desajuste. Cierra DEUDA-EGIA-011 | Confirmada |
+
+---
+
+## Nota de fundamento sobre DEC-EGIA-044
+
+La decisión humana fue «Esquema C», sobre una propuesta que contenía una afirmación falsa. Al ir
+a implementarla se verificó el grafo de prerrequisitos y **el orden no estaba protegido**:
+
+- `EGIA-R-010` es de Q4 y solo exige `R-001` y `R-002`, ambos de Q0. Tres retos bastarían para
+  ser «Q4 · Juicio ético» sin haber pasado por Q1, Q2 ni Q3.
+- `EGIA-R-015` (Q6) se alcanza por `R-001→002→003→004→009→014→015`: seis retos que nunca tocan
+  Q2, Q3 ni Q4. Sería «Q6 · Transferencia portable» sin accesibilidad aplicada ni juicio ético.
+
+La forma literal del Esquema C —«el nivel del reto más alto completado»— era por tanto
+inadoptable. Se adoptó la reparación mínima que conserva su intención: la cadena. Subes a un
+tramo cuando has pisado todos los anteriores.
+
+La reparación tiene dos virtudes que no se buscaron. Se explica en una frase, sin tabla de
+umbrales. Y es robusta al reparto irregular de retos por nivel (`DEUDA-EGIA-027`): pide uno de
+cada tramo, no todos, así que el único reto de Q3 y los cuatro de Q5 pesan igual como puerta.
+
+Queda abierta, y es de contenido, la pregunta de si el grafo de prerrequisitos debe corregirse
+para que refleje la intención pedagógica por sí mismo, en vez de depender de que el cálculo del
+nivel lo compense. Esa es `DEUDA-EGIA-027` y exige decisión humana sobre contenido aprobado.
+
+Las dos pruebas que fijan los dos agujeros están en `egia.cargar-retos.test.ts` y nombran los
+retos concretos: si alguien reescribe la regla, fallan.
 
 ---
 

@@ -10,7 +10,8 @@ import {
 import {
   ANDAMIAJE_POR_NIVEL,
   VERBO_POR_NIVEL,
-  nivelPorPuntos,
+  nivelPorRecorrido,
+  nivelSiguiente,
   prerrequisitosCumplidos,
 } from "../egia/dominio/reto";
 
@@ -154,19 +155,65 @@ describe("cargarRetos · invariantes", () => {
   });
 });
 
-describe("progresión", () => {
-  it("sitúa el nivel según los puntos acumulados", () => {
-    expect(nivelPorPuntos(0).nivel).toBe("Q0");
-    expect(nivelPorPuntos(9).nivel).toBe("Q0");
-    expect(nivelPorPuntos(10).nivel).toBe("Q1");
-    expect(nivelPorPuntos(74).nivel).toBe("Q3");
-    expect(nivelPorPuntos(140).nivel).toBe("Q6");
-    expect(nivelPorPuntos(5000).nivel).toBe("Q6");
-    expect(nivelPorPuntos(10).etiqueta).toBe("Práctica situada");
+describe("progresión · el nivel es recorrido, no moneda (DEC-EGIA-044)", () => {
+  const retos = () => [...cargarRetos(catalogoCrudo).porReto.values()];
+
+  it("sin nada completado se está en Q0, que es el suelo", () => {
+    expect(nivelPorRecorrido([], retos())).toBe("Q0");
   });
 
-  it("no cae por debajo de Q0 con puntos negativos", () => {
-    expect(nivelPorPuntos(-50).nivel).toBe("Q0");
+  it("sube un tramo por cada nivel con al menos un reto completado", () => {
+    const r = retos();
+    expect(nivelPorRecorrido(["EGIA-R-001"], r)).toBe("Q0");
+    expect(nivelPorRecorrido(["EGIA-R-001", "EGIA-R-003"], r)).toBe("Q1");
+    expect(nivelPorRecorrido(["EGIA-R-003", "EGIA-R-005"], r)).toBe("Q2");
+    expect(nivelPorRecorrido(["EGIA-R-003", "EGIA-R-005", "EGIA-R-007"], r)).toBe("Q3");
+  });
+
+  it("basta UN reto por tramo: el único de Q3 y los cuatro de Q5 pesan igual", () => {
+    // Robustez frente al reparto irregular del catálogo (DEUDA-EGIA-027).
+    const r = retos();
+    const unoPorTramo = ["EGIA-R-003", "EGIA-R-005", "EGIA-R-007", "EGIA-R-008", "EGIA-R-009", "EGIA-R-014"];
+    expect(nivelPorRecorrido(unoPorTramo, r)).toBe("Q6");
+  });
+
+  it("EL AGUJERO QUE CIERRA ESTA REGLA · R-010 es de Q4 y solo exige dos retos de Q0", () => {
+    // Con la forma literal del Esquema C —«el nivel del reto más alto completado»— tres retos
+    // bastarían para ser «Q4 · Juicio ético» sin haber pasado por Q1, Q2 ni Q3.
+    const r = retos();
+    const r010 = r.find((x) => x.retoId === "EGIA-R-010")!;
+    expect(r010.nivel).toBe("Q4");
+    expect(r010.prerrequisitos).toEqual(["EGIA-R-001", "EGIA-R-002"]);
+    expect(r.find((x) => x.retoId === "EGIA-R-001")!.nivel).toBe("Q0");
+    expect(r.find((x) => x.retoId === "EGIA-R-002")!.nivel).toBe("Q0");
+
+    // La cadena lo impide: sin tramos intermedios, completar R-010 no da Q4.
+    expect(nivelPorRecorrido(["EGIA-R-001", "EGIA-R-002", "EGIA-R-010"], r)).toBe("Q0");
+  });
+
+  it("EL AGUJERO QUE CIERRA ESTA REGLA · a Q6 se llega sin tocar Q2, Q3 ni Q4", () => {
+    // Camino real del catálogo: R-001→002→003→004→009→014→015, seis retos, sin accesibilidad
+    // aplicada ni juicio ético. La cadena deja a esa persona en Q1, que es donde está.
+    const r = retos();
+    const atajo = ["EGIA-R-001", "EGIA-R-002", "EGIA-R-003", "EGIA-R-004", "EGIA-R-009", "EGIA-R-014", "EGIA-R-015"];
+    expect(r.find((x) => x.retoId === "EGIA-R-015")!.nivel).toBe("Q6");
+    expect(nivelPorRecorrido(atajo, r)).toBe("Q1");
+  });
+
+  it("un tramo saltado detiene la subida aunque haya retos completados más arriba", () => {
+    const r = retos();
+    // Q1 y Q2 sí, Q3 no, Q4 sí: se queda en Q2.
+    expect(nivelPorRecorrido(["EGIA-R-003", "EGIA-R-005", "EGIA-R-008"], r)).toBe("Q2");
+  });
+
+  it("ignora identificadores que no existen en el catálogo", () => {
+    expect(nivelPorRecorrido(["NO-EXISTE", "EGIA-R-003"], retos())).toBe("Q1");
+  });
+
+  it("nivelSiguiente encadena los siete tramos y se detiene en Q6", () => {
+    expect(nivelSiguiente("Q0")).toBe("Q1");
+    expect(nivelSiguiente("Q5")).toBe("Q6");
+    expect(nivelSiguiente("Q6")).toBeNull();
   });
 
   it("exige los prerrequisitos declarados antes de abrir un reto", () => {
@@ -179,12 +226,11 @@ describe("progresión", () => {
     expect(prerrequisitosCumplidos(r1, [])).toBe(true);
   });
 
-  it("documenta DEUDA-EGIA-011: el catálogo entero desborda el último umbral", () => {
+  it("los puntos siguen sumando, pero ya no compran nivel", () => {
     const catalogo = cargarRetos(catalogoCrudo);
     const total = [...catalogo.porReto.values()].reduce((s, m) => s + m.puntosBase, 0);
     expect(total).toBe(270);
-    // Con 270 puntos disponibles y Q6 en 140, se llega al último nivel a mitad del
-    // recorrido. Los umbrales se recalibran en F3, cuando exista el tablero.
-    expect(nivelPorPuntos(total).nivel).toBe("Q6");
+    // Antes, 270 puntos daban Q6 automáticamente. Ahora el nivel no depende de esta cifra.
+    expect(nivelPorRecorrido([], [...catalogo.porReto.values()])).toBe("Q0");
   });
 });

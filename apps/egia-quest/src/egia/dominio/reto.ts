@@ -93,21 +93,53 @@ export interface RetoMetadata {
   readonly badgePosible: string | null;
 }
 
-/** Niveles Q por puntos acumulados. Umbrales heredados del MVP v0.1A. */
-export const UMBRALES_NIVEL: ReadonlyArray<{ nivel: NivelQ; puntosMinimos: number; etiqueta: string }> = [
-  { nivel: "Q0", puntosMinimos: 0, etiqueta: "Activación responsable" },
-  { nivel: "Q1", puntosMinimos: 10, etiqueta: "Práctica situada" },
-  { nivel: "Q2", puntosMinimos: 30, etiqueta: "Producción documentada" },
-  { nivel: "Q3", puntosMinimos: 50, etiqueta: "Accesibilidad aplicada" },
-  { nivel: "Q4", puntosMinimos: 75, etiqueta: "Juicio ético" },
-  { nivel: "Q5", puntosMinimos: 105, etiqueta: "Integración caleidoscópica" },
-  { nivel: "Q6", puntosMinimos: 140, etiqueta: "Transferencia portable" },
-];
+/** Nombre de cada nivel. Antes eran umbrales de puntos; ahora solo etiquetan el tramo. */
+export const ETIQUETA_NIVEL: Readonly<Record<NivelQ, string>> = {
+  Q0: "Activación responsable",
+  Q1: "Práctica situada",
+  Q2: "Producción documentada",
+  Q3: "Accesibilidad aplicada",
+  Q4: "Juicio ético",
+  Q5: "Integración caleidoscópica",
+  Q6: "Transferencia portable",
+};
 
-export function nivelPorPuntos(puntos: number): { nivel: NivelQ; etiqueta: string } {
-  const alcanzado = [...UMBRALES_NIVEL].reverse().find((u) => puntos >= u.puntosMinimos);
-  const elegido = alcanzado ?? UMBRALES_NIVEL[0]!;
-  return { nivel: elegido.nivel, etiqueta: elegido.etiqueta };
+/**
+ * El nivel es recorrido, no moneda (DEC-EGIA-044).
+ *
+ * Regla: subes a Qn cuando tienes al menos un reto completado en cada nivel desde Q1 hasta Qn.
+ * Q0 es el suelo: se empieza ahí.
+ *
+ * La forma literal del Esquema C —«el nivel del reto más alto completado»— se descartó porque
+ * el grafo de prerrequisitos NO protege el orden, contra lo que se afirmó al proponerlo:
+ * EGIA-R-010 es de Q4 y solo exige dos retos de Q0, y EGIA-R-015 (Q6) se alcanza por un camino
+ * de seis retos que nunca toca Q2, Q3 ni Q4. Sin la exigencia de cadena, alguien sería «Q6
+ * Transferencia portable» sin haber hecho accesibilidad ni juicio ético.
+ *
+ * La cadena es además robusta al reparto irregular de retos por nivel (DEUDA-EGIA-027): pide
+ * uno de cada tramo, no todos, así que el único reto de Q3 y los cuatro de Q5 pesan igual como
+ * puerta.
+ */
+export function nivelPorRecorrido(
+  retosCompletados: readonly string[],
+  retos: readonly RetoMetadata[],
+): NivelQ {
+  const completados = new Set(retosCompletados);
+  const hayEnNivel = (n: NivelQ) =>
+    retos.some((r) => r.nivel === n && completados.has(r.retoId));
+
+  let alcanzado: NivelQ = "Q0";
+  for (const nivel of NIVELES_Q.slice(1)) {
+    if (!hayEnNivel(nivel)) break;
+    alcanzado = nivel;
+  }
+  return alcanzado;
+}
+
+/** El nivel inmediatamente superior, o `null` si ya se está en Q6. */
+export function nivelSiguiente(nivel: NivelQ): NivelQ | null {
+  const i = NIVELES_Q.indexOf(nivel);
+  return NIVELES_Q[i + 1] ?? null;
 }
 
 export function prerrequisitosCumplidos(

@@ -44,6 +44,8 @@ Cada reto obliga a declarar un **«cuándo no usar IA»**. Es el campo que convi
 
 El andamiaje se desvanece: plantilla rellenable en Q0 y Q1, checklist en Q2 a Q4, y solo el criterio en Q5 y Q6. Se retira el apoyo, no la exigencia.
 
+**El nivel se recorre, no se compra.** Subes a un tramo cuando completas al menos un reto de cada nivel anterior, sin saltarte ninguno (`DEC-EGIA-044`). Los puntos siguen existiendo como señal de cuidado y no compran nivel — así «Q4 · Juicio ético» significa que hiciste un reto de juicio ético, no que juntaste setenta y cinco puntos.
+
 ### Lo que la aplicación evita, a propósito
 
 Rankings públicos, presión por velocidad, competencia tóxica, acumulación superficial de puntos, publicación automática de evidencias y recopilación innecesaria de datos sensibles. Los puntos son señales de cuidado, no una carrera.
@@ -98,12 +100,12 @@ npm run validate:content     # esquema y reglas del marco sobre todo el contenid
 # Sucesor en construcción
 cd apps/egia-quest
 npm install                  # requiere npm >= 12
-npm run verify:components    # typecheck + paridad del núcleo + 49 pruebas
+npm run verify:components    # typecheck + paridad del núcleo + 73 pruebas
 npm run dev                  # servidor de desarrollo
 npm run publicar:preview     # construye y escribe preview/ en la raíz del repositorio
 
 # Y desde la raíz, humo de la vista previa en un navegador de verdad
-npm run verify:preview       # 17 verificaciones sobre el bundle que se publica
+npm run verify:preview       # 26 verificaciones sobre el bundle que se publica
 npm run verify:preview:ver   # lo mismo, con el navegador visible
 ```
 
@@ -144,7 +146,7 @@ Las ocho competencias del MVP v0.1A no se borraron: quedan como identificadores 
 
 El contenido pedagógico está validado automáticamente y **revisado y aprobado** por su autor el 29 de agosto de 2026, sobre un cuadernillo de 62 páginas con los 73 elementos completos (`DEC-EGIA-040`). Cualquier cambio posterior es una modificación de contenido aprobado y exige decisión propia.
 
-El sucesor es navegable de punta a punta —retos, dilemas, tablero y portafolio, sobre almacenamiento real del navegador— y todavía le faltan piezas declaradas: glosario y fichas de herramienta sin pantalla, exportación del portafolio sin conectar, y los umbrales de nivel sin recalibrar. El tablero lo dice en su propia cara en vez de disimularlo.
+El sucesor es navegable de punta a punta —tablero, retos, dilemas, glosario, herramientas y portafolio, sobre almacenamiento real del navegador— y todavía le faltan piezas declaradas: la exportación del portafolio sin conectar, la introducción ilustrada sin escribir y la salida estática low-tech pendiente desde la Fase 0. Lo que falte, el tablero y el registro de deuda lo dicen en su propia cara en vez de disimularlo.
 
 El registro de deuda vive abierto en `18_DOCUMENTACION_ACTIVA/deuda/` y no se limpia por estética: la deuda no siempre es una falla, a veces es riesgo aceptado o decisión diferida con fecha. Lo que no puede es quedar invisible.
 
