@@ -110,6 +110,25 @@ describe("Glosario · búsqueda y navegación", () => {
     expect(screen.getByText(/prueba con una palabra de la definición/)).toBeDefined();
   });
 
+  it("una remisión mueve el FOCO al término remitido, no solo la vista", async () => {
+    // Sin esto, quien navega con teclado se queda en la remisión que pulsó mientras la
+    // página se mueve sin avisar: el destino queda anunciado para el ojo y perdido para
+    // todo lo demás. jsdom no implementa scrollIntoView, así que lo que se prueba aquí
+    // es justamente lo que el scroll no resuelve.
+    const usuario = userEvent.setup();
+    const conRemision = GLOSARIO.find((t) => t.relacionados.length > 0)!;
+    const destino = conRemision.relacionados[0]!;
+
+    render(<Glosario terminos={GLOSARIO} metodo={METODO_GLOSARIO} />);
+    const tarjeta = document.querySelector(`[data-termino="${conRemision.termino}"]`)! as HTMLElement;
+    await usuario.click(within(tarjeta).getByText("Ver definición operativa y distinción"));
+    await usuario.click(within(tarjeta).getByRole("button", { name: destino }));
+
+    await new Promise((r) => requestAnimationFrame(() => r(null)));
+    const tarjetaDestino = document.querySelector(`[data-termino="${destino}"]`)!;
+    expect(tarjetaDestino.contains(document.activeElement)).toBe(true);
+  });
+
   it("una remisión lleva al término remitido y lo deja abierto", async () => {
     const usuario = userEvent.setup();
     const conRemision = GLOSARIO.find((t) => t.relacionados.length > 0)!;

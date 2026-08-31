@@ -12,7 +12,10 @@
 
   --tinta: #23201b;
   --tinta-suave: #4e463b;
-  --tinta-tenue: #7a7064;
+  /* Medido, no elegido a ojo: #7a7064 daba 3.80:1 sobre --pergamino-hondo y fallaba
+     WCAG AA para texto normal, que es donde se usa (notas de 13-14 px). #6a5f53 da
+     4.88:1 sobre el peor de los tres fondos. Ver DEUDA-EGIA-028. */
+  --tinta-tenue: #6a5f53;
   --pergamino: #f6f1e6;
   --pergamino-hondo: #ebe3d3;
   --papel: #fffdf8;
@@ -20,7 +23,9 @@
   --acento: #7b3f2e;
   --acento-claro: #a8593f;
   --verde: #3f6b4e;
-  --ambar: #8a6420;
+  /* Igual: #8a6420 daba 4.19:1 sobre --pergamino-hondo, que es justo el fondo de
+     .nota--bloqueo. #805c1e da 4.75:1 en el peor caso. */
+  --ambar: #805c1e;
   --rojo: #8f3a34;
   --azul: #35566f;
 
@@ -1377,4 +1382,27 @@ body {
 
 .tablero__cifras {
   margin-block-start: 2rem;
+}
+
+/* ─── Saltar al contenido ─────────────────────────────────────────────── */
+
+/* Oculto hasta que recibe el foco. Quien navega con teclado no debería tener que
+   recorrer seis pestañas para llegar al contenido de la sección. */
+.saltar {
+  position: absolute;
+  inset-inline-start: -9999px;
+  inset-block-start: 0;
+  z-index: 20;
+  background: var(--acento);
+  color: var(--papel);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.7rem 1.15rem;
+  border-radius: 0 0 var(--radio) 0;
+  text-decoration: none;
+}
+
+.saltar:focus {
+  inset-inline-start: 0;
 }

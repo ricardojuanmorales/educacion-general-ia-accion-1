@@ -86,6 +86,18 @@ describe("Armazón · las seis secciones", () => {
     expect(pestanas[0]?.getAttribute("aria-selected")).toBe("true");
   });
 
+  it("ofrece saltar al contenido antes que las seis pestañas", async () => {
+    montar();
+    await screen.findByRole("heading", { name: "Tu progreso" });
+    const salto = screen.getByRole("link", { name: "Saltar al contenido" });
+    expect(salto.getAttribute("href")).toBe("#panel-principal");
+    // Y el destino existe de verdad: un enlace de salto roto es peor que no tenerlo.
+    expect(document.getElementById("panel-principal")).not.toBeNull();
+    // Es lo primero que encuentra el teclado, antes de la cabecera y de las pestañas.
+    const enfocables = [...document.querySelectorAll("a[href], button:not([tabindex='-1'])")];
+    expect(enfocables[0]).toBe(salto);
+  });
+
   it("las flechas mueven entre pestañas, como en el monolito v0.1B", async () => {
     const usuario = userEvent.setup();
     montar();

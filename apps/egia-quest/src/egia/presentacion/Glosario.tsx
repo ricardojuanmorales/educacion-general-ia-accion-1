@@ -33,6 +33,10 @@ export function Glosario({ terminos, metodo }: GlosarioProps) {
       // `scrollIntoView` no existe en todos los entornos. Que falte no puede tumbar la
       // navegación: el término ya quedó abierto, y eso es lo que importa.
       destino?.scrollIntoView?.({ block: "center" });
+      // Y el foco viaja con la vista. Sin esto, quien navega con teclado o lector de
+      // pantalla sigue en la remisión que pulsó, mientras la página se movió sin avisar:
+      // el destino queda anunciado para el ojo y perdido para todo lo demás.
+      destino?.querySelector("summary")?.focus();
     });
   }
 
@@ -80,7 +84,9 @@ export function Glosario({ terminos, metodo }: GlosarioProps) {
                 data-abierto={abierto === t.termino}
                 data-termino={t.termino}
               >
-                <dt className="termino__nombre">{t.termino}</dt>
+                <dt className="termino__nombre" tabIndex={-1}>
+                  {t.termino}
+                </dt>
                 <dd className="termino__cuerpo">
                   <p className="termino__breve">{t.definicionBreve}</p>
 

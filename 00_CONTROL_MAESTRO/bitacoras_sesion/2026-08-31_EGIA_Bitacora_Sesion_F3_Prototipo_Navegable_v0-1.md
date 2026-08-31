@@ -154,6 +154,56 @@ un resultado verificado.
 
 Verificación tras el cambio: 73 pruebas y 26 verificaciones en navegador.
 
+## Cuarto tramo · accesibilidad y alineación estratégica
+
+Observación humana al cierre: **faltó la parte de accesibilidad**. Correcta, y el lugar donde
+faltaba importa.
+
+Auditoría hecha sobre la aplicación en vivo, midiendo en vez de opinando. Lo que ya estaba,
+empujado por el andamiaje del proyecto: `header`/`nav`/`main`/`footer`, `lang="es"`, jerarquía de
+encabezados sin saltos, foco visible nunca eliminado, `prefers-reduced-motion` respetado,
+`aria-selected` y flechas en las pestañas, foco al encabezado al cambiar de sección, ningún
+blanco táctil por debajo de 44 px.
+
+Tres defectos encontrados y corregidos en la sesión:
+
+1. **Contraste medido, no elegido a ojo.** `--tinta-tenue` daba **3.80:1** sobre
+   `--pergamino-hondo` en modo claro, en textos de 13 px: por debajo del 4.5:1 que pide WCAG AA
+   para texto normal. `--ambar` daba 4.19:1 sobre el fondo de su propio aviso de bloqueo.
+   Corregidos a `#6a5f53` y `#805c1e`. El hallazgo se convirtió en `tools/verify-contraste.mjs`,
+   que mide 48 pares en los dos modos y **falla el comando** si alguno baja de AA.
+2. **Enlace «saltar al contenido»**, con prueba de que el destino existe y de que es lo primero
+   que encuentra el teclado. Recorrer seis pestañas antes de llegar al contenido no es navegable.
+3. **Las remisiones del glosario movían la vista pero no el foco.** Quien navega con teclado se
+   quedaba en la remisión que pulsó mientras la página se movía sin avisar. El destino estaba
+   anunciado para el ojo y perdido para todo lo demás.
+
+Queda abierto, y es lo que la observación destapó de fondo: **el motor heredado ya trae
+`updateAccessibilityPreferences`** —movimiento reducido, alto contraste, escala de texto— y las
+guarda en el perfil desde el primer día. La aplicación nunca las ha ofrecido. Cada portafolio
+lleva un objeto de preferencias de accesibilidad vacío de decisión (`DEUDA-EGIA-029`). Y nadie ha
+probado esto con lector de pantalla (`DEUDA-EGIA-030`).
+
+El argumento para priorizarlo no es normativo: el nivel Q3 se llama «Accesibilidad aplicada» y
+cada reto obliga a declarar una acción de accesibilidad. Una aplicación que enseña accesibilidad
+y no la practica tiene la misma forma que el documento que `EGIA-R-001` describe como
+«contradiciéndose a sí mismo».
+
+### El hallazgo sistémico
+
+Al mirar el conjunto apareció algo que ningún registro recogía. Tres decisiones defendibles por
+separado —sin telemetría, sin vista docente, sin exportación conectada— componen un problema:
+**el 23 de octubre nada de lo que haga una persona estudiante puede llegar al profesor.** El
+piloto se ejecutaría sin producir evidencia.
+
+Eso cambia la naturaleza de `DEUDA-EGIA-022`: no es una funcionalidad pendiente del portafolio,
+es el único canal de evidencia del piloto. Elevada a P1 y registrada como `DEUDA-EGIA-032`, con
+la decisión acoplada que le corresponde: **qué se quiere aprender del piloto**, porque eso
+determina qué debe exportar la aplicación.
+
+La reflexión completa, con el camino crítico a 53 días, está en
+`00_CONTROL_MAESTRO/2026-08-31_EGIA_Reflexion_Alineacion_Estrategica_F3_v0-1.md`.
+
 ## Lo que queda antes del Gate 3
 
 1. ~~Recalibrar los umbrales de nivel~~ (`DEUDA-EGIA-011`) — **cerrada** por `DEC-EGIA-044`.
