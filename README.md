@@ -71,8 +71,7 @@ Cada fase cierra con un **gate que exige comando ejecutable y decisión humana r
 ```text
 F0 Congelar  →  F1 Contenido  →  F2 Rebanada vertical  →  F3 Escalar  →  F4 Piloto
    Gate 0         Gate 1              Gate 2                Gate 3         Gate 4
-   firmado        firmado con         evidencia lista       pendiente      pendiente
-                  reservas
+   firmado        firmado             firmado               pendiente      pendiente
 ```
 
 ### El núcleo heredado
@@ -132,7 +131,7 @@ Las ocho competencias del MVP v0.1A no se borraron: quedan como identificadores 
 
 ## ⚠️ Estado honesto
 
-El contenido pedagógico está validado automáticamente pero **no revisado línea por línea** por su autor. Consta como `DEUDA-EGIA-020` en prioridad P1, condición para firmar el Gate 4 antes del piloto.
+El contenido pedagógico está validado automáticamente y **revisado y aprobado** por su autor el 29 de agosto de 2026, sobre un cuadernillo de 62 páginas con los 73 elementos completos (`DEC-EGIA-040`). Cualquier cambio posterior es una modificación de contenido aprobado y exige decisión propia.
 
 El registro de deuda vive abierto en `18_DOCUMENTACION_ACTIVA/deuda/` y no se limpia por estética: la deuda no siempre es una falla, a veces es riesgo aceptado o decisión diferida con fecha. Lo que no puede es quedar invisible.
 

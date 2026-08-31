@@ -8,6 +8,7 @@ responsable_documental: "Ricardo Juan Morales De Jesús, Ph.D."
 estado: "activo"
 sirve_a: "Plan de Fases y Gates v0.2.0 · continuidad entre sesiones"
 sucede_a: "2026-08-29_EGIA_Transferencia_Simetrica_F0_F1_v0-1.md"
+nota: "Actualizada tras DEC-EGIA-040, que levanta la reserva del Gate 1."
 ubicacion_recomendada: "18_DOCUMENTACION_ACTIVA/bitacoras_vivas/2026-08-29_EGIA_Transferencia_Simetrica_Cierre_F2_v0-2.md"
 tags: ["egia", "transferencia-simetrica", "continuidad", "cierre-sesion"]
 ---
@@ -37,6 +38,8 @@ Sucede a la transferencia v0.1 del mismo día, que quedó desactualizada al cerr
 - `DEUDA-EGIA-018`: instrumentos de trazabilidad creados y en uso.
 - Contenido completo: 15 retos, 12 dilemas, 38 términos, 8 fichas, todo validado.
 - Sucesor en marcha: `apps/egia-quest` con núcleo copiado, rebanada vertical y 37 pruebas.
+- `DEUDA-EGIA-020`: revisión humana del contenido completada sobre el cuadernillo y aprobada sin
+  cambios (`DEC-EGIA-040`). La reserva del Gate 1 queda levantada.
 
 ## lo_bloqueado
 
@@ -46,8 +49,9 @@ Sucede a la transferencia v0.1 del mismo día, que quedó desactualizada al cerr
 
 ## lo_vigilado
 
-- `DEUDA-EGIA-020` (P1): el contenido pedagógico sigue sin revisión humana línea por línea. Cada
-  capa construida encima encarece esa revisión. Es condición del Gate 4.
+- El contenido queda como versión aprobada de referencia. Cualquier cambio posterior es una
+  modificación de contenido aprobado y exige decisión propia; el cuadernillo se regenera y esta
+  aprobación deja de cubrir lo que cambió.
 - `DEUDA-EGIA-011` y `DEUDA-EGIA-015`: los umbrales de nivel y la regla de progresión dejan de ser
   aplazables en cuanto se construya el tablero. Hoy hay 270 puntos en el catálogo y Q6 está en 140.
 - `DEUDA-EGIA-019`: el eje B del IBATA sigue sin definir. El validador lo reporta en cada ejecución.
@@ -62,7 +66,7 @@ Sucede a la transferencia v0.1 del mismo día, que quedó desactualizada al cerr
 - Editar cualquier archivo bajo `apps/egia-quest/src/core`.
 - Tocar el repositorio de AI StoryLab 1.
 - Integrar IA en vivo dentro de la aplicación.
-- Dar el contenido por revisado. Está aprobado con reserva explícita, que no es lo mismo.
+- Modificar contenido aprobado sin registrar una decisión que lo autorice.
 
 ## lo_que_debe_hacerse_despues
 
@@ -72,4 +76,4 @@ Sucede a la transferencia v0.1 del mismo día, que quedó desactualizada al cerr
 4. Introducción ilustrada a las competencias del siglo 21 y a las buenas prácticas.
 5. Salida estática low-tech que paga `DEUDA-EGIA-005` y conserva el acceso sin servidor.
 6. Estilos: la interfaz es HTML semántico sin CSS. Falta la paleta de tinta y pergamino.
-7. Revisión humana del contenido, antes de que la interfaz lo fije del todo.
+7. El eje B del IBATA sigue pendiente y el validador lo reporta en cada ejecución.
