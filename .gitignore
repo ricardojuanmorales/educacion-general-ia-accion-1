@@ -2,3 +2,7 @@
 .obsidian/
 node_modules/
 tools/cuadernillo/cuadernillo-revision.html
+
+# Build intermedio de la aplicación. Lo que se publica es preview/, generado
+# desde aquí por tools/publicar-preview.mjs (DEC-EGIA-043).
+apps/egia-quest/dist/

@@ -14,7 +14,9 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "verify:core-parity": "node ../../tools/verify-core-parity.mjs",
-    "verify:components": "npm run typecheck && npm run verify:core-parity && npm run test"
+    "verify:components": "npm run typecheck && npm run verify:core-parity && npm run test",
+    "build:preview": "EGIA_BASE_PATH=/educacion-general-ia-accion-1/preview/ vite build",
+    "publicar:preview": "npm run build:preview && node ../../tools/publicar-preview.mjs"
   },
   "dependencies": {
     "react": "19.2.7",

@@ -44,6 +44,7 @@ function accionesFalsas(): AccionesReto {
     guardarActividad: vi.fn(async () => {}),
     crearEvidencia: vi.fn(async () => {}),
     guardarReflexion: vi.fn(async () => {}),
+    decidirEvidencia: vi.fn(async () => {}),
   };
 }
 
@@ -127,7 +128,7 @@ describe("PantallaReto · validación junto al control", () => {
     );
 
     await usuario.type(screen.getByRole("textbox"), "corto");
-    await usuario.click(screen.getByRole("button", { name: "Completar con reflexión" }));
+    await usuario.click(screen.getByRole("button", { name: "Guardar reflexión" }));
 
     const tarjeta = screen.getByRole("article");
     const aviso = within(tarjeta).getByRole("alert");
@@ -147,7 +148,7 @@ describe("PantallaReto · validación junto al control", () => {
         retosCompletados={[]}
       />,
     );
-    await usuario.click(screen.getByRole("button", { name: "Completar con reflexión" }));
+    await usuario.click(screen.getByRole("button", { name: "Guardar reflexión" }));
     expect(screen.getByRole("alert").textContent).toContain("no un trámite");
   });
 
@@ -162,7 +163,7 @@ describe("PantallaReto · validación junto al control", () => {
         retosCompletados={[]}
       />,
     );
-    await usuario.click(screen.getByRole("button", { name: "Completar con reflexión" }));
+    await usuario.click(screen.getByRole("button", { name: "Guardar reflexión" }));
     expect(screen.queryByRole("alert")).not.toBeNull();
     await usuario.type(
       screen.getByRole("textbox"),
@@ -185,7 +186,7 @@ describe("PantallaReto · validación junto al control", () => {
     );
     const texto = "Al escribir el disclosure noté que había delegado más de lo que recordaba.";
     await usuario.type(screen.getByRole("textbox"), texto);
-    await usuario.click(screen.getByRole("button", { name: "Completar con reflexión" }));
+    await usuario.click(screen.getByRole("button", { name: "Guardar reflexión" }));
     expect(acciones.guardarReflexion).toHaveBeenCalledWith(texto);
   });
 });
@@ -196,6 +197,52 @@ describe("PantallaReto · el orden heredado se ve en pantalla", () => {
     expect(pasoActual(reto, proyectoConPasos("actividad"))).toBe("actividad");
     expect(pasoActual(reto, proyectoConPasos("evidencia"))).toBe("evidencia");
     expect(pasoActual(reto, proyectoConPasos("reflexion"))).toBe("reflexion");
+    expect(pasoActual(reto, proyectoConPasos("decision"))).toBe("decision");
+  });
+
+  it("DEC-EGIA-042 · con evidencia y reflexión el reto NO está completado: falta la decisión", () => {
+    // Esta prueba existe porque la interfaz decía «completado» donde el motor decía
+    // `ready_for_review`. Una pantalla que miente sobre el estado del motor es un bug,
+    // aunque se vea bien.
+    const conReflexion = proyectoConPasos("decision");
+    expect(pasoActual(reto, conReflexion)).not.toBe("completado");
+    render(
+      <PantallaReto
+        reto={reto}
+        definicion={definicion}
+        proyecto={conReflexion}
+        acciones={accionesFalsas()}
+        retosCompletados={[]}
+      />,
+    );
+    expect(screen.getByText(/paso 4 de 4/)).toBeDefined();
+    expect(screen.queryByRole("status")).toBeNull();
+  });
+
+  it("la decisión ofrece las tres salidas y registra la elegida con su razón", async () => {
+    const usuario = userEvent.setup();
+    const acciones = accionesFalsas();
+    render(
+      <PantallaReto
+        reto={reto}
+        definicion={definicion}
+        proyecto={proyectoConPasos("decision")}
+        acciones={acciones}
+        retosCompletados={[]}
+      />,
+    );
+
+    expect(screen.getAllByRole("radio")).toHaveLength(3);
+    await usuario.click(screen.getByRole("radio", { name: /solo como registro privado/ }));
+    await usuario.type(screen.getByRole("textbox"), "Prefiero no exponerlo todavía.");
+    await usuario.click(
+      screen.getByRole("button", { name: "Registrar mi decisión y cerrar el reto" }),
+    );
+
+    expect(acciones.decidirEvidencia).toHaveBeenCalledWith(
+      "registro",
+      "Prefiero no exponerlo todavía.",
+    );
   });
 
   it("numera los pasos para que la persona sepa dónde está", () => {
@@ -208,7 +255,7 @@ describe("PantallaReto · el orden heredado se ve en pantalla", () => {
         retosCompletados={[]}
       />,
     );
-    expect(screen.getByText(/paso 2 de 3/)).toBeDefined();
+    expect(screen.getByText(/paso 2 de 4/)).toBeDefined();
   });
 
   it("dice que la reflexión es privada antes de que se escriba", () => {
@@ -273,23 +320,86 @@ describe("PantallaReto · recorrido real contra el motor", () => {
       privacyClass: "private",
     });
     if (!conReflexion.ok) throw new Error(conReflexion.error.code);
-    expect(pasoActual(reto, conReflexion.value)).toBe("completado");
+    // DEC-EGIA-042: aquí el monolito habría dicho «completado». El motor no.
+    expect(pasoActual(reto, conReflexion.value)).toBe("decision");
+
+    const evidencia = conReflexion.value.evidence[0];
+    if (!evidencia) throw new Error("sin evidencia");
+
+    const conDecision = await ciclo.decideEvidence({
+      projectId,
+      evidenceId: evidencia.id,
+      value: "accept",
+      rationale: "Representa lo que hice y quiero poder curarlo.",
+      missionDisposition: "complete",
+      evidenceDisposition: "portfolio_eligible",
+    });
+    if (!conDecision.ok) throw new Error(conDecision.error.code);
+    expect(pasoActual(reto, conDecision.value)).toBe("completado");
 
     render(
       <PantallaReto
         reto={reto}
         definicion={definicion}
-        proyecto={conReflexion.value}
+        proyecto={conDecision.value}
         acciones={accionesFalsas()}
         retosCompletados={[]}
       />,
     );
     expect(screen.getByRole("status").textContent).toContain("Reto completado");
   });
+
+  it("aceptar como registro cierra el reto pero no abre el portafolio", async () => {
+    const projectId = proyecto.id;
+    await ciclo.startMission({ projectId, definition: definicion });
+    await ciclo.saveTextActivity({ projectId, missionId: reto.missionId, text: "trabajo hecho" });
+    const conEvidencia = await ciclo.createTextEvidence({
+      projectId,
+      missionId: reto.missionId,
+      title: reto.tipoEvidencia,
+      summary: "Resumen de la evidencia.",
+    });
+    if (!conEvidencia.ok) throw new Error(conEvidencia.error.code);
+    await ciclo.saveReflection({
+      projectId,
+      missionId: reto.missionId,
+      text: "Una reflexión suficientemente larga para el mínimo.",
+      privacyClass: "private",
+    });
+
+    const evidencia = conEvidencia.value.evidence[0];
+    if (!evidencia) throw new Error("sin evidencia");
+
+    const registrada = await ciclo.decideEvidence({
+      projectId,
+      evidenceId: evidencia.id,
+      value: "accept",
+      missionDisposition: "complete",
+      evidenceDisposition: "record_only",
+    });
+    if (!registrada.ok) throw new Error(registrada.error.code);
+
+    expect(pasoActual(reto, registrada.value)).toBe("completado");
+    expect(registrada.value.evidence[0]?.status).toBe("reviewed");
+
+    // Y aquí una limitación que conviene tener escrita, no descubrirla en el piloto:
+    // `record_only` deja la evidencia como «reviewed», pero para el motor sigue habiendo una
+    // decisión humana de aceptación, así que la curaduría NO se rechaza. La promesa «no será
+    // elegible para el portafolio» la sostiene hoy la pantalla, que filtra por estado, y no el
+    // dominio. Queda registrada como DEUDA-EGIA-023.
+    const curada = await ciclo.curatePortfolio({
+      projectId,
+      evidenceId: evidencia.id,
+      title: "Entra, aunque la interfaz no lo ofrezca",
+    });
+    expect(curada.ok).toBe(true);
+  });
 });
 
 /** Construye un proyecto mínimo situado en el paso pedido, sin pasar por el motor. */
-function proyectoConPasos(hasta: "actividad" | "evidencia" | "reflexion"): CreativeProject {
+function proyectoConPasos(
+  hasta: "actividad" | "evidencia" | "reflexion" | "decision",
+): CreativeProject {
   const base = {
     schemaVersion: "0.8.0-alpha.2",
     id: "proyecto-prueba",
@@ -299,7 +409,9 @@ function proyectoConPasos(hasta: "actividad" | "evidencia" | "reflexion"): Creat
       pseudonym: "Estudiante",
       accessibility: { reducedMotion: false, highContrast: false, textScale: "default" },
     },
-    missions: [{ missionId: reto.missionId, status: "in_progress", startedAt: "2026-09-01T12:00:00.000Z" }],
+    missions: [
+      { missionId: reto.missionId, status: "in_progress", startedAt: "2026-09-01T12:00:00.000Z" },
+    ] as unknown[],
     activityResponses: [] as unknown[],
     evidence: [] as unknown[],
     reflections: [] as unknown[],
@@ -315,14 +427,19 @@ function proyectoConPasos(hasta: "actividad" | "evidencia" | "reflexion"): Creat
     updatedAt: "2026-09-01T12:00:00.000Z",
   };
 
-  if (hasta === "evidencia" || hasta === "reflexion") {
+  if (hasta !== "actividad") {
     base.activityResponses = [{ id: "a1", missionId: reto.missionId, text: "trabajo" }];
   }
-  if (hasta === "reflexion") {
-    base.evidence = [{ id: "e1", missionId: reto.missionId, title: "t", summary: "s" }];
+  if (hasta === "reflexion" || hasta === "decision") {
+    base.evidence = [
+      { id: "e1", missionId: reto.missionId, title: "Declaración", summary: "s", status: "draft" },
+    ];
+    base.missions = [
+      { missionId: reto.missionId, status: "ready_for_review", startedAt: "2026-09-01T12:00:00.000Z" },
+    ];
   }
-  if (hasta === "actividad") {
-    base.activityResponses = [];
+  if (hasta === "decision") {
+    base.reflections = [{ id: "r1", missionId: reto.missionId, text: "reflexión", privacyClass: "private" }];
   }
 
   return base as unknown as CreativeProject;

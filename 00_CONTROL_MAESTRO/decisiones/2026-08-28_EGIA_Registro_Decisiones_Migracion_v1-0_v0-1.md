@@ -38,6 +38,25 @@ Una decisión registrada no se edita: se sucede con una decisión nueva que la d
 | DEC-EGIA-037 | 2026-08-29 | Gate 1 aprobado con reservas | El contenido pedagógico pasa `validate:content` en verde, pero no ha sido revisado línea por línea. Se autoriza la Fase 2 y se registra la revisión como DEUDA-EGIA-020, condición del Gate 4 | Confirmada |
 | DEC-EGIA-036 | 2026-08-29 | Subjetividad estratégica: estudiante universitario de educación general | Fija la voz, el andamiaje y el nivel de exigencia de los quince retos. Coherente con la política AIAS del curso declarada en la Guía Rápida: Nivel 4 (Uso Abierto) en tareas no supervisadas con controles obligatorios, Nivel 0 en pruebas supervisadas. Cierra DEUDA-EGIA-014 | Confirmada |
 | DEC-EGIA-035 | 2026-08-29 | Se corrige la ubicación de la etiqueta `v0.1B` | La etiqueta se creó apuntando a `371f361`, el merge del PR #1, que no contiene la Fase 0. Se reubica sobre el `main` resultante de fusionar el PR #2. Requiere reescritura de una referencia ya publicada, autorizada por esta decisión | Confirmada |
+| DEC-EGIA-042 | 2026-08-31 | Un reto se cierra con cuatro pasos, no con tres: trabajo, evidencia, reflexión y **decisión humana registrada** sobre la propia evidencia | Hallazgo de Fase 3 al conectar la pantalla al motor completo. El núcleo heredado no da la misión por completada con evidencia y reflexión: exige `decideEvidence`, y solo entonces la evidencia se vuelve elegible para el portafolio. Se adopta como mecánica visible en vez de disimularla, porque replica en el trabajo de la persona estudiante la misma exigencia que gobierna los gates del proyecto: comando ejecutable y decisión humana registrada | Confirmada |
+| DEC-EGIA-043 | 2026-08-31 | La vista previa compilada se publica versionada en `preview/`, junto al monolito y sin sustituirlo | Permite ver y probar el sucesor antes del Gate 3 sin montar el flujo de despliegue. Se acepta a conciencia el artefacto compilado dentro del repositorio y se registra como DEUDA-EGIA-024, que se cierra al montar GitHub Actions. La ruta raíz del sitio sigue sirviendo el monolito v0.1B | Confirmada |
+
+---
+
+## Nota de fundamento sobre DEC-EGIA-042
+
+Esta decisión nació de una discrepancia, no de un diseño. La pantalla del reto decía «completado»
+donde el motor decía `ready_for_review`. Se pudo haber arreglado en cualquiera de las dos
+direcciones: forzar el cierre desde la interfaz, o mostrar el paso que el motor exige.
+
+Se eligió lo segundo porque el paso que faltaba resultó ser exactamente el que le da sentido al
+portafolio. Sin él, la evidencia entraría sola y acumular volvería a ser lo mismo que elegir. Con
+él, la persona mira su trabajo y decide: lo acepta y lo hace elegible, lo acepta solo como
+registro, o lo descarta con razón. Las tres cierran el reto; solo una abre la puerta.
+
+Una limitación conocida, escrita en la prueba que la descubre: el motor considera `record_only`
+como una aceptación, de modo que la curaduría no queda bloqueada en el dominio. Hoy la promesa la
+sostiene la pantalla, que filtra por estado. Es DEUDA-EGIA-023.
 
 ---
 
