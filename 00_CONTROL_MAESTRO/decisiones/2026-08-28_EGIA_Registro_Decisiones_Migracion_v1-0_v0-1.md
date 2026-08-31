@@ -31,12 +31,60 @@ Una decisión registrada no se edita: se sucede con una decisión nueva que la d
 | DEC-EGIA-032 | 2026-08-28 | El portafolio migra al esquema de AI StoryLab con perfil EGIA encima | Es la condición para que un mismo estudiante use ambas aplicaciones con un solo portafolio | Confirmada |
 | DEC-EGIA-033 | 2026-08-28 | El monolito se congela como v0.1B y se preserva en `legacy/v0.1B/` | Nadie se queda sin aplicación durante la migración; el MVP se retira solo tras el Gate 4 | Confirmada |
 | DEC-EGIA-034 | 2026-08-29 | Se aprueba el Marco de Competencias y Andamiaje v0.1 | Habilita la redacción de los quince retos. Adopta las diez familias competenciales de AI StoryLab como canónicas, ancla los siete niveles Q a los siete verbos de la taxonomía de acción y construye el mapeo a DigComp 3.0 como pieza propia | Confirmada |
+| DEC-EGIA-041 | 2026-08-29 | Apertura de la Fase 3 | Con los Gates 0, 1 y 2 firmados sin reservas, se autoriza escalar: los catorce retos restantes a la interfaz, los doce dilemas ramificados, el tablero, la introducción ilustrada, la salida estática low-tech y los estilos. El tablero obliga a cerrar DEUDA-EGIA-011 y DEUDA-EGIA-015, que hasta ahora se han podido diferir | Confirmada |
 | DEC-EGIA-040 | 2026-08-29 | Se levanta la reserva del Gate 1: contenido pedagógico aprobado | Revisión humana completada sobre el cuadernillo de 62 páginas con los 73 elementos. Aprobado sin cambios solicitados. Cierra DEUDA-EGIA-020 y elimina la condición pendiente del Gate 4 | Confirmada |
 | DEC-EGIA-038 | 2026-08-29 | Sucesión documental del README | El README de v0.1A describía un prototipo que ya no es el estado del proyecto. Se sucede con un README nuevo y el anterior pasa a archivo histórico íntegro, cumpliendo la doble condición: reemplazo canónico y decisión registrada | Confirmada |
 | DEC-EGIA-039 | 2026-08-29 | Gate 2 aprobado | La rebanada vertical funciona de punta a punta con dominio, aplicación y presentación: 37 pruebas, typecheck limpio y paridad del núcleo intacta. Autoriza la Fase 3 | Confirmada |
 | DEC-EGIA-037 | 2026-08-29 | Gate 1 aprobado con reservas | El contenido pedagógico pasa `validate:content` en verde, pero no ha sido revisado línea por línea. Se autoriza la Fase 2 y se registra la revisión como DEUDA-EGIA-020, condición del Gate 4 | Confirmada |
 | DEC-EGIA-036 | 2026-08-29 | Subjetividad estratégica: estudiante universitario de educación general | Fija la voz, el andamiaje y el nivel de exigencia de los quince retos. Coherente con la política AIAS del curso declarada en la Guía Rápida: Nivel 4 (Uso Abierto) en tareas no supervisadas con controles obligatorios, Nivel 0 en pruebas supervisadas. Cierra DEUDA-EGIA-014 | Confirmada |
 | DEC-EGIA-035 | 2026-08-29 | Se corrige la ubicación de la etiqueta `v0.1B` | La etiqueta se creó apuntando a `371f361`, el merge del PR #1, que no contiene la Fase 0. Se reubica sobre el `main` resultante de fusionar el PR #2. Requiere reescritura de una referencia ya publicada, autorizada por esta decisión | Confirmada |
+| DEC-EGIA-042 | 2026-08-31 | Un reto se cierra con cuatro pasos, no con tres: trabajo, evidencia, reflexión y **decisión humana registrada** sobre la propia evidencia | Hallazgo de Fase 3 al conectar la pantalla al motor completo. El núcleo heredado no da la misión por completada con evidencia y reflexión: exige `decideEvidence`, y solo entonces la evidencia se vuelve elegible para el portafolio. Se adopta como mecánica visible en vez de disimularla, porque replica en el trabajo de la persona estudiante la misma exigencia que gobierna los gates del proyecto: comando ejecutable y decisión humana registrada | Confirmada |
+| DEC-EGIA-043 | 2026-08-31 | La vista previa compilada se publica versionada en `preview/`, junto al monolito y sin sustituirlo | Permite ver y probar el sucesor antes del Gate 3 sin montar el flujo de despliegue. Se acepta a conciencia el artefacto compilado dentro del repositorio y se registra como DEUDA-EGIA-024, que se cierra al montar GitHub Actions. La ruta raíz del sitio sigue sirviendo el monolito v0.1B | Confirmada |
+| DEC-EGIA-044 | 2026-08-31 | El nivel Q deja de ser moneda y pasa a ser recorrido: se sube a Qn al completar al menos un reto en cada nivel desde Q1 hasta Qn, sin saltarse ninguno. Los puntos siguen existiendo como señal de cuidado y ya no compran nivel | Esquema C del Análisis de Umbrales, con la reparación que exigió el grafo real de prerrequisitos. Los niveles Q ya estaban definidos por siete verbos y por un andamiaje que se desvanece; hacerlos depender además de puntos los obligaba a significar dos cosas, y de ahí venía el desajuste. Cierra DEUDA-EGIA-011 | Confirmada |
+
+---
+
+## Nota de fundamento sobre DEC-EGIA-044
+
+La decisión humana fue «Esquema C», sobre una propuesta que contenía una afirmación falsa. Al ir
+a implementarla se verificó el grafo de prerrequisitos y **el orden no estaba protegido**:
+
+- `EGIA-R-010` es de Q4 y solo exige `R-001` y `R-002`, ambos de Q0. Tres retos bastarían para
+  ser «Q4 · Juicio ético» sin haber pasado por Q1, Q2 ni Q3.
+- `EGIA-R-015` (Q6) se alcanza por `R-001→002→003→004→009→014→015`: seis retos que nunca tocan
+  Q2, Q3 ni Q4. Sería «Q6 · Transferencia portable» sin accesibilidad aplicada ni juicio ético.
+
+La forma literal del Esquema C —«el nivel del reto más alto completado»— era por tanto
+inadoptable. Se adoptó la reparación mínima que conserva su intención: la cadena. Subes a un
+tramo cuando has pisado todos los anteriores.
+
+La reparación tiene dos virtudes que no se buscaron. Se explica en una frase, sin tabla de
+umbrales. Y es robusta al reparto irregular de retos por nivel (`DEUDA-EGIA-027`): pide uno de
+cada tramo, no todos, así que el único reto de Q3 y los cuatro de Q5 pesan igual como puerta.
+
+Queda abierta, y es de contenido, la pregunta de si el grafo de prerrequisitos debe corregirse
+para que refleje la intención pedagógica por sí mismo, en vez de depender de que el cálculo del
+nivel lo compense. Esa es `DEUDA-EGIA-027` y exige decisión humana sobre contenido aprobado.
+
+Las dos pruebas que fijan los dos agujeros están en `egia.cargar-retos.test.ts` y nombran los
+retos concretos: si alguien reescribe la regla, fallan.
+
+---
+
+## Nota de fundamento sobre DEC-EGIA-042
+
+Esta decisión nació de una discrepancia, no de un diseño. La pantalla del reto decía «completado»
+donde el motor decía `ready_for_review`. Se pudo haber arreglado en cualquiera de las dos
+direcciones: forzar el cierre desde la interfaz, o mostrar el paso que el motor exige.
+
+Se eligió lo segundo porque el paso que faltaba resultó ser exactamente el que le da sentido al
+portafolio. Sin él, la evidencia entraría sola y acumular volvería a ser lo mismo que elegir. Con
+él, la persona mira su trabajo y decide: lo acepta y lo hace elegible, lo acepta solo como
+registro, o lo descarta con razón. Las tres cierran el reto; solo una abre la puerta.
+
+Una limitación conocida, escrita en la prueba que la descubre: el motor considera `record_only`
+como una aceptación, de modo que la curaduría no queda bloqueada en el dominio. Hoy la promesa la
+sostiene la pantalla, que filtra por estado. Es DEUDA-EGIA-023.
 
 ---
 

@@ -14,6 +14,7 @@ Un dilema sin consecuencia visible es una trivia. Un reto que se completa sin ev
 estado: en migración de v0.1B a v1.0.0
 aplicacion_publicada: index.html, monolito v0.1B
 sucesor_en_construccion: apps/egia-quest
+vista_previa_del_sucesor: /preview/
 arquitectura: local_first
 backend: false
 cuenta_requerida: false
@@ -23,6 +24,7 @@ piloto_objetivo: 23 de octubre de 2026
 ```
 
 - 🌐 **Aplicación en vivo:** https://ricardojuanmorales.github.io/educacion-general-ia-accion-1/
+- 🔭 **Vista previa del sucesor:** https://ricardojuanmorales.github.io/educacion-general-ia-accion-1/preview/
 - 🏛️ **Monolito congelado:** etiqueta `v0.1B`, preservado en `legacy/v0.1B/`
 
 ---
@@ -41,6 +43,8 @@ Una ruta de siete niveles, de **Q0 Activación responsable** a **Q6 Transferenci
 Cada reto obliga a declarar un **«cuándo no usar IA»**. Es el campo que convierte el juego en formación del juicio: exige la abstención razonada, no solo el uso correcto.
 
 El andamiaje se desvanece: plantilla rellenable en Q0 y Q1, checklist en Q2 a Q4, y solo el criterio en Q5 y Q6. Se retira el apoyo, no la exigencia.
+
+**El nivel se recorre, no se compra.** Subes a un tramo cuando completas al menos un reto de cada nivel anterior, sin saltarte ninguno (`DEC-EGIA-044`). Los puntos siguen existiendo como señal de cuidado y no compran nivel — así «Q4 · Juicio ético» significa que hiciste un reto de juicio ético, no que juntaste setenta y cinco puntos.
 
 ### Lo que la aplicación evita, a propósito
 
@@ -78,7 +82,9 @@ F0 Congelar  →  F1 Contenido  →  F2 Rebanada vertical  →  F3 Escalar  → 
 
 `apps/egia-quest/src/core` es una **copia verbatim** del núcleo de AI StoryLab 1: dominio, puertos, adaptadores, esquemas y casos de uso de portafolio. No se edita nunca; el código propio vive en `src/egia` y extiende desde fuera. `verify:core-parity` compara los archivos contra un manifiesto de hashes y falla si alguien rompe esa regla.
 
-Una consecuencia bonita de heredar ese motor: impone el orden **trabajo → evidencia → reflexión**. No se reflexiona sobre nada.
+Una consecuencia bonita de heredar ese motor: impone el orden **trabajo → evidencia → reflexión → decisión**. No se reflexiona sobre nada, y nada entra al portafolio sin que la persona lo decida y diga por qué.
+
+Ese cuarto paso no estaba planificado: apareció en Fase 3, cuando la pantalla decía «completado» y el motor decía `ready_for_review`. Resultó ser el paso que le da sentido al portafolio, así que se adoptó como mecánica visible (`DEC-EGIA-042`). Es la misma exigencia que gobierna los gates de este proyecto —comando ejecutable y decisión humana registrada— aplicada al trabajo de quien aprende.
 
 ---
 
@@ -94,7 +100,13 @@ npm run validate:content     # esquema y reglas del marco sobre todo el contenid
 # Sucesor en construcción
 cd apps/egia-quest
 npm install                  # requiere npm >= 12
-npm run verify:components    # typecheck + paridad del núcleo + 37 pruebas
+npm run verify:components    # typecheck + paridad del núcleo + 73 pruebas
+npm run dev                  # servidor de desarrollo
+npm run publicar:preview     # construye y escribe preview/ en la raíz del repositorio
+
+# Y desde la raíz, humo de la vista previa en un navegador de verdad
+npm run verify:preview       # 26 verificaciones sobre el bundle que se publica
+npm run verify:preview:ver   # lo mismo, con el navegador visible
 ```
 
 `validate:content` no solo valida forma: comprueba que el verbo corresponda al nivel, que el andamiaje corresponda al nivel, que ningún reto dependa de otro de nivel superior, que las diez Buenas Prácticas estén cubiertas una sola vez, y que toda opción de dilema tenga consecuencia y toda decisión que deja daño ofrezca reparación.
@@ -108,6 +120,7 @@ npm run verify:components    # typecheck + paridad del núcleo + 37 pruebas
 | `index.html` | La aplicación publicada, monolito v0.1B |
 | `legacy/v0.1B/` | Copia congelada del monolito, preservada hasta el Gate 4 |
 | `apps/egia-quest/` | El sucesor: núcleo heredado en `src/core`, código propio en `src/egia` |
+| `preview/` | Artefacto generado del sucesor, publicado junto al monolito. No se edita a mano |
 | `contenido/` | Retos, dilemas, glosario y herramientas como datos validados |
 | `contenido/esquemas/` | Los JSON Schema que definen el contrato del contenido |
 | `tools/` | Verificadores: humo del monolito, contenido y paridad del núcleo |
@@ -132,6 +145,8 @@ Las ocho competencias del MVP v0.1A no se borraron: quedan como identificadores 
 ## ⚠️ Estado honesto
 
 El contenido pedagógico está validado automáticamente y **revisado y aprobado** por su autor el 29 de agosto de 2026, sobre un cuadernillo de 62 páginas con los 73 elementos completos (`DEC-EGIA-040`). Cualquier cambio posterior es una modificación de contenido aprobado y exige decisión propia.
+
+El sucesor es navegable de punta a punta —tablero, retos, dilemas, glosario, herramientas y portafolio, sobre almacenamiento real del navegador— y todavía le faltan piezas declaradas: la exportación del portafolio sin conectar, la introducción ilustrada sin escribir y la salida estática low-tech pendiente desde la Fase 0. Lo que falte, el tablero y el registro de deuda lo dicen en su propia cara en vez de disimularlo.
 
 El registro de deuda vive abierto en `18_DOCUMENTACION_ACTIVA/deuda/` y no se limpia por estética: la deuda no siempre es una falla, a veces es riesgo aceptado o decisión diferida con fecha. Lo que no puede es quedar invisible.
 

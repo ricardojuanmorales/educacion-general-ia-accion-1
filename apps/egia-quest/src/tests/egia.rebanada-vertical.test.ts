@@ -15,7 +15,7 @@ import { createCreativeCycleUseCases } from "../core/application/creative-cycle"
 import type { CreativeProject } from "../core/domain/model";
 import type { EvidenceId, ISODateTime, ProjectId } from "../core/domain/types";
 import { cargarRetos, type CatalogoDeRetos } from "../egia/contenido/cargar-retos";
-import { nivelPorPuntos } from "../egia/dominio/reto";
+import { ETIQUETA_NIVEL } from "../egia/dominio/reto";
 
 const RUTA_CATALOGO = resolve(
   import.meta.dirname,
@@ -248,6 +248,6 @@ describe("rebanada vertical · EGIA-R-001 de punta a punta", () => {
     expect(definicion.purpose).toBe(reto.andamiaje === "plantilla" ? definicion.purpose : definicion.purpose);
     expect(definicion.instructions).toEqual(reto.apoyo);
     expect(reto.criterioEtico).toContain("Declarar no es confesar");
-    expect(nivelPorPuntos(reto.puntosBase).nivel).toBe("Q1");
+    expect(ETIQUETA_NIVEL[reto.nivel]).toBe("Activación responsable");
   });
 });

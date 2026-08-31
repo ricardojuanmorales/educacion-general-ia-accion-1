@@ -2,13 +2,36 @@
 
 **Proyecto:** Educación General e Inteligencia Artificial en Acción · EGIA Quest
 **Documento:** Plan de fases, gates ejecutables y deuda inicial
-**Versión del documento:** v0.2.0-plan
+**Versión del documento:** v0.2.1-plan · actualizado el 29 de agosto de 2026
 **Fecha:** 28 de agosto de 2026
 **Marco rector:** Spec-Driven Development + local-first por defecto + privacy by default
 **Arquetipo de referencia:** AI StoryLab 1 v1.0.0
 **Horizonte:** v1.0.0 · piloto con estudiantes el 23 de octubre de 2026
-**Estado:** Propuesta para revisión humana
+**Estado:** Fases 0, 1 y 2 cerradas · Fase 3 en apertura
 **Ruta canónica:** `00_CONTROL_MAESTRO/plan_maestro/2026-08-28_EGIA_Plan_Fases_Gates_Migracion_v0-2.md`
+
+---
+
+## 0. Dónde estamos (29 de agosto de 2026)
+
+| Gate | Estado | Evidencia | Qué dejó construido |
+|---|---|---|---|
+| GATE-EGIA-0 | **firmado** | `verify:freeze` 27/27 | Monolito congelado y publicado como `v0.1B`; deuda P1 del aviso pagada |
+| GATE-EGIA-1 | **firmado** | `validate:content` | 15 retos, 12 dilemas, 38 términos, 8 fichas. Reserva levantada por DEC-EGIA-040 |
+| GATE-EGIA-2 | **firmado** | `verify:components` 37/37 | `apps/egia-quest` con el núcleo copiado y un reto de punta a punta |
+| GATE-EGIA-3 | pendiente | — | Escalar: 14 retos restantes, dilemas, tablero, introducción ilustrada |
+| GATE-EGIA-4 | pendiente | — | Piloto con estudiantes y retirada del monolito |
+
+**Vamos por delante del calendario.** El plan situaba el cierre de la Fase 2 en la semana 5, el 28
+de septiembre. Está cerrada en la semana 1. Eso no adelanta la fecha del piloto: da margen para la
+Fase 3, que es la más larga, y para el punto de control del 21 de septiembre.
+
+**Decisiones registradas desde la redacción de este plan:** `DEC-EGIA-034` marco de competencias,
+`035` corrección de la etiqueta v0.1B, `036` subjetividad estratégica, `037` Gate 1 con reservas,
+`038` sucesión del README, `039` Gate 2 aprobado, `040` reserva levantada.
+
+**Deuda cerrada:** `DEUDA-EGIA-001`, `006`, `014`, `017`, `018` y `020`. Quedan doce abiertas,
+ninguna en P1.
 
 ---
 
@@ -138,7 +161,7 @@ Una decisión mala no bloquea: genera consecuencia y ofrece reparación document
 
 ## 6. Fases y gates
 
-### F0 · Congelar el monolito — Semana 1
+### F0 · Congelar el monolito — CERRADA
 
 Se paga la deuda P1 del aviso de validación fuera de pantalla, se etiqueta el monolito como `v0.1B`
 y se publica bajo `/legacy/v0.1B/`, siguiendo el patrón con que StoryLab preservó su MVP histórico.
@@ -147,7 +170,7 @@ Nadie se queda sin aplicación durante la migración.
 **Gate 0 · congelación** — `verify:freeze`: la etiqueta existe, la ruta legacy responde, la prueba de
 humo del flujo iniciar→completar pasa. Decisión humana de cierre de v0.1A registrada.
 
-### F1 · Contenido como dato canónico — Semanas 2–4
+### F1 · Contenido como dato canónico — CERRADA
 
 Los 15 retos, los 12 dilemas ramificados, el glosario y las fichas de herramientas se escriben como
 datos validados contra JSON Schema, no como código. Inversión sin riesgo: este contenido vale igual
@@ -157,7 +180,7 @@ en cualquier stack.
 esquema; cada reto declara competencia, evidencia, criterio ético, accesibilidad y «cuándo no usar».
 Aprobación humana del contenido pedagógico.
 
-### F2 · Rebanada vertical — Semanas 4–5
+### F2 · Rebanada vertical — CERRADA
 
 Nace `apps/egia-quest/` con el stack de StoryLab y el núcleo copiado: esquemas, puertos, adaptadores
 de almacenamiento y casos de uso de portafolio. Se implementa **un** reto completo —inicio,
@@ -166,7 +189,7 @@ evidencia, reflexión, decisión humana, entrada al portafolio— con sus prueba
 **Gate 2 · rebanada vertical** — `verify:vertical-slice` y `verify:core-parity`: el reto funciona con
 pruebas de dominio, aplicación y presentación; la copia del núcleo no ha divergido del original.
 
-### F3 · Escalar — Semanas 5–7
+### F3 · Escalar — EN APERTURA
 
 Los catorce retos restantes, los dilemas con consecuencia, el tablero, el glosario, la sección de
 herramientas y la introducción ilustrada a las competencias del siglo 21 y las buenas prácticas.
@@ -175,7 +198,7 @@ También la salida estática low-tech que preserva el principio de acceso sin se
 **Gate 3 · paridad** — `verify:components` más pruebas de paridad de portafolio: un perfil exportado
 en v0.1.0 se importa, migra y produce equivalencia semántica verificada.
 
-### F4 · Piloto y apagado — Semana 8
+### F4 · Piloto y apagado — PENDIENTE
 
 Prueba con estudiantes reales en condiciones de curso. El monolito se retira solo después de que el
 sucesor pase el gate de piloto; hasta entonces convive en la ruta legacy.
