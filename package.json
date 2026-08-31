@@ -13,7 +13,8 @@
     "validate:content": "node tools/validate-content.mjs",
     "revision:cuadernillo": "python3 tools/cuadernillo/construir.py && node tools/cuadernillo/pdf.mjs",
     "verify:preview": "node tools/smoke-preview.mjs",
-    "verify:preview:ver": "node tools/smoke-preview.mjs --ver"
+    "verify:preview:ver": "node tools/smoke-preview.mjs --ver",
+    "verify:contraste": "node tools/verify-contraste.mjs"
   },
   "devDependencies": {
     "ajv": "8.20.0",

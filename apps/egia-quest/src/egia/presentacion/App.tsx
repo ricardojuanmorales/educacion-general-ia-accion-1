@@ -95,6 +95,12 @@ export function App({ runtime }: AppProps = {}) {
 
   return (
     <div className="app">
+      {/* Quien navega con teclado o lector de pantalla no debería recorrer seis pestañas
+          antes de llegar al contenido. El enlace está oculto hasta que recibe el foco. */}
+      <a className="saltar" href="#panel-principal">
+        Saltar al contenido
+      </a>
+
       <header className="cabecera">
         <p className="cabecera__marca">
           EGIA Quest <span className="cabecera__version">v1.0.0 · vista previa</span>
@@ -115,7 +121,7 @@ export function App({ runtime }: AppProps = {}) {
               id={`pestana-${s.id}`}
               className="pestana"
               aria-selected={seccion === s.id}
-              aria-controls={`panel-${s.id}`}
+              aria-controls="panel-principal"
               tabIndex={seccion === s.id ? 0 : -1}
               ref={(el) => {
                 pestanas.current[i] = el;
@@ -132,7 +138,8 @@ export function App({ runtime }: AppProps = {}) {
       <main
         className="panel"
         role="tabpanel"
-        id={`panel-${seccion}`}
+        id="panel-principal"
+        data-seccion={seccion}
         aria-labelledby={`pestana-${seccion}`}
         tabIndex={-1}
       >

@@ -100,12 +100,13 @@ npm run validate:content     # esquema y reglas del marco sobre todo el contenid
 # Sucesor en construcción
 cd apps/egia-quest
 npm install                  # requiere npm >= 12
-npm run verify:components    # typecheck + paridad del núcleo + 73 pruebas
+npm run verify:components    # typecheck + paridad del núcleo + 75 pruebas
 npm run dev                  # servidor de desarrollo
 npm run publicar:preview     # construye y escribe preview/ en la raíz del repositorio
 
 # Y desde la raíz, humo de la vista previa en un navegador de verdad
 npm run verify:preview       # 26 verificaciones sobre el bundle que se publica
+npm run verify:contraste     # 48 pares de la paleta contra WCAG 2.2 AA, en ambos modos
 npm run verify:preview:ver   # lo mismo, con el navegador visible
 ```
 
@@ -139,6 +140,16 @@ Antes de asignar cualquier identificador nuevo se consulta el índice de series 
 Diez familias competenciales heredadas de AI StoryLab, con cuatro niveles orientadores de desempeño: inicial guiado, exploratorio, autónomo situado y transferente crítico. Se publica también una tabla de equivalencia con **DigComp 3.0**, que es lectura de equivalencia y no certificación de alineación.
 
 Las ocho competencias del MVP v0.1A no se borraron: quedan como identificadores heredados que resuelven a las familias canónicas, de modo que los perfiles ya exportados se siguen leyendo.
+
+---
+
+## ♿ Accesibilidad
+
+Estructura semántica con landmarks, `lang="es"`, jerarquía de encabezados sin saltos, foco visible que nunca se elimina, enlace para saltar al contenido, `prefers-reduced-motion` respetado, pestañas con `aria-selected` y navegación por flechas, y ningún blanco táctil por debajo de 44 píxeles.
+
+El contraste **se mide, no se elige a ojo**: `npm run verify:contraste` comprueba 48 pares de la paleta contra WCAG 2.2 AA en modo claro y oscuro, y falla si alguno baja del umbral. El verificador nació de un defecto real — un color a 3.80:1 en textos de 13 píxeles.
+
+Lo que falta está declarado: las preferencias de accesibilidad que el motor ya sabe guardar todavía no se ofrecen (`DEUDA-EGIA-029`), y nadie ha probado la aplicación con lector de pantalla (`DEUDA-EGIA-030`). En un proyecto cuyo nivel Q3 se llama «Accesibilidad aplicada», eso no es una mejora pendiente: es una condición de coherencia.
 
 ---
 
