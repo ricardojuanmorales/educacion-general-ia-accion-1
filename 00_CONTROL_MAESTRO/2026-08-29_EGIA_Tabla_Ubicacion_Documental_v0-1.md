@@ -41,6 +41,10 @@ la sección 2 existe para que eso no vuelva a ocurrir.
 | Tabla de ubicación documental | `00_CONTROL_MAESTRO/` | Este documento. Raíz del cartapacio |
 | Fundamento filosófico y pedagógico | `01_FUNDAMENTO_FILOSOFICO/` | |
 | Marco de competencias y andamiaje | `12_DISENO_INSTRUCCIONAL_UNIVERSAL/` | |
+| Análisis de diseño instruccional | `12_DISENO_INSTRUCCIONAL_UNIVERSAL/` | Insumos para decisiones pedagógicas |
+| Reflexión y alineación estratégica | `00_CONTROL_MAESTRO/` | Al cierre de fase. Raíz del cartapacio |
+| Verificadores ejecutables | `tools/` | Un archivo por comando de `package.json` |
+| Artefacto compilado publicado | `preview/` | Generado. No se edita a mano (DEC-EGIA-043) |
 | Herencia de Specs Núcleo por referencia | `04_GOBERNANZA_ETICA_Y_RIESGOS/` | No se reescriben; se invocan |
 | Mapa de gates y actas de aprobación | `15_EVALUACION_CALIDAD_Y_AUDITORIA/` | |
 | Guion de piloto y rúbricas de observación | `08_CURSOS_PROGRAMAS_Y_TRAYECTORIAS/` | |
@@ -56,10 +60,12 @@ la sección 2 existe para que eso no vuelva a ocurrir.
 
 | Serie | Formato | Último asignado | Ubicación del registro | Abierta desde |
 |---|---|---|---|---|
-| Decisiones | `DEC-EGIA-NNN` | `DEC-EGIA-035` | `00_CONTROL_MAESTRO/decisiones/` | 2026-05-07 |
-| Deuda | `DEUDA-EGIA-NNN` | `DEUDA-EGIA-018` | `18_DOCUMENTACION_ACTIVA/deuda/` | 2026-08-28 |
-| Retos | `EGIA-R-NNN` | `EGIA-R-008` (MVP) · `EGIA-R-015` (planificado) | `contenido/retos/` | 2026-05 |
-| Gates | `GATE-EGIA-N` | `GATE-EGIA-4` (planificado) | `15_EVALUACION_CALIDAD_Y_AUDITORIA/` | 2026-08-28 |
+| Decisiones | `DEC-EGIA-NNN` | **`DEC-EGIA-044`** | `00_CONTROL_MAESTRO/decisiones/` | 2026-05-07 |
+| Deuda | `DEUDA-EGIA-NNN` | **`DEUDA-EGIA-032`** | `18_DOCUMENTACION_ACTIVA/deuda/` | 2026-08-28 |
+| Retos | `EGIA-R-NNN` | `EGIA-R-015` (aprobado, DEC-EGIA-040) | `contenido/retos/` | 2026-05 |
+| Dilemas | `EGIA-D-NNN` | `EGIA-D-012` (aprobado, DEC-EGIA-040) | `contenido/dilemas/` | 2026-08-29 |
+| Herramientas | `EGIA-H-NNN` | `EGIA-H-008` (aprobado, DEC-EGIA-040) | `contenido/herramientas/` | 2026-08-29 |
+| Gates | `GATE-EGIA-N` | `GATE-EGIA-2` (firmado) · `GATE-EGIA-4` (planificado) | `15_EVALUACION_CALIDAD_Y_AUDITORIA/` | 2026-08-28 |
 
 ## 3. Regla de sucesión y archivo
 
