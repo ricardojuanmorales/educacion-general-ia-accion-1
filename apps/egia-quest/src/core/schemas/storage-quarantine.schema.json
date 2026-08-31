@@ -1,0 +1,76 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-storylab.local/schemas/storage/quarantine/v1",
+  "title": "AI StoryLab Storage Quarantine v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "storageFormat",
+    "storageFormatVersion",
+    "updatedAt",
+    "entries"
+  ],
+  "properties": {
+    "storageFormat": {
+      "const": "ai-storylab-storage-quarantine"
+    },
+    "storageFormatVersion": {
+      "const": 1
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sourceKey",
+          "classification",
+          "detectedAt",
+          "action",
+          "reviewState"
+        ],
+        "properties": {
+          "sourceKey": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "classification": {
+            "enum": [
+              "storage_unavailable",
+              "quota_exceeded",
+              "malformed_json",
+              "invalid_envelope",
+              "integrity_mismatch",
+              "unsupported_future_version",
+              "invalid_payload",
+              "invalid_staging",
+              "invalid_index",
+              "invalid_recent_pointer",
+              "invalid_quarantine",
+              "orphan_recent_pointer",
+              "orphan_index_entry",
+              "snapshot_without_index",
+              "interrupted_write"
+            ]
+          },
+          "detectedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "action": {
+            "const": "preserve_source"
+          },
+          "reviewState": {
+            "const": "pending_human_review"
+          }
+        }
+      }
+    }
+  }
+}

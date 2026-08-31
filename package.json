@@ -4,12 +4,18 @@
   "version": "0.1.1",
   "type": "module",
   "description": "EGIA Quest — MVP monolítico local-first. Este package.json solo aporta herramientas de verificación; la aplicación publicada sigue siendo index.html sin build.",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "verify:freeze": "node tools/smoke-monolito.mjs index.html",
-    "verify:legacy": "node tools/smoke-monolito.mjs legacy/v0.1B/index.html"
+    "verify:legacy": "node tools/smoke-monolito.mjs legacy/v0.1B/index.html",
+    "validate:content": "node tools/validate-content.mjs",
+    "revision:cuadernillo": "python3 tools/cuadernillo/construir.py && node tools/cuadernillo/pdf.mjs"
   },
   "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
     "playwright": "1.56.1"
   }
 }

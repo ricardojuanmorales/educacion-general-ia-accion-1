@@ -1,0 +1,39 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-storylab.local/schemas/storage/staged-write/v1",
+  "title": "AI StoryLab Staged Write v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "storageFormat",
+    "storageFormatVersion",
+    "operationId",
+    "startedAt",
+    "makeRecent",
+    "envelope"
+  ],
+  "properties": {
+    "storageFormat": {
+      "const": "ai-storylab-staged-write"
+    },
+    "storageFormatVersion": {
+      "const": 1
+    },
+    "operationId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "makeRecent": {
+      "type": "boolean"
+    },
+    "envelope": {
+      "$ref": "https://ai-storylab.local/schemas/storage/project-envelope/v1"
+    }
+  }
+}

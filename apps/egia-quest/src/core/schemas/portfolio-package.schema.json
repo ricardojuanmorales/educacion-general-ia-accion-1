@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-storylab.local/schemas/portfolio-package/1.0.0",
+  "title": "AI StoryLab Portfolio Package v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "packageType",
+    "packageVersion",
+    "exportedAt",
+    "payload",
+    "integrity"
+  ],
+  "properties": {
+    "packageType": {
+      "const": "storylab_portfolio"
+    },
+    "packageVersion": {
+      "const": "1.0.0"
+    },
+    "exportedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/payloadAlpha2"
+        },
+        {
+          "$ref": "#/$defs/payloadAlpha1"
+        }
+      ]
+    },
+    "integrity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "canonicalization",
+        "scope",
+        "digest"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "canonicalization": {
+          "const": "storylab-canonical-json-v1"
+        },
+        "scope": {
+          "const": "payload"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "exportProjectPrivacy": {
+      "type": "object",
+      "properties": {
+        "portfolio": {
+          "type": "object",
+          "properties": {
+            "items": {
+              "type": "array",
+              "minItems": 1
+            }
+          },
+          "required": [
+            "items"
+          ]
+        },
+        "reflections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "privacyClass": {
+                "enum": [
+                  "shareable_with_purpose",
+                  "exportable_after_review"
+                ]
+              },
+              "selectedForExport": {
+                "const": true
+              }
+            },
+            "required": [
+              "privacyClass",
+              "selectedForExport"
+            ]
+          }
+        }
+      },
+      "required": [
+        "portfolio",
+        "reflections"
+      ]
+    },
+    "payloadAlpha2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectSchemaVersion",
+        "project"
+      ],
+      "properties": {
+        "projectSchemaVersion": {
+          "const": "0.8.0-alpha.2"
+        },
+        "project": {
+          "allOf": [
+            {
+              "$ref": "https://ai-storylab.local/schemas/project/0.8.0-alpha.2"
+            },
+            {
+              "$ref": "#/$defs/exportProjectPrivacy"
+            }
+          ]
+        }
+      }
+    },
+    "payloadAlpha1": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projectSchemaVersion",
+        "project"
+      ],
+      "properties": {
+        "projectSchemaVersion": {
+          "const": "0.8.0-alpha.1"
+        },
+        "project": {
+          "allOf": [
+            {
+              "$ref": "https://ai-storylab.local/schemas/project/0.8.0-alpha.1"
+            },
+            {
+              "$ref": "#/$defs/exportProjectPrivacy"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

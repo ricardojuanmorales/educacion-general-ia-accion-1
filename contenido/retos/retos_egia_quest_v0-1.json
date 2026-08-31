@@ -2,9 +2,11 @@
   "schema_version": "egia-quest.contenido.retos.v0.1.0",
   "estado": "borrador para revisión humana",
   "fecha": "2026-08-29",
-  "sirve_a": "Fase 1 del Plan de Fases y Gates v0.2.0 · DEC-EGIA-028 · DEC-EGIA-030",
+  "sirve_a": "Fase 1 del Plan de Fases y Gates v0.2.0 · DEC-EGIA-028 · DEC-EGIA-030 · DEC-EGIA-036",
+  "subjetividad_estrategica": "estudiante universitario de educación general",
+  "politica_aias_del_curso": "Nivel 4, Uso Abierto, en tareas no supervisadas con controles obligatorios. Nivel 0 en exámenes y pruebas supervisadas.",
   "nota_autoria": "Borrador redactado con asistencia de IA. La autoría, la revisión y la aprobación son humanas.",
-  "lote": "R-01 a R-03, muestra de voz para aprobación antes de redactar los doce restantes",
+  "lote": "R-01 a R-15 · diez anclados a las Buenas Prácticas y cinco integradores",
   "retos": [
     {
       "id": "EGIA-R-001",
@@ -13,7 +15,10 @@
       "nivel": "Q0",
       "verbo": "reconocer",
       "desempeno_esperado": 1,
-      "competencias": ["literacidad_ia", "agencia_humana"],
+      "competencias": [
+        "literacidad_ia",
+        "agencia_humana"
+      ],
       "consigna": "Toma un trabajo que ya entregaste o que estés preparando y escribe su párrafo de disclosure: qué herramienta de IA usaste, en qué versión, para qué exactamente, y qué parte del resultado revisaste o cambiaste tú. Si no usaste IA, dilo también: esa también es una declaración.",
       "evidencia_minima": "Un párrafo de disclosure listo para pegar al final de una entrega, con herramienta, versión, propósito y límite.",
       "tipo_evidencia": "Declaración de uso de IA",
@@ -32,7 +37,9 @@
       "prerrequisitos": [],
       "puntos_base": 10,
       "badge_posible": "badge_declaracion_limpia",
-      "proyectos_transversales": ["framework_research"]
+      "proyectos_transversales": [
+        "framework_research"
+      ]
     },
     {
       "id": "EGIA-R-002",
@@ -41,7 +48,10 @@
       "nivel": "Q0",
       "verbo": "reconocer",
       "desempeno_esperado": 2,
-      "competencias": ["reflexion_portafolio", "literacidad_ia"],
+      "competencias": [
+        "reflexion_portafolio",
+        "literacidad_ia"
+      ],
       "consigna": "En tu próxima sesión de trabajo con IA, guarda entre dos y cinco prompts que de verdad movieron algo. Junto a cada uno anota qué te devolvió, qué aceptaste y qué rechazaste. No hace falta que sea bonito: hace falta que sea verdad.",
       "evidencia_minima": "Una bitácora con dos a cinco prompts, cada uno con su decisión de aceptar o rechazar y una razón de una línea.",
       "tipo_evidencia": "Bitácora de proceso",
@@ -52,15 +62,21 @@
       "cuando_no_usar_ia": "No le pidas a la IA que resuma tu propia bitácora. El valor está en el trabajo de recordar y decidir qué fue importante; ese esfuerzo es el aprendizaje, no un trámite previo al aprendizaje.",
       "andamiaje": "plantilla",
       "plantilla": [
-        "Prompt (resumido si era largo)",
+        "Tarea y nivel AIAS que aplica",
+        "Prompt, resumido si era largo",
         "Qué me devolvió, en una línea",
         "¿Acepté o rechacé?",
         "Por qué"
       ],
-      "prerrequisitos": ["EGIA-R-001"],
+      "prerrequisitos": [
+        "EGIA-R-001"
+      ],
       "puntos_base": 10,
       "badge_posible": "badge_rastro_honesto",
-      "proyectos_transversales": ["framework_research", "avat"]
+      "proyectos_transversales": [
+        "framework_research",
+        "avat"
+      ]
     },
     {
       "id": "EGIA-R-003",
@@ -69,7 +85,10 @@
       "nivel": "Q1",
       "verbo": "explorar",
       "desempeno_esperado": 2,
-      "competencias": ["literacidad_ia", "evaluacion_criterio"],
+      "competencias": [
+        "literacidad_ia",
+        "evaluacion_criterio"
+      ],
       "consigna": "Escoge tres afirmaciones de hecho que la IA te haya dado —fechas, cifras, autorías, citas— y verifícalas contra al menos dos fuentes que puedas abrir y leer. Si una referencia sugerida no existe o no la encuentras, no la arregles: documéntala como no verificable y reemplázala.",
       "evidencia_minima": "Una mini-matriz de tres filas: afirmación, fuentes consultadas con enlace o DOI, y decisión tomada (confirmé, corregí, descarté).",
       "tipo_evidencia": "Mapa de decisiones",
@@ -81,15 +100,433 @@
       "andamiaje": "plantilla",
       "plantilla": [
         "Afirmación que verifiqué",
-        "Fuente 1 (enlace o DOI)",
-        "Fuente 2 (enlace o DOI)",
-        "Decisión: confirmé / corregí / descarté",
+        "Fuente 1, con enlace o DOI",
+        "Fuente 2, con enlace o DOI",
+        "Decisión: confirmé, corregí o descarté",
         "Qué cambió en mi trabajo por esto"
       ],
-      "prerrequisitos": ["EGIA-R-002"],
+      "prerrequisitos": [
+        "EGIA-R-002"
+      ],
       "puntos_base": 15,
       "badge_posible": "badge_triangulacion",
-      "proyectos_transversales": ["framework_research", "living_lab"]
+      "proyectos_transversales": [
+        "framework_research",
+        "living_lab"
+      ]
+    },
+    {
+      "id": "EGIA-R-004",
+      "titulo": "Marca dónde terminas tú",
+      "practica_guia": 4,
+      "nivel": "Q1",
+      "verbo": "explorar",
+      "desempeno_esperado": 2,
+      "competencias": [
+        "agencia_humana",
+        "evaluacion_criterio"
+      ],
+      "consigna": "Sobre un trabajo tuyo con IA, separa en dos columnas qué hizo la herramienta y qué hiciste tú: qué criterio aplicaste, qué descartaste, qué reorganizaste, qué añadiste que no estaba. Después prepara cómo lo defenderías en cinco o siete minutos si alguien te lo pidiera mañana.",
+      "evidencia_minima": "Una sección «qué hice yo vs. qué hizo la IA» y un guion de defensa de cinco a siete minutos.",
+      "tipo_evidencia": "Mapa de decisiones",
+      "sensibilidad": "media",
+      "reflexion": "Si te quitaran la columna de la IA, ¿qué quedaría de tu trabajo? Responde sin consolarte.",
+      "criterio_etico": "El aporte humano no se mide en cantidad de palabras escritas a mano, sino en decisiones tomadas y justificadas. Inflar tu columna es tan deshonesto como ocultar la otra.",
+      "accesibilidad": "Si usas tabla de dos columnas, añade también una versión en lista: las tablas se leen mal en lector de pantalla y en teléfono.",
+      "cuando_no_usar_ia": "No uses IA para redactar tu guion de defensa. Es la pieza que demuestra que puedes sostener tu trabajo sin la herramienta delante; escribirla con la herramienta la vacía de sentido.",
+      "andamiaje": "plantilla",
+      "plantilla": [
+        "Lo que hizo la IA",
+        "Lo que hice yo: criterios que apliqué",
+        "Lo que descarté de la salida, y por qué",
+        "Lo que añadí que no estaba",
+        "Guion de defensa: problema, decisiones, verificación, límites, transferencia"
+      ],
+      "prerrequisitos": [
+        "EGIA-R-003"
+      ],
+      "puntos_base": 15,
+      "badge_posible": "badge_autoria_sostenida",
+      "proyectos_transversales": [
+        "framework_research",
+        "avat"
+      ]
+    },
+    {
+      "id": "EGIA-R-005",
+      "titulo": "Explícala como se la explicarías a alguien",
+      "practica_guia": 5,
+      "nivel": "Q2",
+      "verbo": "crear",
+      "desempeno_esperado": 3,
+      "competencias": [
+        "literacidad_ia",
+        "agencia_humana"
+      ],
+      "consigna": "Escribe una nota metodológica de cinco a ocho líneas que explique, en lenguaje claro, qué hace la herramienta que usaste, por qué te sugirió lo que te sugirió, y en qué situación no deberías usarla. Después documenta un caso real en el que decidiste no usarla y explica qué hiciste en su lugar.",
+      "evidencia_minima": "Nota metodológica de cinco a ocho líneas más un caso de abstención justificada con la alternativa que tomaste.",
+      "tipo_evidencia": "Análisis ético",
+      "sensibilidad": "media",
+      "reflexion": "Tu caso de abstención: ¿te costó decidirlo o fue evidente? Si fue evidente, busca uno más difícil y cuéntalo.",
+      "criterio_etico": "Explicabilidad mínima no significa entender la arquitectura del modelo. Significa poder decir por qué confías en una salida y en qué condiciones dejarías de confiar.",
+      "accesibilidad": "Sin jerga sin definir. Si tienes que usar un término técnico, defínelo en la misma frase.",
+      "cuando_no_usar_ia": "No le pidas a la herramienta que se explique a sí misma y lo copies. Un modelo describiéndose produce texto plausible sobre su propio funcionamiento, no una explicación verificada; y la nota tiene que reflejar lo que tú entiendes, no lo que él afirma.",
+      "andamiaje": "checklist",
+      "checklist": [
+        "¿Digo qué hace la herramienta en una frase sin jerga?",
+        "¿Digo por qué produjo lo que produjo, hasta donde puedo saberlo?",
+        "¿Digo explícitamente cuándo no la usaría?",
+        "¿Mi caso de abstención es real y fechado, no hipotético?",
+        "¿Explico qué hice en lugar de usarla?"
+      ],
+      "prerrequisitos": [
+        "EGIA-R-004"
+      ],
+      "puntos_base": 15,
+      "badge_posible": "badge_explicabilidad",
+      "proyectos_transversales": [
+        "framework_research",
+        "living_lab"
+      ]
+    },
+    {
+      "id": "EGIA-R-006",
+      "titulo": "Pon licencia y quita nombres",
+      "practica_guia": 6,
+      "nivel": "Q2",
+      "verbo": "crear",
+      "desempeno_esperado": 3,
+      "competencias": [
+        "etica_responsabilidad"
+      ],
+      "consigna": "Haz el inventario de todo lo que entra en tu trabajo —texto, imágenes, audio, código, datos— y para cada pieza anota de dónde viene, bajo qué licencia la puedes usar y cómo la estás atribuyendo. En paralelo, revisa qué datos de personas pasaron por tus prompts y escribe tu descargo de privacidad.",
+      "evidencia_minima": "Matriz de licencias con una fila por activo, más un descargo de privacidad que declare qué datos usaste y cuáles no subiste.",
+      "tipo_evidencia": "Evidencia contextual",
+      "sensibilidad": "alta",
+      "reflexion": "¿Hubo algún activo cuya licencia no pudiste determinar? ¿Qué hiciste con él, y qué harías la próxima vez?",
+      "criterio_etico": "«Lo encontré en internet» no es una licencia. Y si hay nombres, rostros o voces de personas reales, hace falta anonimizar o pedir consentimiento antes, no después.",
+      "accesibilidad": "La atribución va visible junto al activo, no escondida en un pie de página que nadie abre.",
+      "cuando_no_usar_ia": "No subas a un servicio público los datos que estás inventariando para saber si son sensibles. Si tienes que preguntar si algo es sensible, ya lo es lo suficiente como para no pegarlo en un prompt.",
+      "andamiaje": "checklist",
+      "checklist": [
+        "¿Tengo una fila por cada activo, incluido el que yo mismo generé con IA?",
+        "¿Cada fila dice origen, licencia y forma de atribución?",
+        "¿Marqué los activos cuya licencia no pude determinar?",
+        "¿Mi descargo dice qué datos de personas NO subí a ningún servicio?",
+        "¿Anonimicé o pedí consentimiento donde hacía falta?"
+      ],
+      "prerrequisitos": [
+        "EGIA-R-005"
+      ],
+      "puntos_base": 15,
+      "badge_posible": "badge_procedencia_clara",
+      "proyectos_transversales": [
+        "framework_research",
+        "mooc"
+      ]
+    },
+    {
+      "id": "EGIA-R-007",
+      "titulo": "Que se pueda leer, oír y abrir",
+      "practica_guia": 7,
+      "nivel": "Q3",
+      "verbo": "documentar",
+      "desempeno_esperado": 3,
+      "competencias": [
+        "diseno_universal"
+      ],
+      "consigna": "Toma un producto tuyo y pásale la revisión de accesibilidad: texto alternativo descriptivo en cada imagen, subtítulos en el video, encabezados en orden, contraste suficiente, y una versión ligera que abra sin buena conexión. Después identifica una barrera concreta que encontraste y documenta la adaptación que hiciste.",
+      "evidencia_minima": "Checklist de accesibilidad aplicado, una versión low-tech del producto, y una nota que nombre una barrera y su adaptación.",
+      "tipo_evidencia": "Adaptación accesible",
+      "sensibilidad": "media",
+      "reflexion": "¿A quién dejaba fuera tu producto antes de esta revisión? Nómbralo con precisión, no como «personas con discapacidad» en general.",
+      "criterio_etico": "La accesibilidad no es un añadido de cortesía al final: es parte de la calidad del trabajo y del respeto a quien lo va a recibir. Un material que excluye está incompleto, no terminado.",
+      "accesibilidad": "El texto alternativo describe lo que la imagen aporta al argumento, no lo que se ve. «Gráfico de barras» no es texto alternativo; «las matrículas cayeron un tercio entre 2020 y 2024» sí lo es.",
+      "cuando_no_usar_ia": "No generes textos alternativos en lote con IA sin mirar cada imagen. La herramienta describe lo que hay; tú sabes por qué esa imagen está en tu trabajo, y eso es lo que el texto alternativo tiene que decir.",
+      "andamiaje": "checklist",
+      "checklist": [
+        "¿Cada imagen tiene texto alternativo que dice su función, no su apariencia?",
+        "¿El video tiene subtítulos revisados, no solo automáticos?",
+        "¿Los encabezados van en orden, sin saltar niveles?",
+        "¿El contraste se sostiene en pantalla y en impresión en gris?",
+        "¿Existe una versión ligera que abra con mala conexión?",
+        "¿Nombré una barrera concreta y qué hice con ella?"
+      ],
+      "prerrequisitos": [
+        "EGIA-R-006"
+      ],
+      "puntos_base": 20,
+      "badge_posible": "badge_sin_barreras",
+      "proyectos_transversales": [
+        "avat",
+        "mooc"
+      ]
+    },
+    {
+      "id": "EGIA-R-008",
+      "titulo": "Busca tu punto ciego",
+      "practica_guia": 8,
+      "nivel": "Q4",
+      "verbo": "evaluar",
+      "desempeno_esperado": 3,
+      "competencias": [
+        "etica_responsabilidad",
+        "conocimiento_situado"
+      ],
+      "consigna": "Aplica un mini-IBATA de una página a tu trabajo: qué injusticias o daños podría producir y con qué umbral los detectarías, dónde queda la decisión humana, qué transformaciones provoca en quien lo use, y qué harías para repararlo si sale mal. Una métrica por eje, no un ensayo.",
+      "evidencia_minima": "Mini-IBATA de una página con una métrica o umbral declarado por eje y una acción de reparación concreta.",
+      "tipo_evidencia": "Análisis ético",
+      "sensibilidad": "media-alta",
+      "reflexion": "De los ejes que analizaste, ¿cuál te resultó más incómodo? Lo incómodo suele marcar dónde estaba el punto ciego.",
+      "criterio_etico": "El análisis de riesgo se hace proporcional al riesgo real, no al tamaño del trabajo. Un ejercicio de clase que nadie más verá no necesita lo mismo que un material que se publica.",
+      "accesibilidad": "Una página significa una página: si tu mini-IBATA no cabe, no está proporcionado al riesgo, está inflado.",
+      "cuando_no_usar_ia": "No le pidas a la IA que encuentre los puntos ciegos de un trabajo que hiciste con esa misma IA. Compartes con ella los supuestos que hay que auditar; para eso sirve una persona con otro punto de vista.",
+      "andamiaje": "checklist",
+      "checklist": [
+        "¿Nombré injusticias o daños posibles con un umbral que los detectaría?",
+        "¿Declaré dónde queda la decisión humana y quién la toma?",
+        "¿Consideré las transformaciones que provoca: dependencia, huella, cambio de práctica?",
+        "¿Asumí accountability con una acción de reparación concreta y un plazo?",
+        "¿Cada eje tiene una métrica, no una intención?",
+        "¿Cabe en una página?"
+      ],
+      "prerrequisitos": [
+        "EGIA-R-007"
+      ],
+      "puntos_base": 20,
+      "badge_posible": "badge_punto_ciego",
+      "proyectos_transversales": [
+        "framework_research",
+        "living_lab"
+      ]
+    },
+    {
+      "id": "EGIA-R-009",
+      "titulo": "Nombra lo que aprendiste, no lo que entregaste",
+      "practica_guia": 9,
+      "nivel": "Q5",
+      "verbo": "reflexionar",
+      "desempeno_esperado": 4,
+      "competencias": [
+        "reflexion_portafolio",
+        "evaluacion_criterio"
+      ],
+      "consigna": "Vuelve sobre tres trabajos tuyos de este curso y escribe una lección aprendida por cada uno: qué sabías antes, qué sabes ahora y en qué otro contexto lo aplicarías. Después mide tu progreso en dos o tres competencias concretas y di en qué evidencia se nota el cambio.",
+      "evidencia_minima": "Reflexión de 100 a 150 palabras con tres lecciones aprendidas, más un registro de progreso en dos o tres competencias con la evidencia que lo respalda.",
+      "tipo_evidencia": "Reflexión metacognitiva",
+      "sensibilidad": "media-alta",
+      "reflexion": "¿Cuál de las tres lecciones habrías aprendido igual sin IA? Esa es la que más te pertenece.",
+      "criterio_etico": "Una lección aprendida no es un resumen de lo que hiciste. Si tu reflexión se puede escribir sin haber hecho el trabajo, todavía no es una reflexión.",
+      "accesibilidad": "Cita cada evidencia por su nombre y ubicación, para que quien te lea pueda ir a verla sin preguntarte.",
+      "cuando_no_usar_ia": "No uses IA para escribir esta reflexión ni para decidir qué aprendiste. Un modelo puede producir un texto que suene a aprendizaje; solo tú sabes qué cambió de verdad en tu manera de trabajar.",
+      "andamiaje": "criterio",
+      "prerrequisitos": [
+        "EGIA-R-004",
+        "EGIA-R-008"
+      ],
+      "puntos_base": 20,
+      "badge_posible": "badge_delta_visible",
+      "proyectos_transversales": [
+        "framework_research",
+        "mooc"
+      ]
+    },
+    {
+      "id": "EGIA-R-010",
+      "titulo": "Juega con las reglas puestas",
+      "practica_guia": 10,
+      "nivel": "Q4",
+      "verbo": "evaluar",
+      "desempeno_esperado": 3,
+      "competencias": [
+        "etica_responsabilidad",
+        "agencia_humana"
+      ],
+      "consigna": "Para cada entrega de tu curso, declara el nivel AIAS que le corresponde y comprueba que tu bitácora, tu disclosure y tu desempeño cuentan la misma historia. Donde tengas dudas sobre qué nivel aplica, escribe la pregunta que le harías a la docencia antes de usar IA, no después.",
+      "evidencia_minima": "Tabla de entregas con el nivel AIAS declarado en cada una y una nota de coherencia entre bitácora, disclosure y desempeño.",
+      "tipo_evidencia": "Evidencia contextual",
+      "sensibilidad": "media",
+      "reflexion": "¿Hubo alguna entrega donde el nivel AIAS que aplicaste y el que correspondía no coincidían? Cuenta qué pasó.",
+      "criterio_etico": "La política del curso trabaja en Nivel 4, Uso Abierto, en tareas no supervisadas con controles obligatorios, y en Nivel 0 en pruebas supervisadas. Un nivel declarado que no coincide con lo que hiciste es peor que no declarar nada: convierte un descuido en una afirmación falsa.",
+      "accesibilidad": "Declara el nivel AIAS en la primera línea de la entrega, no escondido al final.",
+      "cuando_no_usar_ia": "En una prueba supervisada, Nivel 0: ninguna IA, ni para revisar ortografía. Y si dudas de qué nivel aplica en una tarea, la pregunta va a la docencia, no al modelo.",
+      "andamiaje": "checklist",
+      "checklist": [
+        "¿Cada entrega tiene su nivel AIAS declarado y visible?",
+        "¿El nivel declarado coincide con lo que realmente hice?",
+        "¿Mi bitácora respalda ese nivel?",
+        "¿Podría defender oralmente cualquiera de estas entregas?",
+        "¿Anoté las dudas que llevé a la docencia antes de usar IA?"
+      ],
+      "prerrequisitos": [
+        "EGIA-R-001",
+        "EGIA-R-002"
+      ],
+      "puntos_base": 20,
+      "badge_posible": "badge_juego_limpio",
+      "proyectos_transversales": [
+        "framework_research"
+      ]
+    },
+    {
+      "id": "EGIA-R-011",
+      "titulo": "Haz algo que se vea, se oiga y se sostenga",
+      "practica_guia": null,
+      "nivel": "Q5",
+      "verbo": "reflexionar",
+      "desempeno_esperado": 4,
+      "competencias": [
+        "investigacion_creacion",
+        "diseno_universal"
+      ],
+      "consigna": "Produce una pieza multimodal —texto con imagen, audio, video o visualización— sobre un tema de tu curso, y documenta cada decisión de autoría: qué generaste con IA, qué produjiste tú, qué licencia tiene cada activo y qué adaptaciones de accesibilidad incorporaste desde el diseño, no al final.",
+      "evidencia_minima": "Una pieza multimodal publicable con su documentación de autoría, licencias y accesibilidad integradas.",
+      "tipo_evidencia": "Artefacto creativo",
+      "sensibilidad": "variable",
+      "reflexion": "¿En qué momento estuviste a punto de aceptar algo solo porque quedaba bien? Cuenta qué hiciste con eso.",
+      "criterio_etico": "Una pieza multimodal multiplica el alcance y multiplica el daño posible: representación estereotipada, voces sintéticas que confunden identidad, imágenes de personas sin consentimiento. El cuidado escala con el alcance.",
+      "accesibilidad": "Texto alternativo, subtítulos y transcripción desde el primer borrador. Añadirlos al final produce accesibilidad de trámite, que se nota.",
+      "cuando_no_usar_ia": "No generes voces ni rostros que se parezcan a personas reales, aunque técnicamente puedas. Y si la pieza representa a una comunidad de la que no formas parte, la IA no sustituye consultarla.",
+      "andamiaje": "criterio",
+      "prerrequisitos": [
+        "EGIA-R-006",
+        "EGIA-R-007"
+      ],
+      "puntos_base": 20,
+      "badge_posible": "badge_multimodal_responsable",
+      "proyectos_transversales": [
+        "avat",
+        "podcast"
+      ]
+    },
+    {
+      "id": "EGIA-R-012",
+      "titulo": "Compara tres herramientas y quédate con los límites",
+      "practica_guia": null,
+      "nivel": "Q5",
+      "verbo": "reflexionar",
+      "desempeno_esperado": 4,
+      "competencias": [
+        "literacidad_ia",
+        "conocimiento_situado",
+        "aprendizaje_ludico"
+      ],
+      "consigna": "Escoge tres herramientas de IA que podrías usar en tu campo y hazles una ficha comparativa: qué hace cada una, qué no hace, qué datos toca, qué licencia tiene lo que produce y en qué situación no la usarías. Pruébalas con la misma tarea para que la comparación sea real.",
+      "evidencia_minima": "Ficha comparativa de tres herramientas probadas con la misma tarea, con un «cuándo no usar» por herramienta.",
+      "tipo_evidencia": "Evidencia contextual",
+      "sensibilidad": "media",
+      "reflexion": "¿Cuál de las tres te sorprendió, y en qué dirección? Las sorpresas marcan supuestos que tenías sin saberlo.",
+      "criterio_etico": "Comparar no es recomendar. Una ficha que solo dice virtudes es publicidad; la parte útil para quien te lea son los límites y las condiciones de uso.",
+      "accesibilidad": "Publica la ficha en formato ligero además de la versión con capturas: quien tenga mala conexión también necesita decidir qué herramienta usar.",
+      "cuando_no_usar_ia": "No uses una de las herramientas para evaluar a las otras dos. Y no pruebes ninguna con datos reales de personas: usa una tarea sintética que puedas repetir idéntica en las tres.",
+      "andamiaje": "criterio",
+      "prerrequisitos": [
+        "EGIA-R-003",
+        "EGIA-R-005"
+      ],
+      "puntos_base": 20,
+      "badge_posible": "badge_curaduria_critica",
+      "proyectos_transversales": [
+        "living_lab",
+        "mooc"
+      ]
+    },
+    {
+      "id": "EGIA-R-013",
+      "titulo": "Trae un dilema tuyo, no uno de manual",
+      "practica_guia": null,
+      "nivel": "Q5",
+      "verbo": "reflexionar",
+      "desempeno_esperado": 4,
+      "competencias": [
+        "etica_responsabilidad",
+        "conocimiento_situado"
+      ],
+      "consigna": "Identifica un dilema real que te haya ocurrido a ti usando IA en este curso —uno donde de verdad dudaste— y analízalo con el IBATA completo. Incluye la decisión que tomaste, no solo la que crees que deberías haber tomado.",
+      "evidencia_minima": "Análisis IBATA de un dilema propio, fechado, con la decisión tomada, sus consecuencias observadas y la reparación si la hubo.",
+      "tipo_evidencia": "Análisis ético",
+      "sensibilidad": "alta",
+      "reflexion": "Si volviera a pasarte mañana, ¿decidirías igual? Responde antes de saber si la respuesta te deja bien.",
+      "criterio_etico": "Un dilema de manual no cuesta nada. Este reto pide uno propio, lo que implica exponer una duda real. Nada de este análisis se exporta sin tu decisión explícita, y puedes anonimizar a terceros sin perder el valor del caso.",
+      "accesibilidad": "Escribe el caso de forma que se entienda sin conocer el curso: quien lo lea en tu portafolio dentro de dos años también eres tú.",
+      "cuando_no_usar_ia": "No le pidas a la IA que resuelva tu dilema. Puede ayudarte a nombrar ejes que se te escapan, pero la decisión es lo que este reto evalúa, y delegarla lo vacía.",
+      "andamiaje": "criterio",
+      "prerrequisitos": [
+        "EGIA-R-008"
+      ],
+      "puntos_base": 20,
+      "badge_posible": "badge_dilema_propio",
+      "proyectos_transversales": [
+        "framework_research",
+        "living_lab"
+      ]
+    },
+    {
+      "id": "EGIA-R-014",
+      "titulo": "Arma el portafolio y ponlo a prueba",
+      "practica_guia": null,
+      "nivel": "Q6",
+      "verbo": "transferir",
+      "desempeno_esperado": 4,
+      "competencias": [
+        "reflexion_portafolio",
+        "colaboracion_transdisciplinaria"
+      ],
+      "consigna": "Reúne tus evidencias en un portafolio coherente, decide una por una cuáles se exportan y cuáles se quedan privadas, y pásaselo a una compañera o compañero para que te lo revise. Después prepara tu defensa en cinco láminas: problema, decisiones, verificación, límites y transferencia.",
+      "evidencia_minima": "Portafolio exportado con decisiones de inclusión explícitas, revisión por pares recibida y respondida, y defensa en cinco láminas.",
+      "tipo_evidencia": "Transferencia",
+      "sensibilidad": "variable",
+      "reflexion": "¿Qué evidencia decidiste no exportar, y qué te dice esa decisión sobre lo que consideras tuyo?",
+      "criterio_etico": "Exportar es un acto, no un descuido. Cada pieza que sale de tu máquina sale porque tú lo decidiste, y la revisión por pares no te obliga a mostrar lo que clasificaste como privado.",
+      "accesibilidad": "Las cinco láminas se sostienen leídas en voz alta sin ver la pantalla. Si dependen de lo que se ve, no están terminadas.",
+      "cuando_no_usar_ia": "No le pidas a la IA que seleccione qué evidencias entran en tu portafolio. Esa curaduría es la competencia que el reto evalúa; delegarla deja el portafolio sin la persona que debía armarlo.",
+      "andamiaje": "criterio",
+      "prerrequisitos": [
+        "EGIA-R-009",
+        "EGIA-R-011"
+      ],
+      "puntos_base": 25,
+      "badge_posible": "badge_portafolio_integro",
+      "proyectos_transversales": [
+        "mooc",
+        "framework_research"
+      ]
+    },
+    {
+      "id": "EGIA-R-015",
+      "titulo": "Enséñaselo a alguien más",
+      "practica_guia": null,
+      "nivel": "Q6",
+      "verbo": "transferir",
+      "desempeno_esperado": 4,
+      "competencias": [
+        "conocimiento_situado",
+        "colaboracion_transdisciplinaria"
+      ],
+      "consigna": "Toma una de las prácticas que trabajaste y llévala a un contexto distinto: otro curso, tu trabajo, un proyecto propio. Después enséñasela a otra persona que no haya pasado por este curso y documenta qué tuviste que cambiar para que le sirviera.",
+      "evidencia_minima": "Registro de la práctica aplicada en otro contexto y de la sesión de enseñanza, con lo que hubo que adaptar y por qué.",
+      "tipo_evidencia": "Transferencia",
+      "sensibilidad": "media",
+      "reflexion": "¿Qué parte de lo que sabías no se pudo transferir? Ahí está el límite real de tu aprendizaje, y saber dónde está también es aprendizaje.",
+      "criterio_etico": "Enseñar una práctica ética implica hacerse responsable de cómo la aplique quien la reciba. Advierte los límites de lo que enseñas con la misma claridad con que enseñas el método.",
+      "accesibilidad": "Adapta el material a quien lo recibe, no a quien lo escribió. Si tu interlocutor no es de tu campo, el vocabulario cambia.",
+      "cuando_no_usar_ia": "No uses IA para preparar la explicación que darás a otra persona. Si no puedes explicarlo con tus palabras, todavía no lo has transferido; lo has copiado de sitio.",
+      "andamiaje": "criterio",
+      "prerrequisitos": [
+        "EGIA-R-013",
+        "EGIA-R-014"
+      ],
+      "puntos_base": 25,
+      "badge_posible": "badge_transferencia",
+      "proyectos_transversales": [
+        "mooc",
+        "avat",
+        "podcast"
+      ]
     }
-  ]
+  ],
+  "pendiente_de_confirmacion_humana": [
+    "El acrónimo IBATA: la Guía Rápida nombra explícitamente Injusticias y daños, Autonomía, Transformaciones y Accountability, pero no desarrolla la B. El reto R-008 se redactó sobre los ejes nombrados. Falta confirmar qué eje cubre la B antes de dar el reto por cerrado."
+  ],
+  "nota_cobertura": "La familia aprendizaje_ludico se desarrolla sobre todo en los doce dilemas ramificados, donde la persona prueba una decisión y ve su consecuencia. En el catálogo de retos la sostiene R-012, cuya evidencia es literalmente una prueba realizada con su resultado."
 }

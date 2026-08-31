@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-storylab.local/schemas/import-candidate/0.8.0-alpha.2",
+  "title": "AI StoryLab ImportCandidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source",
+    "sourceSchemaVersion",
+    "payload"
+  ],
+  "properties": {
+    "source": {
+      "enum": [
+        "storylab",
+        "legacy_v0_3"
+      ]
+    },
+    "sourceSchemaVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "payload": {}
+  }
+}

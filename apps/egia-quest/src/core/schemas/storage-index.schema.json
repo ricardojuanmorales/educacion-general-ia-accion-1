@@ -1,0 +1,62 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-storylab.local/schemas/storage/project-index/v1",
+  "title": "AI StoryLab Project Index v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "storageFormat",
+    "storageFormatVersion",
+    "updatedAt",
+    "entries"
+  ],
+  "properties": {
+    "storageFormat": {
+      "const": "ai-storylab-project-index"
+    },
+    "storageFormatVersion": {
+      "const": 1
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "projectId",
+          "title",
+          "projectSchemaVersion",
+          "updatedAt",
+          "writeState"
+        ],
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "projectSchemaVersion": {
+            "const": "0.8.0-alpha.2"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "writeState": {
+            "const": "committed"
+          }
+        }
+      }
+    }
+  }
+}

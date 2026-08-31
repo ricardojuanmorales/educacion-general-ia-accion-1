@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ricardojuanmorales.github.io/educacion-general-ia-accion-1/contenido/esquemas/retos.schema.json",
+  "title": "Catálogo de retos de EGIA Quest",
+  "description": "Contrato de datos del contenido pedagógico. Sirve al Gate 1 del Plan de Fases y Gates v0.2.0 y al Marco de Competencias y Andamiaje v0.1 (DEC-EGIA-034).",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "estado",
+    "fecha",
+    "subjetividad_estrategica",
+    "retos"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "egia-quest.contenido.retos.v0.1.0"
+    },
+    "estado": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fecha": {
+      "type": "string",
+      "format": "date"
+    },
+    "sirve_a": {
+      "type": "string"
+    },
+    "subjetividad_estrategica": {
+      "const": "estudiante universitario de educación general"
+    },
+    "politica_aias_del_curso": {
+      "type": "string"
+    },
+    "nota_autoria": {
+      "type": "string"
+    },
+    "lote": {
+      "type": "string"
+    },
+    "pendiente_de_confirmacion_humana": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/reto"
+      }
+    },
+    "nota_cobertura": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "familia": {
+      "enum": [
+        "agencia_humana",
+        "aprendizaje_ludico",
+        "investigacion_creacion",
+        "literacidad_ia",
+        "etica_responsabilidad",
+        "diseno_universal",
+        "conocimiento_situado",
+        "colaboracion_transdisciplinaria",
+        "reflexion_portafolio",
+        "evaluacion_criterio"
+      ]
+    },
+    "tipoEvidencia": {
+      "enum": [
+        "Bitácora de proceso",
+        "Mapa de decisiones",
+        "Declaración de uso de IA",
+        "Artefacto creativo",
+        "Versión comparada",
+        "Reflexión metacognitiva",
+        "Rúbrica comentada",
+        "Retroalimentación recibida",
+        "Evidencia contextual",
+        "Evidencia colaborativa",
+        "Análisis ético",
+        "Adaptación accesible",
+        "Transferencia"
+      ]
+    },
+    "reto": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "titulo",
+        "practica_guia",
+        "nivel",
+        "verbo",
+        "desempeno_esperado",
+        "competencias",
+        "consigna",
+        "evidencia_minima",
+        "tipo_evidencia",
+        "sensibilidad",
+        "reflexion",
+        "criterio_etico",
+        "accesibilidad",
+        "cuando_no_usar_ia",
+        "andamiaje",
+        "prerrequisitos",
+        "puntos_base"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^EGIA-R-[0-9]{3}$"
+        },
+        "titulo": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 60
+        },
+        "practica_guia": {
+          "description": "Buena Práctica 1 a 10 de la Guía Rápida Estudiantil, o null en los retos integradores",
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 10
+        },
+        "nivel": {
+          "enum": [
+            "Q0",
+            "Q1",
+            "Q2",
+            "Q3",
+            "Q4",
+            "Q5",
+            "Q6"
+          ]
+        },
+        "verbo": {
+          "enum": [
+            "reconocer",
+            "explorar",
+            "crear",
+            "documentar",
+            "evaluar",
+            "reflexionar",
+            "transferir"
+          ]
+        },
+        "desempeno_esperado": {
+          "description": "1 Inicial guiado · 2 Exploratorio · 3 Autónomo situado · 4 Transferente crítico",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "competencias": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/familia"
+          }
+        },
+        "consigna": {
+          "type": "string",
+          "minLength": 60
+        },
+        "evidencia_minima": {
+          "type": "string",
+          "minLength": 30
+        },
+        "tipo_evidencia": {
+          "$ref": "#/$defs/tipoEvidencia"
+        },
+        "sensibilidad": {
+          "enum": [
+            "media",
+            "media-alta",
+            "alta",
+            "variable"
+          ]
+        },
+        "reflexion": {
+          "type": "string",
+          "minLength": 20
+        },
+        "criterio_etico": {
+          "type": "string",
+          "minLength": 40
+        },
+        "accesibilidad": {
+          "type": "string",
+          "minLength": 30
+        },
+        "cuando_no_usar_ia": {
+          "type": "string",
+          "minLength": 40
+        },
+        "andamiaje": {
+          "enum": [
+            "plantilla",
+            "checklist",
+            "criterio"
+          ]
+        },
+        "plantilla": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "string",
+            "minLength": 5
+          }
+        },
+        "checklist": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "string",
+            "minLength": 10
+          }
+        },
+        "prerrequisitos": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^EGIA-R-[0-9]{3}$"
+          }
+        },
+        "puntos_base": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 30
+        },
+        "badge_posible": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "proyectos_transversales": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "avat",
+              "living_lab",
+              "podcast",
+              "mooc",
+              "framework_research"
+            ]
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "andamiaje": {
+                "const": "plantilla"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "plantilla"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "andamiaje": {
+                "const": "checklist"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "checklist"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

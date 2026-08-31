@@ -1,0 +1,531 @@
+{
+  "schema_version": "egia-quest.contenido.dilemas.v0.1.0",
+  "estado": "borrador para revisión humana",
+  "fecha": "2026-08-29",
+  "sirve_a": "Fase 1 del Plan de Fases y Gates v0.2.0 · DEC-EGIA-026 · paga DEUDA-EGIA-006",
+  "subjetividad_estrategica": "estudiante universitario de educación general",
+  "nota_autoria": "Borrador redactado con asistencia de IA. La autoría, la revisión y la aprobación son humanas.",
+  "principio": "Ninguna opción se puntúa como correcta. Cada opción muestra su consecuencia, y donde hubo daño se ofrece reparación. La calidad de la decisión se registra para el tablero, no se le muestra a la persona como nota.",
+  "herencia": "D-003, D-005 y D-007 desarrollan los tres dilemas del MVP v0.1A, que eran de opción única sin consecuencia.",
+  "dilemas": [
+    {
+      "id": "EGIA-D-001",
+      "titulo": "El disclosure que nadie te pidió",
+      "nivel": "Q0",
+      "eje_ibata": "accountability",
+      "practica_relacionada": 1,
+      "competencias": ["agencia_humana", "literacidad_ia"],
+      "sensibilidad": "media",
+      "escenario": "Terminas un ensayo para un curso donde la profesora nunca mencionó la IA. Usaste un modelo para reorganizar tus párrafos y afinar tres transiciones. El resto es tuyo. Nadie te pidió declarar nada, y el formulario de entrega no tiene ninguna casilla para eso.",
+      "pregunta": "¿Qué haces con la declaración?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Entrego sin declarar nada: no me lo pidieron.",
+          "calidad": "evasiva",
+          "consecuencia": "La entrega pasa sin incidentes. Semanas después la profesora anuncia una política de declaración y pide revisar trabajos anteriores. Ahora declararlo se ve como una confesión tardía, no como una práctica.",
+          "reparacion": "Escribir a la profesora antes del anuncio, no después, explicando lo que hiciste. Cuanto antes llegue, menos parece defensa."
+        },
+        {
+          "id": "b",
+          "texto": "Añado un párrafo de disclosure al final aunque nadie lo pida.",
+          "calidad": "cuidadosa",
+          "consecuencia": "La profesora lo lee, te pregunta en clase cómo lo hiciste y termina usando tu párrafo como ejemplo. Tu trabajo se vuelve legible como proceso, no solo como resultado.",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "Le pregunto primero a la profesora qué espera.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Te contesta que aún no tiene política y te agradece la pregunta. Queda constancia de que preguntaste antes, que es lo que protege una duda de convertirse en problema.",
+          "reparacion": null
+        },
+        {
+          "id": "d",
+          "texto": "Quito las transiciones que sugirió el modelo para no tener que declarar nada.",
+          "calidad": "apresurada",
+          "consecuencia": "El ensayo queda peor y sigues sin declarar el uso, porque el modelo también te ayudó a reorganizar. Evitar la declaración te costó calidad y no resolvió el fondo.",
+          "reparacion": "Restaurar las transiciones y declarar el uso completo, incluida la reorganización."
+        }
+      ],
+      "reflexion_posterior": "¿Qué te habría hecho declarar sin dudarlo? Nombrar eso te dice qué necesitas para que declarar sea automático.",
+      "puntos_base": 5
+    },
+    {
+      "id": "EGIA-D-002",
+      "titulo": "La cita perfecta que no aparece",
+      "nivel": "Q1",
+      "eje_ibata": "injusticias_danos",
+      "practica_relacionada": 3,
+      "competencias": ["literacidad_ia", "evaluacion_criterio"],
+      "sensibilidad": "media",
+      "escenario": "Entregas mañana a las ocho. La IA te dio una referencia que encaja perfecto con tu argumento: autora, año, revista, número de páginas. Llevas cuarenta minutos buscándola y no existe en ninguna base. El resto del trabajo está listo.",
+      "pregunta": "¿Qué haces con la cita?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "La dejo: encaja, y probablemente exista en algún sitio que no busqué.",
+          "calidad": "dañina",
+          "consecuencia": "La profesora intenta consultarla para su propia investigación y no la encuentra. Tu trabajo pierde credibilidad entero, no solo esa línea: si una referencia es inventada, todas quedan bajo sospecha.",
+          "reparacion": "Escribir de inmediato retirando la cita y explicando cómo llegó ahí, antes de que te lo pregunten."
+        },
+        {
+          "id": "b",
+          "texto": "La quito y reescribo el argumento con las fuentes que sí verifiqué.",
+          "calidad": "cuidadosa",
+          "consecuencia": "El argumento queda más modesto y sostenido. Entregas cuarenta minutos más tarde de lo previsto y con una afirmación menos, pero todo lo que afirmas se puede comprobar.",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "La dejo con una nota: «referencia sugerida por IA, no verificada».",
+          "calidad": "apresurada",
+          "consecuencia": "La honestidad se agradece, pero una referencia no verificada no sostiene un argumento. Te la devuelven pidiendo que reescribas esa sección igual, ahora con menos tiempo.",
+          "reparacion": "Reescribir la sección apoyándola en fuentes verificadas."
+        },
+        {
+          "id": "d",
+          "texto": "Busco una fuente real que diga algo parecido y la sustituyo.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Encuentras una que dice algo parecido pero no idéntico, y al ajustar tu frase descubres que tu afirmación original era más fuerte de lo que la evidencia permite. El trabajo mejora.",
+          "reparacion": null
+        }
+      ],
+      "reflexion_posterior": "¿Qué hacía tan creíble esa cita? Lo que te convenció a ti es lo que convencerá a otros la próxima vez.",
+      "puntos_base": 5
+    },
+    {
+      "id": "EGIA-D-003",
+      "titulo": "Las respuestas de tus compañeros",
+      "nivel": "Q2",
+      "eje_ibata": "injusticias_danos",
+      "practica_relacionada": 6,
+      "competencias": ["etica_responsabilidad"],
+      "sensibilidad": "alta",
+      "escenario": "Tu grupo hizo una encuesta en clase sobre hábitos de estudio. Tienen cuarenta respuestas abiertas, algunas con nombres, una con una situación familiar difícil. Analizar eso a mano toma horas y el análisis con IA tomaría minutos.",
+      "pregunta": "¿Qué haces con las respuestas?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Las pego tal cual: son de clase, no son datos médicos.",
+          "calidad": "dañina",
+          "consecuencia": "La respuesta con la situación familiar difícil sale del control del grupo y queda en un servicio externo. Nadie se entera, y eso es precisamente el problema: la persona que la escribió confió en un contexto de clase.",
+          "reparacion": "No hay forma de recuperar lo enviado. Lo que sí procede es avisar al grupo, revisar los términos del servicio y no volver a hacerlo."
+        },
+        {
+          "id": "b",
+          "texto": "Anonimizo, quito lo identificable y proceso el resto.",
+          "calidad": "cuidadosa",
+          "consecuencia": "El análisis sale igual de útil. Te toma veinte minutos preparar los datos, y en el proceso descubres dos respuestas que no habías leído con atención.",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "Analizo a mano y no uso IA para nada de esto.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Tardas tres horas y el análisis es más fino de lo que habría salido automático, porque leíste cada respuesta. La abstención tiene costo y también rendimiento.",
+          "reparacion": null
+        },
+        {
+          "id": "d",
+          "texto": "Uso solo las respuestas cortas y sin nombres, y descarto las largas.",
+          "calidad": "apresurada",
+          "consecuencia": "Proteges los datos sensibles, pero sesgas el análisis: las respuestas largas eran justo las de quienes tenían más que decir. Tu conclusión representa a quien escribió poco.",
+          "reparacion": "Recuperar las respuestas largas anonimizadas y rehacer el análisis, o declarar el sesgo en el informe."
+        }
+      ],
+      "reflexion_posterior": "La respuesta con la situación familiar difícil: ¿qué habría querido esa persona que hicieras?",
+      "puntos_base": 10
+    },
+    {
+      "id": "EGIA-D-004",
+      "titulo": "El compañero que no declaró",
+      "nivel": "Q2",
+      "eje_ibata": "accountability",
+      "practica_relacionada": 4,
+      "competencias": ["colaboracion_transdisciplinaria", "agencia_humana"],
+      "sensibilidad": "media-alta",
+      "escenario": "Trabajo de grupo, entrega en dos días. La sección de un compañero llega escrita en un registro que no es el suyo, con ejemplos genéricos y sin una sola referencia local. Tú declaraste tu uso de IA en tu parte. Él no declaró nada.",
+      "pregunta": "¿Qué haces?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Lo hablo con él antes de entregar.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Admite que lo generó entero porque iba corto de tiempo. Entre los dos lo reescriben con sus ejemplos y añaden su declaración. La entrega se retrasa unas horas y el grupo llega íntegro.",
+          "reparacion": null
+        },
+        {
+          "id": "b",
+          "texto": "Entrego así: es su sección y su responsabilidad.",
+          "calidad": "evasiva",
+          "consecuencia": "La entrega es del grupo, no de cada uno. La observación llega al grupo entero y tu declaración cuidadosa queda mezclada con la ausencia de la suya.",
+          "reparacion": "Explicar al docente lo que ocurrió, después de haberlo hablado con tu compañero, no en lugar de eso."
+        },
+        {
+          "id": "c",
+          "texto": "Se lo digo al docente directamente.",
+          "calidad": "apresurada",
+          "consecuencia": "El problema se resuelve, y el grupo se rompe. Saltar la conversación convierte un asunto de trabajo en una denuncia, y el resto del semestre lo notas.",
+          "reparacion": "Hablar con tu compañero de todos modos, aunque sea después."
+        },
+        {
+          "id": "d",
+          "texto": "Reescribo yo su sección sin decirle nada.",
+          "calidad": "apresurada",
+          "consecuencia": "La entrega sale bien y tu compañero no aprende nada. Además ahora hay una sección con tu voz firmada por él, que es otra forma del mismo problema.",
+          "reparacion": "Decírselo y devolverle la sección para que la trabaje él."
+        }
+      ],
+      "reflexion_posterior": "¿Qué te costó más: la conversación incómoda o el trabajo extra? Tu respuesta dice cuál de los dos evitas.",
+      "puntos_base": 10
+    },
+    {
+      "id": "EGIA-D-005",
+      "titulo": "La imagen que representa mal",
+      "nivel": "Q3",
+      "eje_ibata": "injusticias_danos",
+      "practica_relacionada": 7,
+      "competencias": ["diseno_universal", "etica_responsabilidad"],
+      "sensibilidad": "media",
+      "escenario": "Generaste una imagen para tu presentación sobre la comunidad universitaria. Es visualmente buena y encaja con tu diseño. Al mirarla con calma notas que todas las figuras se parecen entre sí: misma edad, mismo tono, nadie con bastón, nadie mayor de treinta.",
+      "pregunta": "¿Qué haces con la imagen?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "La uso: es una ilustración, no un censo.",
+          "calidad": "dañina",
+          "consecuencia": "En la presentación, dos personas del público no se ven representadas en una imagen que dice retratar a su comunidad. Nadie te lo dice, y eso no significa que no haya pasado.",
+          "reparacion": "Cambiar la imagen y, si la presentación ya circuló, sustituirla en la versión archivada con una nota del cambio."
+        },
+        {
+          "id": "b",
+          "texto": "Corrijo el prompt hasta que la representación sea más fiel.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Te toma cuatro intentos y el resultado sigue siendo imperfecto, pero es defendible. En el proceso aprendes qué le pides implícitamente a la herramienta cuando escribes «estudiantes».",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "La reemplazo por una foto real con permiso.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Tardas más y tienes que pedir consentimiento a las personas que aparecen. La presentación gana concreción y tú ganas una matriz de licencias que ya tenías que hacer.",
+          "reparacion": null
+        },
+        {
+          "id": "d",
+          "texto": "La uso con un pie que diga «imagen generada con IA».",
+          "calidad": "apresurada",
+          "consecuencia": "Declaras el origen, que está bien, pero el pie no arregla la representación: sigues mostrando una comunidad que no se parece a la tuya, ahora con etiqueta.",
+          "reparacion": "Corregir la representación además de declarar el origen."
+        }
+      ],
+      "reflexion_posterior": "¿Qué escribiste en el prompt que la herramienta interpretó así? La respuesta rara vez está solo en la herramienta.",
+      "puntos_base": 10
+    },
+    {
+      "id": "EGIA-D-006",
+      "titulo": "Los subtítulos que no caben en el plazo",
+      "nivel": "Q3",
+      "eje_ibata": "transformaciones",
+      "practica_relacionada": 7,
+      "competencias": ["diseno_universal", "agencia_humana"],
+      "sensibilidad": "media",
+      "escenario": "Tu video de ocho minutos está listo y se entrega hoy a medianoche. Los subtítulos automáticos están llenos de errores: nombres propios mal, términos técnicos inventados. Revisarlos toma dos horas que no tienes.",
+      "pregunta": "¿Qué entregas?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Entrego con los subtítulos automáticos sin revisar.",
+          "calidad": "dañina",
+          "consecuencia": "Quien depende de los subtítulos recibe un texto con términos inventados, que es peor que no tenerlos: parece accesible y no lo es. La accesibilidad de trámite excluye con apariencia de inclusión.",
+          "reparacion": "Revisar los subtítulos y volver a subir el video, avisando de la corrección."
+        },
+        {
+          "id": "b",
+          "texto": "Reviso solo los primeros dos minutos y aviso de que el resto está sin revisar.",
+          "calidad": "apresurada",
+          "consecuencia": "La advertencia es honesta y sirve de poco: el video sigue siendo inaccesible a partir del minuto tres. Al menos quien lo use sabe a qué atenerse.",
+          "reparacion": "Completar la revisión en cuanto puedas y sustituir el archivo."
+        },
+        {
+          "id": "c",
+          "texto": "Pido una prórroga de un día explicando el motivo.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Te la conceden. Entregas con subtítulos revisados y con la razón documentada. Pedir tiempo por accesibilidad deja claro que no es un extra opcional.",
+          "reparacion": null
+        },
+        {
+          "id": "d",
+          "texto": "Añado una transcripción escrita, que toma veinte minutos, y reviso los subtítulos después.",
+          "calidad": "cuidadosa",
+          "consecuencia": "La transcripción cubre el acceso al contenido hoy y los subtítulos corregidos llegan mañana. Resolviste con lo que tenías sin fingir que estaba completo.",
+          "reparacion": null
+        }
+      ],
+      "reflexion_posterior": "¿En qué momento de tu plan tendrían que haber entrado los subtítulos para que esto no fuera un dilema?",
+      "puntos_base": 10
+    },
+    {
+      "id": "EGIA-D-007",
+      "titulo": "La voz que se parece demasiado",
+      "nivel": "Q4",
+      "eje_ibata": "autonomia",
+      "practica_relacionada": 6,
+      "competencias": ["etica_responsabilidad", "investigacion_creacion"],
+      "sensibilidad": "alta",
+      "escenario": "Para un pódcast del curso quieres narrar un fragmento con voz sintética. La herramienta te ofrece clonar una voz a partir de un audio. Tienes grabaciones de una profesora hablando del tema, de una clase pública. El resultado sería excelente.",
+      "pregunta": "¿Qué haces?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Clono su voz: la clase era pública.",
+          "calidad": "dañina",
+          "consecuencia": "Público no significa disponible para clonar. Circula un audio donde su voz dice frases que ella nunca dijo. Aunque el contenido sea correcto, le quitaste el control sobre lo que su voz afirma.",
+          "reparacion": "Retirar el audio, avisarle a ella antes de que lo descubra por otra vía, y rehacerlo con otra voz."
+        },
+        {
+          "id": "b",
+          "texto": "Le pido permiso explicándole exactamente qué diría la voz.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Te dice que sí a condición de revisar el guion, y de paso te corrige dos afirmaciones. El consentimiento no solo te protegió: mejoró la pieza.",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "Uso una voz sintética genérica y lo declaro.",
+          "calidad": "cuidadosa",
+          "consecuencia": "El pódcast pierde algo de autoridad y no engaña a nadie sobre quién habla. La declaración al inicio del audio, no en la descripción, es lo que hace la diferencia.",
+          "reparacion": null
+        },
+        {
+          "id": "d",
+          "texto": "Narro yo mismo aunque no me guste mi voz grabada.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Grabas cuatro tomas y la cuarta sale bien. La incomodidad era tuya, no del oyente, y ahora la pieza es completamente tuya.",
+          "reparacion": null
+        }
+      ],
+      "reflexion_posterior": "Si fuera tu voz la que alguien clonara para un trabajo de clase, ¿qué habrías querido que te preguntaran antes?",
+      "puntos_base": 15
+    },
+    {
+      "id": "EGIA-D-008",
+      "titulo": "La duda sobre qué nivel aplicaba",
+      "nivel": "Q4",
+      "eje_ibata": "accountability",
+      "practica_relacionada": 10,
+      "competencias": ["etica_responsabilidad", "agencia_humana"],
+      "sensibilidad": "media-alta",
+      "escenario": "Un examen para llevar a casa, con instrucciones que dicen «trabajo individual» y no mencionan la IA. Usaste un modelo para entender un concepto que no te quedaba claro, no para responder. Al entregar te queda la duda de si eso contaba como Nivel 0.",
+      "pregunta": "¿Qué haces con la duda?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "No digo nada: no respondí con IA, solo estudié con ella.",
+          "calidad": "evasiva",
+          "consecuencia": "Probablemente no pase nada. Pero la duda se queda contigo y la próxima vez que dudes será más fácil no decir nada otra vez. Los criterios se aflojan por acumulación, no de golpe.",
+          "reparacion": "Preguntar al docente cómo interpretar ese caso, aunque el examen ya esté entregado."
+        },
+        {
+          "id": "b",
+          "texto": "Escribo al docente antes de entregar, explicando exactamente qué hice.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Te responde que estudiar con IA no es responder con IA, y aprovecha para aclarárselo a todo el grupo. Tu duda mejoró la política del curso.",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "Añado una nota al examen contando lo que hice.",
+          "calidad": "cuidadosa",
+          "consecuencia": "El docente lo lee, no hay problema, y queda constancia de que fuiste tú quien lo declaró. La nota vale más que una explicación pedida después.",
+          "reparacion": null
+        },
+        {
+          "id": "d",
+          "texto": "Rehago mi respuesta desde cero sin haber consultado nada.",
+          "calidad": "apresurada",
+          "consecuencia": "Entregas peor y sigues sin saber cuál era la regla. Castigarte no responde la pregunta que tenías.",
+          "reparacion": "Preguntar cuál era la interpretación correcta, que era lo que hacía falta desde el principio."
+        }
+      ],
+      "reflexion_posterior": "¿Qué te frenaba de preguntar? Casi siempre es miedo a que la respuesta sea la que ya sospechas.",
+      "puntos_base": 15
+    },
+    {
+      "id": "EGIA-D-009",
+      "titulo": "El error que ya está publicado",
+      "nivel": "Q5",
+      "eje_ibata": "accountability",
+      "practica_relacionada": null,
+      "competencias": ["etica_responsabilidad", "reflexion_portafolio"],
+      "sensibilidad": "media-alta",
+      "escenario": "Una infografía que hiciste con IA lleva tres semanas circulando en el grupo del curso y en dos cuentas de la facultad. Descubres que una de las cifras está mal: la tomaste de una salida que no verificaste. El error cambia la conclusión.",
+      "pregunta": "¿Cómo lo reparas?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Publico la versión corregida sin mencionar el error.",
+          "calidad": "evasiva",
+          "consecuencia": "Quien ya compartió la versión vieja sigue difundiéndola sin saber que hay una corrección. Corregir en silencio deja el error circulando con tu nombre.",
+          "reparacion": "Publicar la corrección visible y pedir a quienes compartieron que actualicen."
+        },
+        {
+          "id": "b",
+          "texto": "Publico la corrección diciendo qué estaba mal y cómo pasó.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Es incómodo durante un día. Las cuentas de la facultad publican la corrección, la mayoría de la gente lo agradece, y tu explicación de cómo ocurrió le sirve a otros para no repetirlo.",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "Le escribo en privado a quienes la compartieron y dejo la pieza como está.",
+          "calidad": "apresurada",
+          "consecuencia": "Los avisados lo saben; el resto del público que ya la vio, no. La reparación privada no alcanza al daño público.",
+          "reparacion": "Publicar también la corrección donde estuvo el error."
+        },
+        {
+          "id": "d",
+          "texto": "La retiro entera y no publico corrección.",
+          "calidad": "apresurada",
+          "consecuencia": "El error deja de propagarse desde tu fuente, pero quien ya lo tiene sigue creyéndolo. Retirar no es corregir.",
+          "reparacion": "Publicar una nota que explique qué se retiró y por qué."
+        }
+      ],
+      "reflexion_posterior": "Cuenta cuánto tardaste entre descubrir el error y actuar. Ese tiempo es tu métrica de accountability, y la puedes mejorar.",
+      "puntos_base": 15
+    },
+    {
+      "id": "EGIA-D-010",
+      "titulo": "La herramienta que funciona mejor y no está aprobada",
+      "nivel": "Q5",
+      "eje_ibata": "transformaciones",
+      "practica_relacionada": null,
+      "competencias": ["conocimiento_situado", "literacidad_ia"],
+      "sensibilidad": "media-alta",
+      "escenario": "Tu institución ofrece una herramienta oficial que funciona regular. Descubres otra, gratuita, mucho mejor para tu trabajo. Sus términos dicen que usa lo que subes para entrenar. Tu trabajo incluye materiales del curso y notas propias.",
+      "pregunta": "¿Qué haces?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "La uso: es gratis, es mejor y son solo trabajos de clase.",
+          "calidad": "dañina",
+          "consecuencia": "Los materiales del curso, que no son tuyos, quedan en un servicio que los usa para entrenar. Además normalizas para tus compañeros una práctica cuyas condiciones nadie leyó.",
+          "reparacion": "Dejar de subir material ajeno y avisar a quienes copiaron tu recomendación."
+        },
+        {
+          "id": "b",
+          "texto": "La uso solo con material propio y sintético, nunca con material del curso.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Aprovechas la herramienta sin exponer lo que no es tuyo. Te obliga a separar tu material del ajeno, que es un hábito que te sirve para todo lo demás.",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "Escribo a quien decide en mi institución explicando la comparación.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Puede que no cambien nada este semestre. Pero tu comparación documentada entra en una conversación que hasta ahora nadie estaba teniendo con datos.",
+          "reparacion": null
+        },
+        {
+          "id": "d",
+          "texto": "Me quedo con la oficial aunque funcione peor.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Trabajas con más fricción y con menos riesgo. Es una decisión defendible, siempre que sea decisión y no resignación: documenta por qué la tomaste.",
+          "reparacion": null
+        }
+      ],
+      "reflexion_posterior": "¿Leíste los términos antes de que este dilema te lo pidiera? Esa es la pregunta que importa.",
+      "puntos_base": 15
+    },
+    {
+      "id": "EGIA-D-011",
+      "titulo": "El atajo que le enseñas a otra persona",
+      "nivel": "Q6",
+      "eje_ibata": "transformaciones",
+      "practica_relacionada": null,
+      "competencias": ["colaboracion_transdisciplinaria", "agencia_humana"],
+      "sensibilidad": "media",
+      "escenario": "Un compañero de primer año te pide que le enseñes cómo trabajas con IA. Tú tienes un método que te funciona: bitácora, verificación, revisión. Él te dice de entrada que lo que quiere es terminar rápido y que no le interesa la parte de verificar.",
+      "pregunta": "¿Qué le enseñas?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Le enseño el método completo aunque no lo pidió así.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Se aburre en la parte de verificación y no la usa las primeras semanas. Un mes después vuelve porque le devolvieron un trabajo con una cita inventada, y entonces sí escucha.",
+          "reparacion": null
+        },
+        {
+          "id": "b",
+          "texto": "Le enseño solo lo que pidió: lo rápido.",
+          "calidad": "dañina",
+          "consecuencia": "Aprende a producir volumen sin criterio, y lo aprendió de ti. La primera vez que le salga mal, el método que recordará como tuyo es el incompleto.",
+          "reparacion": "Buscarlo y enseñarle la parte que faltaba, antes de que le pase."
+        },
+        {
+          "id": "c",
+          "texto": "Le enseño lo rápido y le advierto de los riesgos.",
+          "calidad": "apresurada",
+          "consecuencia": "La advertencia no compite con la comodidad. Enseñar el atajo y avisar del peligro suele dejar el atajo y borrar el aviso.",
+          "reparacion": "Sentarse a hacer con él una verificación completa, para que la haya vivido una vez."
+        },
+        {
+          "id": "d",
+          "texto": "Le enseño la parte de verificación primero, y lo rápido después.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Le cuesta más entrar, pero cuando llega a la parte rápida ya sabe qué está acelerando. El orden de lo que enseñas es parte de lo que enseñas.",
+          "reparacion": null
+        }
+      ],
+      "reflexion_posterior": "¿Quién te enseñó a ti tu método, y qué parte se le olvidó contarte?",
+      "puntos_base": 20
+    },
+    {
+      "id": "EGIA-D-012",
+      "titulo": "Te piden tu portafolio para una investigación",
+      "nivel": "Q6",
+      "eje_ibata": "autonomia",
+      "practica_relacionada": null,
+      "competencias": ["etica_responsabilidad", "reflexion_portafolio"],
+      "sensibilidad": "alta",
+      "escenario": "Un equipo de investigación de tu facultad estudia cómo aprenden los estudiantes con IA. Te piden tu portafolio completo: bitácoras, reflexiones, dilemas resueltos. Dicen que sería anónimo y que ayudaría a mejorar el curso para quienes vengan detrás.",
+      "pregunta": "¿Qué respondes?",
+      "opciones": [
+        {
+          "id": "a",
+          "texto": "Lo entrego completo: es por una buena causa.",
+          "calidad": "apresurada",
+          "consecuencia": "Tus reflexiones privadas, escritas para ti, pasan a un contexto de investigación. Aunque sea anónimo, algunas cosas que escribiste solo tienen sentido sabiendo que nadie más las leería.",
+          "reparacion": "Pedir retirar las piezas que clasificaste como privadas y confirmar por escrito qué se conserva."
+        },
+        {
+          "id": "b",
+          "texto": "Entrego solo lo que ya había marcado como exportable.",
+          "calidad": "cuidadosa",
+          "consecuencia": "La decisión estaba tomada de antemano, pieza por pieza, cuando armaste el portafolio. El consentimiento se vuelve fácil porque la clasificación ya existía.",
+          "reparacion": null
+        },
+        {
+          "id": "c",
+          "texto": "Pregunto primero qué se hará exactamente, quién lo verá y hasta cuándo se guarda.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Te responden con detalle y descubres que el material se conserva cinco años. Con eso decides qué entregar, que es distinto de decidir si entregar.",
+          "reparacion": null
+        },
+        {
+          "id": "d",
+          "texto": "Digo que no sin más.",
+          "calidad": "cuidadosa",
+          "consecuencia": "Es una respuesta completa y no necesitas justificarla. Retirarse de una investigación no exige explicación, y quien te la pida está confundiendo invitación con obligación.",
+          "reparacion": null
+        }
+      ],
+      "reflexion_posterior": "¿Habrías escrito tus reflexiones igual sabiendo que alguien te las pediría? Si la respuesta es no, el portafolio está haciendo bien su trabajo al mantenerlas privadas por defecto.",
+      "puntos_base": 20
+    }
+  ],
+  "pendiente_de_confirmacion_humana": [
+    "El eje B del IBATA sigue sin definir (DEUDA-EGIA-019). Los doce dilemas se distribuyen sobre los cuatro ejes nombrados en la Guía: injusticias y daños, autonomía, transformaciones y accountability. Al confirmarse la B habrá que revisar si algún dilema le corresponde."
+  ]
+}
